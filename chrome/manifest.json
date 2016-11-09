@@ -1,0 +1,10 @@
+{
+  "name": "Hello World!",
+  "description": "My first Chrome App.",
+  "version": "0.1",
+  "manifest_version": 2,
+  "content_scripts": [ {
+      "js": [ "background.js" ],
+      "matches": [ "http://*/*", "https://*/*"]
+    }]
+}
