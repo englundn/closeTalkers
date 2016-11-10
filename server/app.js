@@ -2,10 +2,13 @@ const express = require('express');
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
+require('./config/middleware.js')(app);
+require('./config/routes.js')(app);
+
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });
 
-app.listen(3000, () => {
-  console.log('Server listening on port 3000!');
-});
+module.exports = app;
