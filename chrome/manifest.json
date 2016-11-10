@@ -1,10 +1,13 @@
 {
-  "name": "Hello World!",
-  "description": "My first Chrome App.",
+  "name": "closeTalkers",
+  "description": "closeTalkers",
   "version": "0.1",
   "manifest_version": 2,
-  "content_scripts": [ {
-      "js": [ "background.js" ],
+  "content_scripts": [{
+      "js": ["content.js"],
       "matches": [ "http://*/*", "https://*/*"]
-    }]
+    }],
+  "permissions": [
+    "http://localhost:3000/"
+  ]
 }
