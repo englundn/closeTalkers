@@ -8,7 +8,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       query: '',
-      result: [],
+      results: [],
     };
     this.query = this.query.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -25,7 +25,7 @@ class App extends React.Component {
       url: `${URL}/search?q="${qs}"`,
       method: 'GET',
       success: (data) => {
-        this.setState( {result: data.hits.hits} );
+        this.setState({ results: data.hits.hits });
       },
     });
     event.preventDefault();
@@ -39,8 +39,11 @@ class App extends React.Component {
           <input type="text" value={this.state.query} onChange={this.handleChange} />
           <input type="submit" value="Submit" />
         </form>
-        {this.state.result.map(thing => (
-          <p>{thing._source.title}</p>
+        {this.state.results.map((result, i) => (
+          <div>
+            <h4 key={i}>{result._source.title}</h4>
+            <p>{result._source.text}</p>
+          </div>
         ))}
       </div>
     );
