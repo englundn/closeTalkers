@@ -4,4 +4,9 @@ const webRouter = require('./routers/web.js');
 module.exports = (app) => {
   app.use('/api/chrome', chromeRouter);
   app.use('/api/web', webRouter);
+  app.get('/',
+    (req, res) => {
+      res.render('index');
+    }
+  );
 };
