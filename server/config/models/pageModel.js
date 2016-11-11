@@ -24,4 +24,30 @@ module.exports = {
         console.error(err);
       });
   },
+  search: (qs, callback) => {
+    const options = {
+      method: 'GET',
+      uri: `${URL}/1/archive/_search`,
+      auth: {
+        user: config.user,
+        pass: config.password,
+      },
+      body: {
+        query: {
+          match: {
+            text: qs,
+          },
+        },
+      },
+      json: true,
+    };
+
+    rp(options)
+      .then((data) => {
+        callback(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
 };
