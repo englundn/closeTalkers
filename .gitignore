@@ -31,3 +31,6 @@ bower_components/
 # API Keys
 #server/config/config.js
 server/config/config.js
+
+# Compiled
+compiled/
