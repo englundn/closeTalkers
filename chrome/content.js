@@ -1,11 +1,9 @@
 const url = window.location.href;
 const title = document.title;
-const body = document.body.innerHTML;
 
 const data = {
   url,
   title,
-  body,
 };
 
 const request = new XMLHttpRequest();
