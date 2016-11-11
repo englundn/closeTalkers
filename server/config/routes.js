@@ -1,4 +1,8 @@
+<<<<<<< e121ad614ad8e937cbdf1c51642390b5490bb4e1
 const rp = require('request-promise');
+=======
+const fetch = require('./fetchData.js');
+>>>>>>> (feat) first successful post to elastic search cloud
 
 module.exports = (app) => {
   app.get('/', (req, res) => {
@@ -30,6 +34,8 @@ module.exports = (app) => {
       .catch((err) => {
         console.error(err);
       });
+
+    fetch(body);
 
     res.end();
   });
