@@ -1,4 +1,6 @@
 const rp = require('request-promise');
+const post = require('./postData.js');
+const config = require('./config.js');
 
 module.exports = (app) => {
   app.get('/', (req, res) => {
@@ -12,10 +14,10 @@ module.exports = (app) => {
     const options = {
       uri: 'http://api.diffbot.com/v3/article',
       qs: {
-        token: 'b3d58e155a121116f88ad388847fb6e1',
+        token: config.token,
         url,
       },
-      json: true, // Automatically parses the JSON string in the response
+      json: true,
     };
 
     rp(options)
@@ -24,6 +26,8 @@ module.exports = (app) => {
 
         console.log(title);
         console.log(text);
+
+        post(text, title);
 
         // Post to Elastic Search DB here
       })
