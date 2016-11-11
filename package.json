@@ -4,14 +4,20 @@
   "description": "closeTalkers",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/app.js"
+    "start": "nodemon server/app.js",
+    "build": "gulp build && webpack -p --config webpack.config.js --progress --profile --colors"
   },
   "author": "closeTalkers",
   "license": "ISC",
   "dependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.7",
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
+    "del": "^2.2.2",
     "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "json-loader": "^0.5.4",
     "nodemon": "^1.11.0",
     "path": "^0.12.7",
     "react": "^15.3.2",
