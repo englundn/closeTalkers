@@ -1,8 +1,5 @@
-<<<<<<< e121ad614ad8e937cbdf1c51642390b5490bb4e1
 const rp = require('request-promise');
-=======
-const fetch = require('./fetchData.js');
->>>>>>> (feat) first successful post to elastic search cloud
+const post = require('./postData.js');
 
 module.exports = (app) => {
   app.get('/', (req, res) => {
@@ -19,7 +16,7 @@ module.exports = (app) => {
         token: 'b3d58e155a121116f88ad388847fb6e1',
         url,
       },
-      json: true, // Automatically parses the JSON string in the response
+      json: true,
     };
 
     rp(options)
@@ -29,13 +26,13 @@ module.exports = (app) => {
         console.log(title);
         console.log(text);
 
+        post(text, title);
+
         // Post to Elastic Search DB here
       })
       .catch((err) => {
         console.error(err);
       });
-
-    fetch(body);
 
     res.end();
   });
