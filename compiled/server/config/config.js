@@ -1,0 +1,8 @@
+'use strict';
+
+module.exports = {
+  user: 'user1',
+  password: 'user11',
+  token: 'b3d58e155a121116f88ad388847fb6e1'
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NlcnZlci9jb25maWcvY29uZmlnLmpzIl0sIm5hbWVzIjpbIm1vZHVsZSIsImV4cG9ydHMiLCJ1c2VyIiwicGFzc3dvcmQiLCJ0b2tlbiJdLCJtYXBwaW5ncyI6Ijs7QUFBQUEsT0FBT0MsT0FBUCxHQUFpQjtBQUNmQyxRQUFNLE9BRFM7QUFFZkMsWUFBVSxRQUZLO0FBR2ZDLFNBQU87QUFIUSxDQUFqQiIsImZpbGUiOiJjb25maWcuanMiLCJzb3VyY2VzQ29udGVudCI6WyJtb2R1bGUuZXhwb3J0cyA9IHtcbiAgdXNlcjogJ3VzZXIxJyxcbiAgcGFzc3dvcmQ6ICd1c2VyMTEnLFxuICB0b2tlbjogJ2IzZDU4ZTE1NWExMjExMTZmODhhZDM4ODg0N2ZiNmUxJyxcbn07XG4iXX0=
