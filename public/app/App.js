@@ -1,7 +1,7 @@
 // import React from 'react';
 // import ReactDOM from 'react-dom';
 
-const esURL = 'http://1b4f84fecd657bad91626e9aa8f74e59.us-west-1.aws.found.io:9200/test/test/AVhQ8_qA6vD3_5aG54Q7';
+const URL = 'http://localhost:3000/api/web';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,15 +19,10 @@ class App extends React.Component {
 
   query(event) {
     const qs = this.state.query;
-    console.log(qs);
+
     $.ajax({
-      url: esURL,
+      url: `${URL}/search?q="${qs}"`,
       method: 'GET',
-      dataType: 'jsonp',
-      auth: {
-        user: 'user1',
-        pass: 'user11',
-      },
       success: (data) => {
         console.log(data);
       },
