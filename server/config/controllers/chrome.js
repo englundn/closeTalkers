@@ -18,7 +18,7 @@ module.exports = {
 
     rp(options)
       .then((data) => {
-        if (data.objects.length !== 0) {
+        if (data.objects) {
           const text = data.objects[0].text;
 
           Page.create(title, text);
