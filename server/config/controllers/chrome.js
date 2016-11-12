@@ -1,5 +1,4 @@
 const rp = require('request-promise');
-const token = require('../config.js').token;
 const Page = require('../models/pageModel');
 
 module.exports = {
@@ -10,7 +9,7 @@ module.exports = {
     const options = {
       uri: 'http://api.diffbot.com/v3/article',
       qs: {
-        token,
+        token: process.env.DIFFBOT_TOKEN,
         url,
       },
       json: true,
