@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/app.js",
-    "build": "gulp build && webpack -p --config webpack.config.js --progress --profile --colors",
-    "heroku-postbuild": "npm run build"
+    "build": "gulp build && webpack -p --config webpack.config.js --progress --profile --colors"
   },
   "author": "closeTalkers",
   "license": "ISC",

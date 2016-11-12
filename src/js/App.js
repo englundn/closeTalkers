@@ -2,7 +2,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const $ = require('jquery');
 
-const URL = 'http://localhost:3000/api/web';
+const URL = 'https://deja-vu.herokuapp.com/api/web';
 
 class App extends React.Component {
   constructor(props) {
