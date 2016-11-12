@@ -1,5 +1,3 @@
 {
-  "app": "./src/js/App.js",
-  "content": "./chrome/content.js",
-  "manifest": "./chrome/manifest.json"
+  "app": "./src/js/app.js"
 }

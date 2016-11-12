@@ -6,7 +6,6 @@
   "scripts": {
     "start": "nodemon server/app.js",
     "build": "gulp build && webpack -p --config webpack.config.js --progress --profile --colors",
-    "heroku-postbuild": "npm run build",
     "dev": "./node_modules/.bin/webpack-dev-server -d --host 0.0.0.0 --config webpack.config.js --content-base src/ --colors --hot --progress --inline --watch"
   },
   "author": "closeTalkers",

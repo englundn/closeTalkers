@@ -1,6 +1,4 @@
-// This file configures webpack to run on the production files
 const path = require('path');
-// const webpack = require('webpack');
 const page = require('./page.json');
 
 module.exports = {
@@ -16,7 +14,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: ['/node_modules/', '/chrome/'],
         query: {
           presets: ['es2015', 'react'],
         },
@@ -24,7 +22,7 @@ module.exports = {
       {
         test: /\.json$/,
         loader: 'json',
-        exclude: /node_modules/,
+        exclude: ['/node_modules/', '/chrome/'],
         query: {
           presets: ['es2015', 'react'],
         },
