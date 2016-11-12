@@ -41,8 +41,8 @@ class App extends React.Component {
           <input type="submit" value="Submit" />
         </form>
         {this.state.results.map((result, i) => (
-          <div>
-            <h4 key={i}>{result._source.title}</h4>
+          <div key={i}>
+            <h4>{result._source.title}</h4>
             <p>{result._source.text}</p>
           </div>
         ))}
