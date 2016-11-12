@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon server/app.js",
     "build": "gulp build && webpack -p --config webpack.config.js --progress --profile --colors",
-    "dev": "./node_modules/.bin/webpack-dev-server -d --host 0.0.0.0 --config webpack.config.js --content-base src/ --colors --hot --progress --inline --watch"
+    "dev": "./node_modules/.bin/webpack-dev-server -d --host 0.0.0.0 --config webpack.config.js --content-base src/ --colors --hot --progress --inline --watch",
+    "postinstall": "npm run build"
   },
   "author": "closeTalkers",
   "license": "ISC",
