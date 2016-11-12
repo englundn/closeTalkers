@@ -6,13 +6,16 @@
   "scripts": {
     "start": "nodemon server/app.js",
     "build": "gulp build && webpack -p --config webpack.config.js --progress --profile --colors",
-    "dev": "./node_modules/.bin/webpack-dev-server -d --host 0.0.0.0 --config webpack.config.js --content-base src/ --colors --hot --progress --inline --watch"
+    "dev": "./node_modules/.bin/webpack-dev-server -d --host 0.0.0.0 --config webpack.config.js --content-base src/ --colors --hot --progress --inline --watch",
+    "postinstall": "npm run build"
   },
   "author": "closeTalkers",
   "license": "ISC",
   "dependencies": {
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.7",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "del": "^2.2.2",

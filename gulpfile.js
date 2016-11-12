@@ -4,7 +4,7 @@ const del = require('del');
 gulp.task('copy', () => {
   const folders = ['src/**/*.html', 'src/**/*.css', 'src/lib/**/*', 'src/**/*.png'];
   gulp.src(folders[0])
-      .pipe(gulp.dest('./dist/view'));
+      .pipe(gulp.dest('./dist/'));
 
   gulp.src(folders[1])
       .pipe(gulp.dest('./dist/'));
