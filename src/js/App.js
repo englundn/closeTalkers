@@ -1,5 +1,6 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
+const React = require('react');
+const ReactDOM = require('react-dom');
+const $ = require('jquery');
 
 const URL = 'http://localhost:3000/api/web';
 
