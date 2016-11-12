@@ -1,7 +1,5 @@
 deployment:
   prod:
     branch: master
-    commands: 
-      - npm run build
     heroku:
       appname: deja-vu
