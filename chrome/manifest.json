@@ -13,6 +13,8 @@
       ]
     }],
   "permissions": [
+    "identity",
+    "identity.email",
     "https://deja-vu.herokuapp.com/"
   ]
 }
