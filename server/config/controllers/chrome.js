@@ -1,6 +1,8 @@
 const rp = require('request-promise');
 const Page = require('../models/pageModel');
 
+const token = process.env.DIFFBOT_TOKEN || require('../config').token;
+
 module.exports = {
   newPage: (req, res) => {
     const url = req.body.url;
@@ -9,7 +11,7 @@ module.exports = {
     const options = {
       uri: 'http://api.diffbot.com/v3/article',
       qs: {
-        token: process.env.DIFFBOT_TOKEN,
+        token,
         url,
       },
       json: true,
