@@ -3,6 +3,7 @@ const ReactDOM = require('react-dom');
 const $ = require('jquery');
 
 const URL = 'https://deja-vu.herokuapp.com';
+// const URL = 'http://localhost:3000';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,12 +17,17 @@ class App extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({ query: event.target.value });
+    const query = event.target.value;
+    this.setState({ query });
+
+    if (query.length >= 2) {
+      this.query(query);
+    } else {
+      this.setState({ results: [] });
+    }
   }
 
-  query(event) {
-    const qs = this.state.query;
-
+  query(qs) {
     $.ajax({
       url: `${URL}/api/web/search?q="${qs}"`,
       method: 'GET',
@@ -29,7 +35,6 @@ class App extends React.Component {
         this.setState({ results: data.hits.hits });
       },
     });
-    event.preventDefault();
   }
 
   render() {
@@ -38,7 +43,6 @@ class App extends React.Component {
         <form onSubmit={this.query}>
           Search:
           <input type="text" value={this.state.query} onChange={this.handleChange} />
-          <input type="submit" value="Submit" />
         </form>
         {this.state.results.map((result, i) => (
           <div key={i}>
