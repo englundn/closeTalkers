@@ -1,6 +1,6 @@
 {
-  "name": "closeTalkers",
-  "description": "closeTalkers",
+  "name": "Déjà vu",
+  "description": "Search through all websites you've ever visited",
   "version": "0.1",
   "manifest_version": 2,
   "content_scripts": [{

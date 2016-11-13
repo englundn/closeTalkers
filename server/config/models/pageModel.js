@@ -1,5 +1,8 @@
 const rp = require('request-promise');
 
+const user = process.env.ELASTIC_USER || require('../config').user;
+const pass = process.env.ELASTIC_PASSWORD || require('../config').password;
+
 const URL = 'http://1b4f84fecd657bad91626e9aa8f74e59.us-west-1.aws.found.io:9200';
 
 module.exports = {
@@ -8,8 +11,8 @@ module.exports = {
       method: 'POST',
       uri: `${URL}/1/archive`,
       auth: {
-        user: process.env.ELASTIC_USER,
-        pass: process.env.ELASTIC_PASSWORD,
+        user,
+        pass,
       },
       body: {
         title,
@@ -28,8 +31,8 @@ module.exports = {
       method: 'GET',
       uri: `${URL}/1/archive/_search`,
       auth: {
-        user: process.env.ELASTIC_USER,
-        pass: process.env.ELASTIC_PASSWORD,
+        user,
+        pass,
       },
       body: {
         query: {

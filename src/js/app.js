@@ -2,7 +2,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const $ = require('jquery');
 
-const URL = 'https://deja-vu.herokuapp.com/api/web';
+const URL = 'https://deja-vu.herokuapp.com';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class App extends React.Component {
     const qs = this.state.query;
 
     $.ajax({
-      url: `${URL}/search?q="${qs}"`,
+      url: `${URL}/api/web/search?q="${qs}"`,
       method: 'GET',
       success: (data) => {
         this.setState({ results: data.hits.hits });
