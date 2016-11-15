@@ -1,7 +1,7 @@
 {
-  "name": "closeTalkers",
+  "name": "Déjà Vu",
   "version": "1.0.0",
-  "description": "closeTalkers",
+  "description": "Déjà Vu",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/app.js",
@@ -9,7 +9,7 @@
     "dev": "gulp build && webpack -d --config webpack.config.js --progress --profile --colors",
     "postinstall": "npm run build"
   },
-  "author": "closeTalkers",
+  "author": "Déjà Vu",
   "license": "ISC",
   "dependencies": {
     "babel-core": "^6.18.2",
