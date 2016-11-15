@@ -2,9 +2,9 @@ const Page = require('../models/pageModel');
 
 module.exports = {
   search: (req, res) => {
-    const qs = req.query.q;
+    if (!req.user) { return; }
 
-    Page.search(qs, (data) => {
+    Page.search(req.query.q, req.user.id, (data) => {
       res.json(data);
     });
   },
