@@ -6,16 +6,18 @@ const pass = process.env.ELASTIC_PASSWORD || require('../config').password;
 const URL = 'http://1b4f84fecd657bad91626e9aa8f74e59.us-west-1.aws.found.io:9200';
 
 module.exports = {
-  create: (title, text) => {
+  create: (url, title, userId, text) => {
     const options = {
       method: 'POST',
-      uri: `${URL}/1/archive`,
+      uri: `${URL}/${userId}/archive`,
       auth: {
         user,
         pass,
       },
       body: {
+        url,
         title,
+        timestamp: Date.now(),
         text,
       },
       json: true,
@@ -29,7 +31,7 @@ module.exports = {
   search: (qs, callback) => {
     const options = {
       method: 'GET',
-      uri: `${URL}/1/archive/_search`,
+      uri: `${URL}/115997757688716134589/archive/_search`,
       auth: {
         user,
         pass,

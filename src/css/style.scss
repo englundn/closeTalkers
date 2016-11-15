@@ -41,15 +41,36 @@ body {
       box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.1);
 
       .contentHeader {
-        p {
-          margin-top: 0px;
+        border-bottom: 1px solid lightgrey;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+
+        .contentTitle {
           font-weight: bold;
+        }
+
+        .contentTimestamp {
+          float: right;
+        }
+
+        .contentUrl {
+          display: block;
+          font-size: 12px;
+
+          a {
+            text-decoration: none;
+            color: grey;
+          }
         }
       }
 
       .contentBody {
         overflow: scroll;
-        height: 90%;
+        height: 85%;
+
+        p {
+          margin-top: 0px;
+        }
       }
     }
   }

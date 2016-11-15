@@ -7,6 +7,7 @@ module.exports = {
   newPage: (req, res) => {
     const url = req.body.url;
     const title = req.body.title;
+    const userId = req.body.userId;
 
     const options = {
       uri: 'http://api.diffbot.com/v3/article',
@@ -22,7 +23,7 @@ module.exports = {
         if (data.objects) {
           const text = data.objects[0].text;
 
-          Page.create(title, text);
+          Page.create(url, title, userId, text);
         }
       })
       .catch((err) => {
