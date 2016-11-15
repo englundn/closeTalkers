@@ -1,16 +1,18 @@
 const passport = require('passport');
-const config = require('./config');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
+
+const clientID = process.env.GOOGLE_ID || require('./config').client;
+const clientSecret = process.env.GOOGLE_SECRET || require('./config').secret;
 
 module.exports = (app) => {
   passport.serializeUser((user, done) => done(null, user));
   passport.deserializeUser((obj, done) => done(null, obj));
 
   passport.use(new GoogleStrategy({
-    clientID: config.client,
-    clientSecret: config.secret,
+    clientID,
+    clientSecret,
     callbackURL: 'http://localhost:3000/auth/google/callback',
     passReqToCallback: true,
   }, (request, accessToken, refreshToken, profile, done) => {
