@@ -8,6 +8,16 @@ import '../css/style.scss';
 // const URL = 'https://deja-vu.herokuapp.com';
 const URL = 'http://localhost:3000';
 
+const login = () => {
+  $.ajax({
+    url: `${URL}/login`,
+    success: (data) => {
+      console.log(data);
+    },
+  });
+  // window.location.href = `${URL}/login`;
+};
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -43,6 +53,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <a href="/login">Login</a>
         <Header
           query={this.query}
           queryString={this.state.query}
