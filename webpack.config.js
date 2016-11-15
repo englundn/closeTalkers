@@ -1,3 +1,4 @@
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 const page = require('./page.json');
 
@@ -27,8 +28,18 @@ module.exports = {
           presets: ['es2015', 'react'],
         },
       },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('css!sass'),
+      },
     ],
   },
+  plugins: [
+    new ExtractTextPlugin('css/style.css', {
+      allChunks: true,
+    }),
+  ],
+  devtool: 'source-map',
   resolve: {
     extensions: ['', '.js', '.jsx'],
   },
