@@ -11,6 +11,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.method === 'getStatus') {
     sendResponse({ userId: localStorage.userId });
   } else {
-    sendResponse({}); // snub them.
+    sendResponse({});
   }
 });
