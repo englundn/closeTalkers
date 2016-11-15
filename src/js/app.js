@@ -53,6 +53,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <a href="/login">Login</a>
         <Header
           query={this.query}
           queryString={this.state.query}
