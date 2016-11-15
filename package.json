@@ -1,7 +1,7 @@
 {
-  "name": "Déjà Vu",
+  "name": "deja-vu",
   "version": "1.0.0",
-  "description": "Déjà Vu",
+  "description": "deja-vu",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/app.js",
@@ -9,7 +9,7 @@
     "dev": "gulp build && webpack -d --config webpack.config.js --progress --profile --colors",
     "postinstall": "npm run build"
   },
-  "author": "Déjà Vu",
+  "author": "deja-vu",
   "license": "ISC",
   "dependencies": {
     "babel-core": "^6.18.2",
