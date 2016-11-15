@@ -12,6 +12,9 @@
         "https://*/*"
       ]
     }],
+  "background": {
+    "scripts": ["background.js"]
+  },
   "permissions": [
     "identity",
     "identity.email",
