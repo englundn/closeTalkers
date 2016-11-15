@@ -28,10 +28,10 @@ module.exports = {
         console.error(err);
       });
   },
-  search: (qs, callback) => {
+  search: (qs, id, callback) => {
     const options = {
       method: 'GET',
-      uri: `${URL}/115997757688716134589/archive/_search`,
+      uri: `${URL}/${id}/archive/_search`,
       auth: {
         user,
         pass,
