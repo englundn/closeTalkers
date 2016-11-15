@@ -10,6 +10,12 @@ body {
     margin-top: 35px;
     margin-bottom: 35px;
 
+    a {
+      float: right;
+      text-decoration: none;
+      color: grey;
+    }
+
     .searchBar {
       margin: auto;
       width: 800px;
