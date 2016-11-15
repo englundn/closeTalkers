@@ -1,0 +1,45 @@
+*:focus {
+  outline: none;
+}
+
+body {
+  padding: 20px;
+  font-family: arial;
+  background-color: rgba(0, 0, 0, 0.025);
+
+  .content {
+    width: 800px;
+    height: 400px;
+    background-color: white;
+    margin: auto;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.1);
+
+    h4 {
+      margin-top: 0px;
+    }
+
+    .contentWrapper {
+      height: 100%;
+      overflow: scroll;
+    }
+  }
+
+  .inputForm {
+    margin: auto;
+    width: 800px;
+
+    .inputField {
+      margin: auto;
+      width: 800px;
+      height: 40px;
+      background: none;
+      font-size: 36px;
+      border: none;
+      border-bottom: 2px solid lightgrey;
+    }
+  }
+}
