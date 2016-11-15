@@ -2,7 +2,6 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const oauth = require('./oauth');
 
-
 module.exports = (app, express) => {
   app.use((req, res, next) => {
     res.header('access-control-allow-origin', '*');
