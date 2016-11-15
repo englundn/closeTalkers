@@ -4,8 +4,10 @@ module.exports = {
   search: (req, res) => {
     const qs = req.query.q;
 
-    Page.search(qs, (data) => {
-      res.json(data);
-    });
+    console.log('qs', qs, req.user.id);
+
+    // Page.search(qs, (data) => {
+    //   res.json('data');
+    // });
   },
 };

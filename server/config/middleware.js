@@ -1,5 +1,7 @@
 const bodyParser = require('body-parser');
 const path = require('path');
+const oauth = require('./oauth');
+
 
 module.exports = (app, express) => {
   app.use((req, res, next) => {
@@ -9,6 +11,7 @@ module.exports = (app, express) => {
     res.header('access-control-max-age', 10);
     next();
   });
+  oauth(app);
   app.use(bodyParser.json({ limit: '10mb' }));
   app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
   app.use(express.static(path.join(__dirname, '/../../dist/')));
