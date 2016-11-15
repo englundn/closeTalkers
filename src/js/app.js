@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import Header from './header';
 import ContentList from './contentList';
 import '../css/style.scss';
 
@@ -42,15 +43,14 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <form className="inputForm" onSubmit={this.query}>
-          <input
-            className="inputField" type="text"
-            placeholder="Search"
-            value={this.state.query}
-            onChange={this.handleChange}
-          />
-        </form>
-        <ContentList results={this.state.results} />
+        <Header
+          query={this.query}
+          queryString={this.state.query}
+          handleChange={this.handleChange}
+        />
+        <ContentList
+          results={this.state.results}
+        />
       </div>
     );
   }
