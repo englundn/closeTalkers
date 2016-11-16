@@ -26,6 +26,23 @@ body {
     }
   }
 
+  .landingMain {
+    text-align: center;
+    display: inline-block;
+    margin: auto;
+    width: 100%;
+    top: 30%;
+    position: absolute;
+
+    h1 {
+      font-size: 50px;
+    }
+
+    h2 {
+      color: grey;
+    }
+  }
+
   .header {
     margin-top: 35px;
     margin-bottom: 35px;
