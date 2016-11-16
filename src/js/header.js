@@ -15,7 +15,7 @@ const Header = ({ query, handleChange }) => (
         />
       </form>
     </div>
-    <div className="loginLink">
+    <div className="logoutLink">
       <a href="/logout">Logout</a>
     </div>
   </div>
