@@ -20,7 +20,7 @@ module.exports = (app) => {
   }));
 
   app.use(cookieParser());
-  app.use(session({ secret: 'cookie_secret' }));
+  app.use(session({ secret: 'cookie_secret', resave: true, saveUninitialized: true }));
 
   app.use(passport.initialize());
   app.use(passport.session());
@@ -34,4 +34,11 @@ module.exports = (app) => {
       failureRedirect: '/',
     }), (req, res) => res.redirect('/')
   );
+
+  app.get('/logout', (req, res) => {
+    req.session.destroy(() => {
+      req.logout();
+      res.redirect('/');
+    });
+  });
 };
