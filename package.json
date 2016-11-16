@@ -18,12 +18,14 @@
     "babel-preset-react": "^6.16.0",
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
+    "checksum": "^0.1.1",
     "connect-redis": "^3.1.0",
     "cookie-parser": "^1.4.3",
     "del": "^2.2.2",
     "ejs": "^2.5.2",
     "express": "^4.14.0",
     "express-session": "^1.14.2",
+    "extract-text-webpack-plugin": "^1.0.1",
     "gulp": "^3.9.1",
     "jquery": "^3.1.1",
     "json-loader": "^0.5.4",
@@ -39,8 +41,7 @@
     "request": "^2.78.0",
     "request-promise": "^4.1.1",
     "webpack": "^1.13.3",
-    "webpack-dev-server": "^1.16.2",
-    "extract-text-webpack-plugin": "^1.0.1"
+    "webpack-dev-server": "^1.16.2"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",
