@@ -1,5 +1,6 @@
 {
   "name": "Déjà Vu",
+  "short_name": "Déjà Vu",
   "description": "Find anything you have ever browsed",
   "version": "0.1",
   "manifest_version": 2,
