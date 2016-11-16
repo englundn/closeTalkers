@@ -15,7 +15,7 @@ class App extends React.Component {
     this.state = {
       query: '',
       results: [],
-      isLoggedIn: false,
+      isLoggedIn: 'loading',
     };
     this.query = this.query.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -55,21 +55,26 @@ class App extends React.Component {
   }
 
   render() {
-    if (!this.state.isLoggedIn) {
+    if (this.state.isLoggedIn === false) {
       return (
         <LandingPage />
       );
     }
+    if (this.state.isLoggedIn === true) {
+      return (
+        <div>
+          <Header
+            query={this.state.query}
+            handleChange={this.handleChange}
+          />
+          <ContentList
+            results={this.state.results}
+          />
+        </div>
+      );
+    }
     return (
-      <div>
-        <Header
-          query={this.state.query}
-          handleChange={this.handleChange}
-        />
-        <ContentList
-          results={this.state.results}
-        />
-      </div>
+      <div />
     );
   }
 }
