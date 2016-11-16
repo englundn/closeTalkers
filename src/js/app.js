@@ -26,7 +26,6 @@ class App extends React.Component {
       url: `${URL}/api/web/checkLogIn`,
       method: 'GET',
       success: (isLoggedIn) => {
-        console.log(isLoggedIn);
         this.setState({ isLoggedIn });
       },
     });
@@ -55,17 +54,20 @@ class App extends React.Component {
   }
 
   render() {
-    return this.state.isLoggedIn ? (
-      <div>
-        <Header
-          query={this.state.query}
-          handleChange={this.handleChange}
-        />
-        <ContentList
-          results={this.state.results}
-        />
-      </div>
-    ) : (
+    if (this.state.isLoggedIn) {
+      return (
+        <div>
+          <Header
+            query={this.state.query}
+            handleChange={this.handleChange}
+          />
+          <ContentList
+            results={this.state.results}
+          />
+        </div>
+      );
+    }
+    return (
       <div>
         <a href="/login">Login</a>
       </div>
