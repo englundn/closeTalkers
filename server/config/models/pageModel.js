@@ -1,13 +1,13 @@
 const request = require('request-promise');
-const checksum = require('checksum');
+const getSum = require('checksum');
 
 const user = process.env.ELASTIC_USER || require('../config').user;
 const pass = process.env.ELASTIC_PASSWORD || require('../config').password;
 
 const URL = 'http://1b4f84fecd657bad91626e9aa8f74e59.us-west-1.aws.found.io:9200';
 
-const search = (id, qs, cs) => {
-  if (cs) {
+const search = (id, queryString, checksum) => {
+  if (checksum) {
     return {
       method: 'GET',
       uri: `${URL}/${id}/archive/_search`,
@@ -15,7 +15,7 @@ const search = (id, qs, cs) => {
       body: {
         query: {
           match: {
-            cs,
+            checksum,
           },
         },
       },
@@ -29,7 +29,7 @@ const search = (id, qs, cs) => {
     body: {
       query: {
         match: {
-          text: qs,
+          text: queryString,
         },
       },
     },
@@ -39,12 +39,12 @@ const search = (id, qs, cs) => {
 
 const createOptions = (url, title, id, text) => {
   const timestamp = Date.now();
-  const cs = checksum(text);
+  const checksum = getSum(text);
   return {
     method: 'POST',
     uri: `${URL}/${id}/archive`,
     auth: { user, pass },
-    body: { url, title, timestamp, text, cs },
+    body: { url, title, timestamp, text, checksum },
     json: true,
   };
 };
@@ -52,8 +52,8 @@ const createOptions = (url, title, id, text) => {
 // ============= CREATE FROM EXTENSION ============
 module.exports = {
   create: (url, title, id, text) => {
-    // checks if data exists by comparing cs
-    request(search(id, null, checksum(text)))
+    // checks if data exists by comparing checksum
+    request(search(id, null, getSum(text)))
       .then((data) => {
         if (data.hits.total === 0) {
           request(createOptions(url, title, id, text))
@@ -64,8 +64,8 @@ module.exports = {
   },
 
 // =========== SEARCH FROM WEBSITE =============
-  search: (qs, id, callback) => {
-    request(search(id, qs, null))
+  search: (queryString, id, callback) => {
+    request(search(id, queryString, null))
       .then(data => callback(data))
       .catch(err => console.error(err));
   },
