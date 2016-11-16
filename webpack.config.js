@@ -18,6 +18,7 @@ module.exports = {
         exclude: ['/node_modules/', '/chrome/'],
         query: {
           presets: ['es2015', 'react'],
+          compact: false,
         },
       },
       {
@@ -46,5 +47,8 @@ module.exports = {
   devtool: 'source-map',
   resolve: {
     extensions: ['', '.js', '.jsx'],
+    modulesDirectories: [
+      'node_modules',
+    ],
   },
 };
