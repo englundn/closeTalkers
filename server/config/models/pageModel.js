@@ -55,12 +55,15 @@ module.exports = {
     // checks if data exists by comparing checksum
     request(search(id, null, getSum(text)))
       .then((data) => {
-        if (data.hits.total === 0) {
+        if (!data || data.hits.total === 0) {
           request(createOptions(url, title, id, text))
             .catch(err => console.error(err));
         }
       })
-      .catch(() => console.log('error'));
+      .catch(() => {
+        request(createOptions(url, title, id, text))
+          .catch(err => console.error(err));
+      });
   },
 
 // =========== SEARCH FROM WEBSITE =============
