@@ -1,6 +1,6 @@
 {
   "name": "Déjà Vu",
-  "description": "Search through all websites you've ever visited",
+  "description": "Find anything you have ever browsed",
   "version": "0.1",
   "manifest_version": 2,
   "content_scripts": [{

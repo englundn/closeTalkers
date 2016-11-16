@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import LandingPage from './landingPage';
 import Header from './header';
 import ContentList from './contentList';
 import '../css/style.scss';
@@ -26,7 +27,6 @@ class App extends React.Component {
       url: `${URL}/api/web/checkLogIn`,
       method: 'GET',
       success: (isLoggedIn) => {
-        console.log(isLoggedIn);
         this.setState({ isLoggedIn });
       },
     });
@@ -55,20 +55,20 @@ class App extends React.Component {
   }
 
   render() {
-    return this.state.isLoggedIn ? (
+    if (!this.state.isLoggedIn) {
+      return (
+        <LandingPage />
+      );
+    }
+    return (
       <div>
         <Header
-          query={this.query}
-          queryString={this.state.query}
+          query={this.state.query}
           handleChange={this.handleChange}
         />
         <ContentList
           results={this.state.results}
         />
-      </div>
-    ) : (
-      <div>
-        <a href="/login">Login</a>
       </div>
     );
   }

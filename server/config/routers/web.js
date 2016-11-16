@@ -6,7 +6,6 @@ const router = new express.Router();
 router.route('/search')
   .get(webController.search);
 
-
 router.route('/checkLogIn')
   .get(webController.checkLogIn);
 
