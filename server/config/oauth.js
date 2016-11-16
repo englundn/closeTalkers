@@ -34,4 +34,11 @@ module.exports = (app) => {
       failureRedirect: '/',
     }), (req, res) => res.redirect('/')
   );
+
+  app.get('/logout', (req, res) => {
+    req.session.destroy(() => {
+      req.logout();
+      res.redirect('/');
+    });
+  });
 };

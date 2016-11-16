@@ -43,6 +43,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <a href="/login">Login</a>
+        <a href="/logout">Logout</a>
         <Header
           query={this.state.query}
           handleChange={this.handleChange}
