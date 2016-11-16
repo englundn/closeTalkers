@@ -10,7 +10,7 @@ const Header = ({ query, queryString, handleChange }) => (
         onChange={handleChange}
       />
     </form>
-    <a href="/login">Login</a>
+    <a href="/logout">Logout</a>
   </div>
 );
 

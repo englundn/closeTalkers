@@ -57,7 +57,6 @@ class App extends React.Component {
   render() {
     return this.state.isLoggedIn ? (
       <div>
-        <a href="/logout">Logout</a>
         <Header
           query={this.query}
           queryString={this.state.query}
