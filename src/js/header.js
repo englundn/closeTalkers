@@ -1,16 +1,16 @@
 import React from 'react';
 
-const Header = ({ query, queryString, handleChange }) => (
+const Header = ({ query, handleChange }) => (
   <div className="header">
     <div className="homeLink">
       <a href="/#">Déjà Vu</a>
     </div>
     <div className="searchBar" >
-      <form onSubmit={query}>
+      <form>
         <input
           className="inputField" type="text"
           placeholder="Search"
-          value={queryString}
+          value={query}
           onChange={handleChange}
         />
       </form>

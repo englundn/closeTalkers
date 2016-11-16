@@ -44,8 +44,7 @@ class App extends React.Component {
     return (
       <div>
         <Header
-          query={this.query}
-          queryString={this.state.query}
+          query={this.state.query}
           handleChange={this.handleChange}
         />
         <ContentList
