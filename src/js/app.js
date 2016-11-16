@@ -14,11 +14,22 @@ class App extends React.Component {
     this.state = {
       query: '',
       results: [],
+      isLoggedIn: false,
     };
     this.query = this.query.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    $.ajax({
+      url: `${URL}/api/web/checkLogIn`,
+      method: 'GET',
+      success: (isLoggedIn) => {
+        console.log(isLoggedIn);
+        this.setState({ isLoggedIn });
+      },
+    });
+  }
   handleChange(event) {
     const query = event.target.value;
     this.setState({ query });
@@ -41,9 +52,8 @@ class App extends React.Component {
   }
 
   render() {
-    return (
+    return this.state.isLoggedIn ? (
       <div>
-        <a href="/login">Login</a>
         <a href="/logout">Logout</a>
         <Header
           query={this.query}
@@ -53,6 +63,10 @@ class App extends React.Component {
         <ContentList
           results={this.state.results}
         />
+      </div>
+    ) : (
+      <div>
+        <a href="/login">Login</a>
       </div>
     );
   }

@@ -8,4 +8,5 @@ module.exports = {
       res.json(data);
     });
   },
+  checkLogIn: (req, res) => res.send(!!req.user),
 };
