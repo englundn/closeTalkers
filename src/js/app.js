@@ -20,6 +20,7 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  // Checks to see if the user is logged in
   componentDidMount() {
     $.ajax({
       url: `${URL}/api/web/checkLogIn`,
@@ -30,6 +31,8 @@ class App extends React.Component {
       },
     });
   }
+
+  // Queries the server for search results
   handleChange(event) {
     const query = event.target.value;
     this.setState({ query });
