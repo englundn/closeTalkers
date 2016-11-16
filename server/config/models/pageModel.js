@@ -1,7 +1,8 @@
 const request = require('request-promise');
+const checksum = require('checksum');
+
 const user = process.env.ELASTIC_USER || require('../config').user;
 const pass = process.env.ELASTIC_PASSWORD || require('../config').password;
-const checksum = require('checksum');
 
 const URL = 'http://1b4f84fecd657bad91626e9aa8f74e59.us-west-1.aws.found.io:9200';
 
