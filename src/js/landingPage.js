@@ -1,8 +1,10 @@
 import React from 'react';
 
 const LandingPage = () => (
-  <div>
-    <a href="/login">Login</a>
+  <div className="landingHeader">
+    <div className="loginLink">
+      <a href="/login">Log In</a>
+    </div>
   </div>
 );
 

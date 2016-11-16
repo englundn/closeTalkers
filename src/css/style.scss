@@ -6,6 +6,26 @@ body {
   font-family: arial;
   background-color: rgba(0, 0, 0, 0.025);
 
+  .landingHeader {
+    margin-top: 35px;
+    margin-bottom: 35px;
+
+    a {
+      text-decoration: none;
+      color: grey;
+    }
+
+    .loginLink {
+      float: right;
+      margin-right: 35px;
+      width: 100px;
+
+      a {
+        float: right;
+      }
+    }
+  }
+
   .header {
     margin-top: 35px;
     margin-bottom: 35px;
