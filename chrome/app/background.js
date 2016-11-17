@@ -14,3 +14,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     sendResponse({});
   }
 });
+
+chrome.browserAction.onClicked.addListener(() => {
+  chrome.tabs.create({ url: 'https://deja-vu.herokuapp.com' });
+});
