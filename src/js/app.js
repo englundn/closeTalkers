@@ -42,7 +42,7 @@ class App extends React.Component {
       $('p').each((index, element) => {
         // console.log(element);
         const context = $(element).text();
-        $(element).html(context.replace(regExpQuery, '<strong>$&</strong>'));
+        $(element).html(context.replace(regExpQuery, '<span class="highlight">$&</span>'));
       });
     }
   }
