@@ -1,47 +1,31 @@
-let URL = '';
+let url = '';
 
-// ==========CHANGE THIS LATER FOR HTTP REQUEST===========
-const print = (url, reason) => {
-  console.log(reason, url, new Date());
+const print = (reason) => console.log(reason, url, new Date());
+
+const stop = () => {
+  url === '' ? null : print('STOP ', url = '');
 };
 
-// ======================CHANGE FOCUS========================
-chrome.windows.onFocusChanged.addListener((window) => {
-  if (window === chrome.windows.WINDOW_ID_NONE) {
-    print('', 'STOP ');
-  } else {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tab) => {
-      URL = tab[0].url;
-      print(URL, 'FOCUS ');
-    });
-  }
-});
-
-// ======================UPDATE TAB===========================
-chrome.tabs.onUpdated.addListener((tabId, info, tab) => {
-  if (tab.url === URL) { return; }
-  URL = tab.url;
-  print(URL, 'UPDATE');
-});
-
-// ======================CHANGE TAB=============================
-chrome.tabs.onActivated.addListener(() => {
+const checkActive = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tab) => {
-    URL = tab[0].url;
-    print(URL, 'TAB ');
+    if (!tab[0].url || tab[0].url === url) { return; }
+    print('CHANGED ', url = tab[0].url);
   });
+};
+
+chrome.idle.setDetectionInterval(20);
+
+chrome.tabs.onUpdated.addListener(checkActive);
+chrome.tabs.onActivated.addListener(checkActive);
+
+chrome.windows.onFocusChanged.addListener((window) => {
+  window === chrome.windows.WINDOW_ID_NONE ? stop() : checkActive();
 });
 
-// ======================CREATE TAB==============================
-chrome.tabs.onCreated.addListener((tabId, info, tab) => {
-  if (!tab.url) { return; }
-  URL = tab.url;
-  print(URL, 'CREATE');
-});
-
-// ======================STATE CHANGE=========================
 chrome.idle.onStateChanged.addListener(() => {
-  console.log('state changed');
+  chrome.idle.queryState(20, (state) => {
+    state === 'idle' || state === 'locked' ? stop() : checkActive();
+  });
 });
 
 // ======================STORE USER ID========================
