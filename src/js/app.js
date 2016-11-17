@@ -32,6 +32,21 @@ class App extends React.Component {
     });
   }
 
+  componentDidUpdate() {
+    // Make search terms bold in search results
+    const regExpQuery = RegExp((this.state.query.match(/\S+/gi) || []).join('|'), 'gi');
+    // console.log('query: ', regExpQuery);
+    const html = $('p').html();
+    if (html && `${regExpQuery}` !== '/(?:)/gi') {
+      // console.log('yes1');
+      $('p').each((index, element) => {
+        // console.log(element);
+        const context = $(element).text();
+        $(element).html(context.replace(regExpQuery, '<strong>$&</strong>'));
+      });
+    }
+  }
+
   // Queries the server for search results
   handleChange(event) {
     const query = event.target.value;
@@ -55,6 +70,20 @@ class App extends React.Component {
   }
 
   render() {
+    // $.fn.wrapInTag = (opts) => {
+    //   const context = this;
+    //   const tag = opts.tag || 'strong';
+    //   const string = opts.string.match(/\S+/g) || '';
+    //   if (string) {
+    //     const regex = RegExp(string.join('|'), 'gi');
+    //     const replacement = `<${tag}>$&</${tag}>`;
+    //     return context.html(() => $(context).text().replace(regex, replacement));
+    //   }
+    //   return context.html(() => $(context).text());
+    // };
+
+    // $('p').wrapInTag({ tag: 'strong', string: this.state.query });
+
     if (this.state.isLoggedIn === false) {
       return (
         <LandingPage />
@@ -80,3 +109,4 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+
