@@ -6,8 +6,8 @@ import Header from './header';
 import ContentList from './contentList';
 import '../css/style.scss';
 
-const URL = 'https://deja-vu.herokuapp.com';
-// const URL = 'http://localhost:3000';
+// const URL = 'https://deja-vu.herokuapp.com';
+const URL = 'http://localhost:3000';
 
 class App extends React.Component {
   constructor(props) {
