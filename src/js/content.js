@@ -1,6 +1,14 @@
 import React from 'react';
 import timeSince from './timeSince';
 
+const cleanUrl = (url) => {
+  const clean = url.replace(/http:\/\/|https:\/\//, '').replace(/www./, '').split('?')[0].split('#')[0].split('.');
+  if (clean) {
+    return clean.slice(0,clean.length - 1).join('.');
+  }
+  return '';
+};
+
 const Content = ({ result }) => (
   <div className="content">
     <div className="contentHeader">
@@ -11,7 +19,7 @@ const Content = ({ result }) => (
         {timeSince(result._source.timestamp)}
       </span>
       <span className="contentUrl">
-        <a href={result._source.url}>{result._source.url}</a>
+        <a href={result._source.url}>{cleanUrl(result._source.url)}</a>
       </span>
     </div>
     <div className="contentBody">
