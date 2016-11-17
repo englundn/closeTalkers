@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import LandingPage from './landingPage';
 import Header from './header';
+import LandingPage from './landingPage';
 import ContentList from './contentList';
 import '../css/style.scss';
 
@@ -35,12 +35,9 @@ class App extends React.Component {
   componentDidUpdate() {
     // Make search terms bold in search results
     const regExpQuery = RegExp((this.state.query.match(/\S+/gi) || []).join('|'), 'gi');
-    // console.log('query: ', regExpQuery);
     const html = $('p').html();
     if (html && `${regExpQuery}` !== '/(?:)/gi') {
-      // console.log('yes1');
       $('p').each((index, element) => {
-        // console.log(element);
         const context = $(element).text();
         $(element).html(context.replace(regExpQuery, '<span class="highlight">$&</span>'));
       });
@@ -70,26 +67,22 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.state.isLoggedIn === false) {
-      return (
-        <LandingPage />
-      );
-    }
-    if (this.state.isLoggedIn === true) {
-      return (
-        <div>
-          <Header
-            query={this.state.query}
-            handleChange={this.handleChange}
-          />
+    return (
+      <div>
+        <Header
+          query={this.state.query}
+          handleChange={this.handleChange}
+          isLoggedIn={this.state.isLoggedIn}
+        />
+        {this.state.isLoggedIn === false &&
+          <LandingPage />
+        }
+        {this.state.isLoggedIn === true &&
           <ContentList
             results={this.state.results}
           />
-        </div>
-      );
-    }
-    return (
-      <div />
+        }
+      </div>
     );
   }
 }
