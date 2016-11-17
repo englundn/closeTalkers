@@ -9,6 +9,9 @@
     "dev": "gulp build && webpack -d --config webpack.config.js --progress --profile --colors",
     "postinstall": "npm run build"
   },
+  "engines": {
+    "node": "6.1.0"
+  },
   "author": "deja-vu",
   "license": "ISC",
   "dependencies": {
