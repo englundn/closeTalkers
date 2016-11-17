@@ -31,7 +31,6 @@
     "default_title": "Déjà Vu"
   },
   "permissions": [
-    "tabs",
     "identity",
     "identity.email",
     "https://deja-vu.herokuapp.com/",
