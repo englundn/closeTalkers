@@ -70,20 +70,6 @@ class App extends React.Component {
   }
 
   render() {
-    // $.fn.wrapInTag = (opts) => {
-    //   const context = this;
-    //   const tag = opts.tag || 'strong';
-    //   const string = opts.string.match(/\S+/g) || '';
-    //   if (string) {
-    //     const regex = RegExp(string.join('|'), 'gi');
-    //     const replacement = `<${tag}>$&</${tag}>`;
-    //     return context.html(() => $(context).text().replace(regex, replacement));
-    //   }
-    //   return context.html(() => $(context).text());
-    // };
-
-    // $('p').wrapInTag({ tag: 'strong', string: this.state.query });
-
     if (this.state.isLoggedIn === false) {
       return (
         <LandingPage />
