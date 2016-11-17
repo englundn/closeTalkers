@@ -2,141 +2,131 @@
   outline: none;
 }
 
-body {
-  font-family: arial;
-  background-color: rgba(0, 0, 0, 0.025);
+html {
+  overflow: hidden;
+  height: 100%;
 
-  .landingHeader {
-    margin-top: 35px;
-    margin-bottom: 35px;
-
-    a {
-      text-decoration: none;
-      color: grey;
-    }
-
-    .loginLink {
-      float: right;
-      margin-right: 35px;
-      width: 100px;
-
-      a {
-        float: right;
-      }
-    }
-  }
-
-  .landingMain {
-    text-align: center;
-    display: inline-block;
-    margin: auto;
-    width: 100%;
-    top: 30%;
-    position: absolute;
-
-    h1 {
-      font-size: 50px;
-    }
-
-    h2 {
-      color: grey;
-    }
-  }
-
-  .header {
-    margin-top: 35px;
-    margin-bottom: 35px;
-    display: flex;
-
-    a {
-      text-decoration: none;
-      color: grey;
-    }
-
-    .homeLink {
-      float: left;
-      margin-left: 35px;
-      width: 100px;
-
-      a {
-        float: left;
-      }
-    }
-
-    .searchBar {
-      margin: auto;
-      width: 800px;
-      max-width: 60%;
-
-      .inputField {
-        width: 100%;
-        height: 40px;
-        background: none;
-        font-size: 36px;
-        border: none;
-        border-bottom: 2px solid lightgrey;
-      }
-    }
-
-    .logoutLink {
-      float: right;
-      margin-right: 35px;
-      width: 100px;
-
-      a {
-        float: right;
-      }
-    }
-  }
-
-  .contentList {
+  body {
     height: 100%;
-    margin-bottom: 35px;
+    overflow: auto;
+    font-family: arial;
+    background-color: #f9f9f9;
 
-    .content {
-      width: 800px;
-      max-width: 90%;
-      height: 400px;
-      background-color: white;
-      margin: auto;
-      margin-bottom: 35px;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.1);
+    a {
+      text-decoration: none;
+      color: grey;
+    }
 
-      .contentHeader {
-        border-bottom: 1px solid lightgrey;
-        margin-bottom: 15px;
-        padding-bottom: 15px;
+    .header {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      display: flex;
+      position: fixed;
+      width: 100%;
+      top: 0px;
+      left: 0px;
+      z-index: 100;
+      background-color: #f9f9f9;
 
-        .contentTitle {
-          font-weight: bold;
+      .homeLink {
+        float: left;
+        margin-left: 35px;
+        width: 100px;
+
+        a {
+          float: left;
         }
+      }
 
-        .contentTimestamp {
+      .searchBar {
+        margin: auto;
+        width: 800px;
+        max-width: 60%;
+
+        .inputField {
+          width: 100%;
+          height: 40px;
+          background: none;
+          font-size: 36px;
+          border: none;
+          border-bottom: 2px solid lightgrey;
+        }
+      }
+
+      .loginLogoutLink {
+        float: right;
+        margin-right: 35px;
+        width: 100px;
+
+        a {
           float: right;
         }
+      }
+    }
 
-        .contentUrl {
-          display: block;
-          font-size: 12px;
+    .landingMain {
+      text-align: center;
+      display: inline-block;
+      margin: auto;
+      width: 100%;
+      top: 30%;
+      position: absolute;
 
-          a {
-            text-decoration: none;
-            color: grey;
-          }
-        }
+      h1 {
+        font-size: 50px;
       }
 
-      .contentBody {
-        overflow: scroll;
-        height: 85%;
+      h2 {
+        color: grey;
+      }
+    }
 
-        p {
-          margin-top: 0px;
+    .contentList {
+      margin-top: 60px;
+      margin-bottom: 80px;
+      overflow: scroll;
 
-          .highlight {
-            background-color: #FFFF00;
+      .content {
+        width: 800px;
+        max-width: 90%;
+        height: 400px;
+        background-color: white;
+        margin: auto;
+        margin-top: 25px;
+        margin-bottom: 10px;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.1);
+
+        .contentHeader {
+          border-bottom: 1px solid lightgrey;
+          margin-bottom: 15px;
+          padding-bottom: 15px;
+
+          .contentTitle {
+            font-weight: bold;
+          }
+
+          .contentTimestamp {
+            float: right;
+          }
+
+          .contentUrl {
+            display: block;
+            font-size: 12px;
+          }
+        }
+
+        .contentBody {
+          overflow: scroll;
+          height: 85%;
+
+          p {
+            margin-top: 0px;
+
+            .highlight {
+              background-color: #FFFF00;
+            }
           }
         }
       }
