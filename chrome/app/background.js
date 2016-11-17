@@ -4,7 +4,7 @@ const stop = () => url === '' ? null : print('STOP ', url = '');
 
 const checkActive = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tab) => {
-    if (!tab[0].url || tab[0].url === url) { return; }
+    if (!tab[0] || !tab[0].url || tab[0].url === url) { return; }
     print('CHANGED ', url = tab[0].url);
   });
 };
