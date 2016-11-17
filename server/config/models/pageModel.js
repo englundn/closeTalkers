@@ -7,32 +7,24 @@ const pass = process.env.ELASTIC_PASSWORD || require('../config').password;
 const URL = 'http://1b4f84fecd657bad91626e9aa8f74e59.us-west-1.aws.found.io:9200';
 
 const search = (id, queryString, checksum) => {
+  let query = {
+    match: {
+      text: queryString,
+    },
+  };
   if (checksum) {
-    return {
-      method: 'GET',
-      uri: `${URL}/${id}/archive/_search`,
-      auth: { user, pass },
-      body: {
-        query: {
-          match: {
-            checksum,
-          },
-        },
+    query = {
+      match: {
+        checksum,
       },
-      json: true,
     };
   }
+
   return {
     method: 'GET',
     uri: `${URL}/${id}/archive/_search`,
     auth: { user, pass },
-    body: {
-      query: {
-        match: {
-          text: queryString,
-        },
-      },
-    },
+    body: { query },
     json: true,
   };
 };
@@ -49,8 +41,8 @@ const createOptions = (url, title, id, text) => {
   };
 };
 
-// ============= CREATE FROM EXTENSION ============
 module.exports = {
+  // ============= CREATE FROM EXTENSION ============
   create: (url, title, id, text) => {
     // checks if data exists by comparing checksum
     request(search(id, null, getSum(text)))
@@ -66,7 +58,7 @@ module.exports = {
       });
   },
 
-// =========== SEARCH FROM WEBSITE =============
+  // =========== SEARCH FROM WEBSITE =============
   search: (queryString, id, callback) => {
     request(search(id, queryString, null))
       .then(data => callback(data))
