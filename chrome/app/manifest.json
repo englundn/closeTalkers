@@ -34,7 +34,9 @@
     "tabs",
     "identity",
     "identity.email",
-    "https://deja-vu.herokuapp.com/"
+    "https://deja-vu.herokuapp.com/",
+    "tabs",
+    "idle"
   ],
   "icons": {
     "16": "icons/icon16.png",
