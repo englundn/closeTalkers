@@ -32,6 +32,21 @@ class App extends React.Component {
     });
   }
 
+  componentDidUpdate() {
+    // Make search terms bold in search results
+    const regExpQuery = RegExp((this.state.query.match(/\S+/gi) || []).join('|'), 'gi');
+    // console.log('query: ', regExpQuery);
+    const html = $('p').html();
+    if (html && `${regExpQuery}` !== '/(?:)/gi') {
+      // console.log('yes1');
+      $('p').each((index, element) => {
+        // console.log(element);
+        const context = $(element).text();
+        $(element).html(context.replace(regExpQuery, '<strong>$&</strong>'));
+      });
+    }
+  }
+
   // Queries the server for search results
   handleChange(event) {
     const query = event.target.value;
@@ -80,3 +95,4 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+
