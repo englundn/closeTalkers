@@ -1,10 +1,6 @@
 let url = '';
-
-const print = (reason) => console.log(reason, url, new Date());
-
-const stop = () => {
-  url === '' ? null : print('STOP ', url = '');
-};
+const print = reason => console.log(reason, url, new Date());
+const stop = () => url === '' ? null : print('STOP ', url = '');
 
 const checkActive = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tab) => {
