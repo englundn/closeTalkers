@@ -1,5 +1,5 @@
-*:focus {
-  outline: none;
+* {
+  outline: none !important;
 }
 
 ::-webkit-scrollbar { 
@@ -93,6 +93,11 @@ html {
 
         &:hover {
           cursor: pointer;
+        }
+
+        &:active {
+          position: relative;
+          top: 1px; 
         }
       }
     }
