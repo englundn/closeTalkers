@@ -42,5 +42,5 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 chrome.browserAction.onClicked.addListener(() => {
-  chrome.tabs.create({ url: 'https://deja-vu.herokuapp.com' });
+  chrome.tabs.create({ url: 'https://dejavu.ninja' });
 });

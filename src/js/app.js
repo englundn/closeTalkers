@@ -6,8 +6,8 @@ import LandingPage from './landingPage';
 import ContentList from './contentList';
 import '../css/style.scss';
 
-const URL = 'https://deja-vu.herokuapp.com';
-// const URL = 'http://localhost:3000';
+// const URL = 'https://dejavu.ninja';
+const URL = 'http://localhost:3000';
 
 class App extends React.Component {
   constructor(props) {
