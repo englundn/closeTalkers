@@ -2,11 +2,8 @@ import React from 'react';
 import timeSince from './timeSince';
 
 const cleanUrl = (url) => {
-  const clean = url.replace(/http:\/\/|https:\/\//, '').replace(/www./, '').split('?')[0].split('#')[0].split('.');
-  if (clean) {
-    return clean.slice(0,clean.length - 1).join('.');
-  }
-  return '';
+  return url.replace(/http:\/\/|https:\/\/|\.html|\.pdf|\.php|www\.|\.aspx|\.asp/gi, '')
+            .split('?')[0].split('#')[0].split(':')[0];
 };
 
 const Content = ({ result }) => (
