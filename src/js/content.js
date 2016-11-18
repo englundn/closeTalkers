@@ -20,7 +20,7 @@ const Content = ({ result }) => (
         <a href={result._source.url}>{cleanUrl(result._source.url)}</a>
       </span>
     </div>
-    <div className={`contentBody index${index}`}>
+    <div className={`contentBody ${style}`}>
       {result._source.text.split('\n').map((para, i) => (
         <p key={i}>{para}</p>
       ))}

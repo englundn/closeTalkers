@@ -16,6 +16,7 @@ class App extends React.Component {
       query: '',
       results: [],
       isLoggedIn: 'loading',
+      expanded: 3,
     };
     this.query = this.query.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -80,6 +81,7 @@ class App extends React.Component {
         {this.state.isLoggedIn === true &&
           <ContentList
             results={this.state.results}
+            expanded={this.state.expanded}
           />
         }
       </div>

@@ -1,5 +1,5 @@
-* {
-  outline: none !important;
+*:focus {
+  outline: none;
 }
 
 ::-webkit-scrollbar { 
@@ -83,23 +83,6 @@ html {
       h2 {
         color: grey;
       }
-
-      .webStore {
-        height: 100px;
-        margin-top: 50px;
-        background-color: white;
-        border-radius: 5px;
-        box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.1);
-
-        &:hover {
-          cursor: pointer;
-        }
-
-        &:active {
-          position: relative;
-          top: 1px; 
-        }
-      }
     }
 
     .contentList {
@@ -118,6 +101,10 @@ html {
         padding: 20px;
         border-radius: 5px;
         box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.1);
+        &.expanded {
+          background-color: blue;
+        }
+
 
         .contentHeader {
           border-bottom: 1px solid lightgrey;
@@ -141,6 +128,9 @@ html {
         .contentBody {
           overflow: scroll;
           height: 85%;
+          &.expanded {
+            background-color: red;
+          }
 
           p {
             margin-top: 0px;
