@@ -3,7 +3,7 @@ import timeSince from './timeSince';
 
 const cleanUrl = (url) => {
   return url
-    .replace(/http:\/\/|https:\/\/|\.html|\.pdf|\.php|www\.|\.aspx|\.asp/gi, '')
+    .replace(/http:\/\/|https:\/\/|\.html|\.pdf|\.php|www\.|\.aspx|\.asp|\/$/gi, '')
     .split('?')[0].split('#')[0].split(':')[0];
 };
 
