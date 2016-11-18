@@ -3,7 +3,7 @@ import React from 'react';
 const Header = ({ query, handleChange, isLoggedIn }) => (
   <div className="header">
     <div className="homeLink">
-      <a href="/?#">Déjà Vu</a>
+      <a href="/?#">{/* Déjà Vu */}</a>
     </div>
     <div className="searchBar" >
       {isLoggedIn === true &&
