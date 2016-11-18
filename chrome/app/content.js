@@ -9,7 +9,7 @@ chrome.extension.sendMessage({ method: 'getStatus' }, (response) => {
   };
 
   const request = new XMLHttpRequest();
-  request.open('POST', 'https://deja-vu.herokuapp.com/api/chrome', true);
+  request.open('POST', 'https://dejavu.ninja/api/chrome', true);
   // request.open('POST', 'http://localhost:3000/api/chrome', true);
   request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
   request.send(JSON.stringify(data));
