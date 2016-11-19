@@ -11,32 +11,51 @@ const start = (link) => {
   time = new Date().getTime();
 };
 
-const send = (timeInfo) => {
-  const request = new XMLHttpRequest();
-  const userId = localStorage.userId;
-  const data = { userId, url, timeInfo };
-  request.open('POST', 'https://dejavu.ninja/api/chrome', true);
-  // request.open('POST', 'http://localhost:3000/api/chrome', true);
-  request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-  request.send(JSON.stringify(data));
-};
-
-const sendLast = () => {
+const sendLast = (link) => {
   if (url && time) {
     const newTime = new Date().getTime();
     const timeInfo = [time, newTime, newTime - time];
-    send(timeInfo);
+    const request = new XMLHttpRequest();
+    const userId = localStorage.userId;
+    const data = { userId, url, timeInfo };
+    // request.open('POST', 'https://dejavu.ninja/api/chrome', true);
+    request.open('POST', 'http://localhost:3000/api/chrome', true);
+    request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    request.send(JSON.stringify(data));
   }
-  reset();
+  return link ? start(link) : reset();
 };
 
 const checkActive = () => {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tab) => {
-    if (!tab[0] || !tab[0].url || tab[0].url === url) { return; }
-    sendLast();
-    start(tab[0].url);
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (!tabs[0] || !tabs[0].url || tabs[0].url === url) { return; }
+    const tab = tabs[0];
+    sendLast(tab.url);
+    // // ================================================================
+    // chrome.tabs.sendMessage(tab.id, 'info', ({ body, title }) => {
+    //   console.log(title);
+    //   console.log(body.length);
+    // });
+    // // ================================================================
   });
 };
+
+// ======================LISTEN FOR VIEW CHANGE===========================
+chrome.tabs.onUpdated.addListener(checkActive);
+chrome.tabs.onActivated.addListener(checkActive);
+
+chrome.windows.onFocusChanged.addListener((window) => {
+  window === chrome.windows.WINDOW_ID_NONE ? sendLast() : checkActive();
+});
+
+chrome.idle.onStateChanged.addListener(() => {
+  chrome.idle.queryState(30, (state) => {
+    if (state === 'active') { return checkActive(); }
+    chrome.tabs.query({ active: true, currentWindow: true },
+      tab => tab[0].audible === true ? null : sendLast()
+    );
+  });
+});
 
 // ======================STORE USER ID====================================
 chrome.identity.getProfileUserInfo((userInfo) => {
@@ -47,34 +66,14 @@ chrome.identity.getProfileUserInfo((userInfo) => {
   }
 });
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.method === 'getStatus') {
-    sendResponse({ userId: localStorage.userId });
-  } else {
-    sendResponse({});
-  }
-});
-
 chrome.browserAction.onClicked.addListener(() => {
   chrome.tabs.create({ url: 'https://dejavu.ninja' });
 });
-// ======================LISTEN FOR VIEW CHANGE===========================
-chrome.tabs.onUpdated.addListener(checkActive);
-chrome.tabs.onActivated.addListener(checkActive);
 
-chrome.windows.onFocusChanged.addListener((window) => {
-  window === chrome.windows.WINDOW_ID_NONE ? sendLast() : checkActive();
-});
-
-chrome.idle.setDetectionInterval(30);
-chrome.idle.onStateChanged.addListener(() => {
-  chrome.idle.queryState(30, (state) => {
-    if (state === 'active') {
-      checkActive();
-    } else {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tab) => {
-        tab[0].audible === false ? sendLast() : null;
-      });
-    }
-  });
-});
+// chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+//   if (request.method === 'getStatus') {
+//     sendResponse({ userId: localStorage.userId });
+//   } else {
+//     sendResponse({});
+//   }
+// });
