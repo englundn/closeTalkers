@@ -14,13 +14,13 @@ const Content = ({ result }) => (
         {result._source.title}
       </span>
       <span className="contentTimestamp">
-        {timeSince(result._source.timestamp)}
+        {timeSince(result._source.timeInfo[result._source.timeInfo.length - 1][1])}
       </span>
       <span className="contentUrl">
         <a href={result._source.url}>{cleanUrl(result._source.url)}</a>
       </span>
     </div>
-    <div className={`contentBody ${style}`}>
+    <div className={`contentBody ${index}${style ? ' expanded' : ''}`}>
       {result._source.text.split('\n').map((para, i) => (
         <p key={i}>{para}</p>
       ))}

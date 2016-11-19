@@ -102,7 +102,16 @@ html {
         border-radius: 5px;
         box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.1);
         &.expanded {
-          background-color: blue;
+          width: 800px;
+          max-width: 90%;
+          height: 400px;
+          background-color: white;
+          margin: auto;
+          margin-top: 25px;
+          margin-bottom: 10px;
+          padding: 20px;
+          border-radius: 5px;
+          box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.1);
         }
 
 
@@ -129,7 +138,8 @@ html {
           overflow: scroll;
           height: 85%;
           &.expanded {
-            background-color: red;
+            overflow: scroll;
+            height: 85%;
           }
 
           p {

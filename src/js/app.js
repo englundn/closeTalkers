@@ -16,7 +16,7 @@ class App extends React.Component {
       query: '',
       results: [],
       isLoggedIn: 'loading',
-      expanded: 3,
+      expanded: -1,
     };
     this.query = this.query.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -35,6 +35,17 @@ class App extends React.Component {
 
   componentDidUpdate() {
     // Make search terms bold in search results
+    // $('.content').click(function() {
+    //   $(this).addClass('expanded');
+    // });
+
+    $('.content').each((index, element) => {
+      $(element).click(() => this.setState({ expanded: index }));
+    });
+    $('.contentBody').each((index, element) => {
+      $(element).click(() => this.setState({ expanded: index }));
+    });
+
     const regExpQuery = RegExp((this.state.query.match(/\S+/gi) || []).join('|'), 'gi');
     const html = $('p').html();
     if (html && `${regExpQuery}` !== '/(?:)/gi') {

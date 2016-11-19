@@ -4,7 +4,7 @@ import Content from './content';
 const ContentList = ({ results, expanded }) => (
   <div className="contentList">
     {results.map((result, index) => (
-      <Content result={result} style={index === expanded} key={index} />
+      <Content result={result} index={index} style={index === expanded} key={index} />
     ))}
   </div>
 );
