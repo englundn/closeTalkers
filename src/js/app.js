@@ -44,8 +44,10 @@ class App extends React.Component {
     //     this.setState({ expanded: this.state.expanded === index ? -1 : index }));
     // });
     $('.contentBody').each((index, element) => {
-      $(element).click(() =>
-        this.setState({ expanded: index }));
+      $(element).unbind().click(() => {
+        console.log(index);
+        this.setState({ expanded: this.state.expanded === index ? -1 : index });
+      });
     });
 
     const regExpQuery = RegExp((this.state.query.match(/\S+/gi) || []).join('|'), 'gi');
