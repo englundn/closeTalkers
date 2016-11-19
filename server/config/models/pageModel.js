@@ -73,7 +73,6 @@ module.exports = {
     request(search(id, null, getSum(text)))
       .then((data) => {
         if (data && data.hits.total === 1) {
-          console.log(data.hits.hits[0]._id);
           request(update(id, timeInfo, data.hits.hits[0]._id))
             .catch(err => console.error(err));
         } else if (!data || data.hits.total === 0) {
@@ -89,27 +88,27 @@ module.exports = {
 };
 
 // PUT /archive
-const edgeNgram = {
-  settings: {
-    number_of_shards: 1,
-    analysis: {
-      filter: {
-        autocomplete_filter: {
-          type: 'edge_ngram',
-          min_gram: 1,
-          max_gram: 20,
-        },
-      },
-      analyzer: {
-        autocomplete: {
-          type: 'custom',
-          tokenizer: 'standard',
-          filter: [
-            'lowercase',
-            'autocomplete_filter',
-          ],
-        },
-      },
-    },
-  },
-};
+// const edgeNgram = {
+//   settings: {
+//     number_of_shards: 1,
+//     analysis: {
+//       filter: {
+//         autocomplete_filter: {
+//           type: 'edge_ngram',
+//           min_gram: 1,
+//           max_gram: 20,
+//         },
+//       },
+//       analyzer: {
+//         autocomplete: {
+//           type: 'custom',
+//           tokenizer: 'standard',
+//           filter: [
+//             'lowercase',
+//             'autocomplete_filter',
+//           ],
+//         },
+//       },
+//     },
+//   },
+// };
