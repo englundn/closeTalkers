@@ -18,8 +18,8 @@ const sendLast = (link) => {
     const request = new XMLHttpRequest();
     const userId = localStorage.userId;
     const data = { userId, url, timeInfo };
-    // request.open('POST', 'https://dejavu.ninja/api/chrome', true);
-    request.open('POST', 'http://localhost:3000/api/chrome', true);
+    request.open('POST', 'https://dejavu.ninja/api/chrome', true);
+    // request.open('POST', 'http://localhost:3000/api/chrome', true);
     request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     request.send(JSON.stringify(data));
   }
@@ -69,11 +69,3 @@ chrome.identity.getProfileUserInfo((userInfo) => {
 chrome.browserAction.onClicked.addListener(() => {
   chrome.tabs.create({ url: 'https://dejavu.ninja' });
 });
-
-// chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-//   if (request.method === 'getStatus') {
-//     sendResponse({ userId: localStorage.userId });
-//   } else {
-//     sendResponse({});
-//   }
-// });
