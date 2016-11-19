@@ -60,6 +60,7 @@ const update = (userId, timeInfo, entryId) => {
   };
 };
 
+
 module.exports = {
   // =========== SEARCH FROM WEBSITE =============
   search: (queryString, id, callback) => {
