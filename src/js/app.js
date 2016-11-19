@@ -6,8 +6,8 @@ import LandingPage from './landingPage';
 import ContentList from './contentList';
 import '../css/style.scss';
 
-const URL = 'https://dejavu.ninja';
-// const URL = 'http://localhost:3000';
+// const URL = 'https://dejavu.ninja';
+const URL = 'http://localhost:3000';
 
 class App extends React.Component {
   constructor(props) {
@@ -44,8 +44,10 @@ class App extends React.Component {
     //     this.setState({ expanded: this.state.expanded === index ? -1 : index }));
     // });
     $('.contentBody').each((index, element) => {
-      $(element).click(() =>
-        this.setState({ expanded: index }));
+      $(element).unbind().click(() => {
+        console.log(index);
+        this.setState({ expanded: this.state.expanded === index ? -1 : index });
+      });
     });
 
     const regExpQuery = RegExp((this.state.query.match(/\S+/gi) || []).join('|'), 'gi');
