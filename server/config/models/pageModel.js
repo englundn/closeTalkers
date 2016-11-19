@@ -44,7 +44,7 @@ const createOptions = (url, title, id, text, time) => {
 
 const update = (userId, timeInfo, entryId) => {
   return {
-    method: 'PUT',
+    method: 'POST',
     uri: `${URL}/${userId}/pages/${entryId}/_update`,
     auth: { user, pass },
     json: true,
