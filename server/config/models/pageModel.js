@@ -29,39 +29,61 @@ const search = (id, queryString, checksum) => {
   };
 };
 
-const createOptions = (url, title, id, text) => {
-  const timestamp = Date.now();
+const createOptions = (url, title, id, text, time) => {
   const checksum = getSum(text);
+  const timeInfo = [];
+  timeInfo.push(time);
   return {
     method: 'POST',
     uri: `${URL}/${id}/archive`,
     auth: { user, pass },
-    body: { url, title, timestamp, text, checksum },
+    body: { url, title, text, checksum, timeInfo },
     json: true,
   };
 };
 
-module.exports = {
-  // ============= CREATE FROM EXTENSION ============
-  create: (url, title, id, text) => {
-    // checks if data exists by comparing checksum
-    request(search(id, null, getSum(text)))
-      .then((data) => {
-        if (!data || data.hits.total === 0) {
-          request(createOptions(url, title, id, text))
-            .catch(err => console.error(err));
-        }
-      })
-      .catch(() => {
-        request(createOptions(url, title, id, text))
-          .catch(err => console.error(err));
-      });
-  },
+const update = (userId, timeInfo, entryId) => {
+  return {
+    method: 'POST',
+    uri: `${URL}/${userId}/archive/${entryId}/_update`,
+    auth: { user, pass },
+    json: true,
+    body: {
+      script: {
+        inline: 'ctx._source.timeInfo.add(params.time)',
+        lang: 'painless',
+        params: {
+          time: timeInfo,
+        },
+      },
+    },
+  };
+};
 
+module.exports = {
   // =========== SEARCH FROM WEBSITE =============
   search: (queryString, id, callback) => {
     request(search(id, queryString, null))
       .then(data => callback(data))
       .catch(err => console.error(err));
+  },
+
+  // Page.update(url, userId, text, title, timeInfo);
+  update: (url, id, text, title, timeInfo) => {
+    request(search(id, null, getSum(text)))
+      .then((data) => {
+        if (data && data.hits.total === 1) {
+          console.log(data.hits.hits[0]._id);
+          request(update(id, timeInfo, data.hits.hits[0]._id))
+            .catch(err => console.error(err));
+        } else if (!data || data.hits.total === 0) {
+          request(createOptions(url, title, id, text, timeInfo))
+            .catch(err => console.error(err));
+        }
+      })
+      .catch(() => {
+        request(createOptions(url, title, id, text, timeInfo))
+          .catch(err => console.error(err));
+      });
   },
 };
