@@ -44,7 +44,7 @@ const createOptions = (url, title, id, text, time) => {
 
 const update = (userId, timeInfo, entryId) => {
   return {
-    method: 'POST',
+    method: 'PUT',
     uri: `${URL}/archive/${userId}/${entryId}/_update`,
     auth: { user, pass },
     json: true,
