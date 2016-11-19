@@ -39,11 +39,13 @@ class App extends React.Component {
     //   $(this).addClass('expanded');
     // });
 
-    $('.content').each((index, element) => {
-      $(element).click(() => this.setState({ expanded: index }));
-    });
+    // $('.content').each((index, element) => {
+    //   $(element).click(() =>
+    //     this.setState({ expanded: this.state.expanded === index ? -1 : index }));
+    // });
     $('.contentBody').each((index, element) => {
-      $(element).click(() => this.setState({ expanded: index }));
+      $(element).click(() =>
+        this.setState({ expanded: index }));
     });
 
     const regExpQuery = RegExp((this.state.query.match(/\S+/gi) || []).join('|'), 'gi');
