@@ -24,6 +24,8 @@ module.exports = {
           const title = data.objects[0].title;
           if (text.length > 0) {
             Page.update(url, userId, text, title, timeInfo);
+          } else {
+            Page.update(url, userId, title, title, timeInfo);
           }
         }
       })

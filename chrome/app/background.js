@@ -11,7 +11,7 @@ const start = (link) => {
   time = new Date().getTime();
 };
 
-const sendLast = (link) => {
+const sendLast = (tab) => {
   if (url && time) {
     const newTime = new Date().getTime();
     const timeInfo = [time, newTime, newTime - time];
@@ -23,14 +23,15 @@ const sendLast = (link) => {
     request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     request.send(JSON.stringify(data));
   }
-  return link ? start(link) : reset();
+  return tab ? start(tab.url) : reset();
 };
 
-const checkActive = () => {
+const checkActive = (id, info, tab) => {
+  if (info && info.status === 'loading') { return; }
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     if (!tabs[0] || !tabs[0].url || tabs[0].url === url) { return; }
     const tab = tabs[0];
-    sendLast(tab.url);
+    sendLast(tab);
     // // ================================================================
     // chrome.tabs.sendMessage(tab.id, 'info', ({ body, title }) => {
     //   console.log(title);
@@ -57,7 +58,7 @@ chrome.idle.onStateChanged.addListener(() => {
   });
 });
 
-// ======================STORE USER ID====================================
+// ============================STORE USER ID==============================
 chrome.identity.getProfileUserInfo((userInfo) => {
   if (userInfo) {
     localStorage.userId = userInfo.id;
@@ -66,14 +67,7 @@ chrome.identity.getProfileUserInfo((userInfo) => {
   }
 });
 
+// ===================INLINE INSTALLATION FOR EXTENSION===================
 chrome.browserAction.onClicked.addListener(() => {
   chrome.tabs.create({ url: 'https://dejavu.ninja' });
 });
-
-// chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-//   if (request.method === 'getStatus') {
-//     sendResponse({ userId: localStorage.userId });
-//   } else {
-//     sendResponse({});
-//   }
-// });
