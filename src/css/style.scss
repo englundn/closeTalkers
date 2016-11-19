@@ -93,7 +93,7 @@ html {
       .content {
         width: 800px;
         max-width: 90%;
-        height: 400px;
+        height: 200px;
         background-color: white;
         margin: auto;
         margin-top: 25px;
@@ -135,8 +135,8 @@ html {
         }
 
         .contentBody {
-          overflow: scroll;
-          height: 85%;
+          overflow: hidden;
+          height: 70%;
           &.expanded {
             overflow: scroll;
             height: 85%;

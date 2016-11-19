@@ -7,8 +7,8 @@ const cleanUrl = (url) => {
     .split('?')[0].split('#')[0].split(':')[0];
 };
 
-const Content = ({ result }) => (
-  <div className="content">
+const Content = ({ result, index, style }) => (
+  <div className={`content ${index}${style ? ' expanded' : ''}`}>
     <div className="contentHeader">
       <span className="contentTitle">
         {result._source.title}
