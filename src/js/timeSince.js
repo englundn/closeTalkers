@@ -1,4 +1,4 @@
-const timeSince = (date) => {
+const timeSince = (date, showViewingTime) => {
   const seconds = Math.floor((date) / 1000);
 
   const dateObj = new Date(date);
@@ -12,11 +12,13 @@ const timeSince = (date) => {
   const month = months[dateObj.getMonth()];
 
   let interval = Math.floor(seconds / 86400);
-  if (interval > 1) {
-    return `${month} ${day} at ${time}`;
-  }
-  if (interval === 1) {
-    return `Yesterday at ${time}`;
+  if (showViewingTime) {
+    if (interval > 1) {
+      return `${month} ${day} at ${time}`;
+    }
+    if (interval === 1) {
+      return `Yesterday at ${time}`;
+    }
   }
   interval = Math.floor(seconds / 3600);
   if (interval > 1) {
