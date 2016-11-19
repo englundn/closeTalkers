@@ -22,7 +22,7 @@ const search = (id, queryString, checksum) => {
 
   return {
     method: 'GET',
-    uri: `${URL}/archive/${id}/_search`,
+    uri: `${URL}/${id}/pages/_search`,
     auth: { user, pass },
     body: { query },
     json: true,
@@ -35,7 +35,7 @@ const createOptions = (url, title, id, text, time) => {
   timeInfo.push(time);
   return {
     method: 'POST',
-    uri: `${URL}/archive/${id}`,
+    uri: `${URL}/${id}/pages`,
     auth: { user, pass },
     body: { url, title, text, checksum, timeInfo },
     json: true,
@@ -44,8 +44,8 @@ const createOptions = (url, title, id, text, time) => {
 
 const update = (userId, timeInfo, entryId) => {
   return {
-    method: 'POST',
-    uri: `${URL}/archive/${userId}/${entryId}/_update`,
+    method: 'PUT',
+    uri: `${URL}/${userId}/pages/${entryId}/_update`,
     auth: { user, pass },
     json: true,
     body: {
@@ -73,7 +73,6 @@ module.exports = {
     request(search(id, null, getSum(text)))
       .then((data) => {
         if (data && data.hits.total === 1) {
-          console.log(data.hits.hits[0]._id);
           request(update(id, timeInfo, data.hits.hits[0]._id))
             .catch(err => console.error(err));
         } else if (!data || data.hits.total === 0) {
@@ -87,3 +86,29 @@ module.exports = {
       });
   },
 };
+
+// PUT /archive
+// const edgeNgram = {
+//   settings: {
+//     number_of_shards: 1,
+//     analysis: {
+//       filter: {
+//         autocomplete_filter: {
+//           type: 'edge_ngram',
+//           min_gram: 1,
+//           max_gram: 20,
+//         },
+//       },
+//       analyzer: {
+//         autocomplete: {
+//           type: 'custom',
+//           tokenizer: 'standard',
+//           filter: [
+//             'lowercase',
+//             'autocomplete_filter',
+//           ],
+//         },
+//       },
+//     },
+//   },
+// };

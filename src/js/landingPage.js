@@ -1,6 +1,12 @@
 import React from 'react';
 
 class LandingPage extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.installExtension = this.installExtension.bind(this);
+  }
+
   installExtension() {
     chrome.webstore.install();
   }
@@ -10,7 +16,11 @@ class LandingPage extends React.Component {
       <div className="landingMain">
         <h1>Déjà Vu</h1>
         <h2>Find anything you have ever browsed</h2>
-        <img className="webStore" onClick={this.installExtension.bind(this)} src="../img/chrome-web-store.png" alt="" />
+        <img
+          className="webStore"
+          onClick={this.installExtension}
+          src="../img/chrome-web-store.png" alt=""
+        />
       </div>
     );
   }

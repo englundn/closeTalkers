@@ -2,7 +2,7 @@
   "name": "Déjà Vu",
   "short_name": "Déjà Vu",
   "description": "Find anything you have ever browsed",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "manifest_version": 2,
   "content_scripts": [{
       "js": [
@@ -31,13 +31,11 @@
     "default_title": "Déjà Vu"
   },
   "permissions": [
-    "activeTab",
-    "tabCapture",
+    "tabs",
+    "idle",
     "identity",
     "identity.email",
-    "https://dejavu.ninja/",
-    "tabs",
-    "idle"
+    "https://dejavu.ninja/"
   ],
   "icons": {
     "16": "icons/icon16.png",

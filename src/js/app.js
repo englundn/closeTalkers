@@ -34,15 +34,6 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    // Make search terms bold in search results
-    // $('.content').click(function() {
-    //   $(this).addClass('expanded');
-    // });
-
-    // $('.content').each((index, element) => {
-    //   $(element).click(() =>
-    //     this.setState({ expanded: this.state.expanded === index ? -1 : index }));
-    // });
     $('.contentBody').each((index, element) => {
       $(element).unbind().click(() => {
         console.log(index);
