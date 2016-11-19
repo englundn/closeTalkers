@@ -3,7 +3,7 @@
 }
 
 ::-webkit-scrollbar { 
-    display: none; 
+  display: none; 
 }
 
 html {
@@ -105,7 +105,7 @@ html {
     .contentList {
       margin-top: 60px;
       margin-bottom: 80px;
-      overflow: scroll;
+      overflow-y: scroll;
 
       .content {
         transition: 0.5s;
@@ -119,6 +119,18 @@ html {
         padding: 20px;
         border-radius: 5px;
         box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.1);
+
+        ::-webkit-scrollbar {
+          display: inline;
+          -webkit-appearance: none;
+          width: 7px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          border-radius: 4px;
+          background-color: rgba(0,0,0,.5);
+          -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+        }
 
         &.expanded {
           height: fit-content;
@@ -154,7 +166,7 @@ html {
           height: 70%;
 
           &.expanded {
-            overflow: scroll;
+            overflow-y: scroll;
             max-height: 340px;
           }
 
