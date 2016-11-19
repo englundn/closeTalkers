@@ -1,34 +1,33 @@
-const rp = require('request-promise');
+const request = require('request-promise');
 const Page = require('../models/pageModel');
 
 const token = process.env.DIFFBOT_TOKEN || require('../config').token;
 
+const options = (url) => {
+  return {
+    uri: 'http://api.diffbot.com/v3/article',
+    qs: { token, url },
+    json: true,
+  };
+};
+
 module.exports = {
-  newPage: (req, res) => {
+  update: (req, res) => {
     const url = req.body.url;
-    const title = req.body.title;
     const userId = req.body.userId;
+    const timeInfo = req.body.timeInfo;
 
-    const options = {
-      uri: 'http://api.diffbot.com/v3/article',
-      qs: {
-        token,
-        url,
-      },
-      json: true,
-    };
-
-    rp(options)
+    request(options(url))
       .then((data) => {
         if (data.objects) {
           const text = data.objects[0].text;
-
-          Page.create(url, title, userId, text);
+          const title = data.objects[0].title;
+          if (text.length > 0) {
+            Page.update(url, userId, text, title, timeInfo);
+          }
         }
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch(err => console.error(err));
 
     res.end();
   },
