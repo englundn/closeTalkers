@@ -143,13 +143,17 @@ html {
           }
 
           .contentTimestamp {
-            color: grey;
             float: right;
           }
 
           .contentUrl {
             display: block;
             font-size: 12px;
+
+            .viewedTimestamp {
+              float: right;
+              color: grey;
+            }
           }
         }
 

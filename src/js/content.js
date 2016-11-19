@@ -18,7 +18,7 @@ const Content = ({ result, index, style }) => (
       </span>
       <span className="contentUrl">
         <a href={result._source.url}>{cleanUrl(result._source.url)}</a>
-        <span className="contentTimestamp">
+        <span className="viewedTimestamp">
           viewed for {timeSince(result._source.timeInfo.reduce((prev, next) => prev + next[2], 0), true)}
         </span>
       </span>
