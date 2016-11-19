@@ -118,6 +118,7 @@ html {
         padding: 20px;
         border-radius: 5px;
         box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.1);
+
         &.expanded {
           width: 800px;
           max-width: 90%;
@@ -142,6 +143,7 @@ html {
           }
 
           .contentTimestamp {
+            color: grey;
             float: right;
           }
 
@@ -154,6 +156,7 @@ html {
         .contentBody {
           overflow: hidden;
           height: 70%;
+
           &.expanded {
             overflow: scroll;
             height: 85%;
