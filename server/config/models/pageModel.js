@@ -22,7 +22,7 @@ const search = (id, queryString, checksum) => {
 
   return {
     method: 'GET',
-    uri: `${URL}/archive/${id}/_search`,
+    uri: `${URL}/${id}/pages/_search`,
     auth: { user, pass },
     body: { query },
     json: true,
@@ -35,7 +35,7 @@ const createOptions = (url, title, id, text, time) => {
   timeInfo.push(time);
   return {
     method: 'POST',
-    uri: `${URL}/archive/${id}`,
+    uri: `${URL}/${id}/pages`,
     auth: { user, pass },
     body: { url, title, text, checksum, timeInfo },
     json: true,
@@ -45,7 +45,7 @@ const createOptions = (url, title, id, text, time) => {
 const update = (userId, timeInfo, entryId) => {
   return {
     method: 'PUT',
-    uri: `${URL}/archive/${userId}/${entryId}/_update`,
+    uri: `${URL}/${userId}/pages/${entryId}/_update`,
     auth: { user, pass },
     json: true,
     body: {
