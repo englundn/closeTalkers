@@ -4,6 +4,6 @@ const chromeController = require('../controllers/chrome');
 const router = new express.Router();
 
 router.route('/')
-  .post(chromeController.newPage);
+  .post(chromeController.update);
 
 module.exports = router;
