@@ -6,17 +6,18 @@ import LandingPage from './landingPage';
 import ContentList from './contentList';
 import '../css/style.scss';
 
-const URL = 'https://dejavu.ninja';
-// const URL = 'http://localhost:3000';
+// const URL = 'https://dejavu.ninja';
+const URL = 'http://localhost:3000';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       query: '',
-      results: [],
+      results: null,
       isLoggedIn: 'loading',
       expanded: -1,
+      loading: false,
     };
     this.query = this.query.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -57,9 +58,10 @@ class App extends React.Component {
     this.setState({ query });
 
     if (query.length >= 2) {
+      this.setState({ loading: true });
       this.query(query);
     } else {
-      this.setState({ results: [] });
+      this.setState({ results: null });
     }
   }
 
@@ -68,7 +70,7 @@ class App extends React.Component {
       url: `${URL}/api/web/search?q="${qs}"`,
       method: 'GET',
       success: (data) => {
-        this.setState({ results: data.hits.hits });
+        this.setState({ results: data.hits.hits, loading: false });
       },
     });
   }
@@ -88,6 +90,7 @@ class App extends React.Component {
           <ContentList
             results={this.state.results}
             expanded={this.state.expanded}
+            loading={this.state.loading}
           />
         }
       </div>
