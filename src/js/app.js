@@ -6,8 +6,8 @@ import LandingPage from './landingPage';
 import ContentList from './contentList';
 import '../css/style.scss';
 
-// const URL = 'https://dejavu.ninja';
-const URL = 'http://localhost:3000';
+const URL = 'https://dejavu.ninja';
+// const URL = 'http://localhost:3000';
 
 class App extends React.Component {
   constructor(props) {
@@ -37,7 +37,6 @@ class App extends React.Component {
   componentDidUpdate() {
     $('.contentBody').each((index, element) => {
       $(element).unbind().click(() => {
-        console.log(index);
         this.setState({ expanded: this.state.expanded === index ? -1 : index });
       });
     });
