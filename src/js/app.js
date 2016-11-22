@@ -36,7 +36,6 @@ class App extends React.Component {
   componentDidUpdate() {
     $('.contentBody').each((index, element) => {
       $(element).unbind().click(() => {
-        console.log(index);
         this.setState({ expanded: this.state.expanded === index ? -1 : index });
       });
     });
@@ -96,4 +95,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
-
