@@ -14,9 +14,10 @@ class App extends React.Component {
     super(props);
     this.state = {
       query: '',
-      results: [],
+      results: null,
       isLoggedIn: 'loading',
       expanded: -1,
+      loading: false,
     };
     this.query = this.query.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -56,9 +57,10 @@ class App extends React.Component {
     this.setState({ query });
 
     if (query.length >= 2) {
+      this.setState({ loading: true });
       this.query(query);
     } else {
-      this.setState({ results: [] });
+      this.setState({ results: null });
     }
   }
 
@@ -67,7 +69,7 @@ class App extends React.Component {
       url: `${URL}/api/web/search?q="${qs}"`,
       method: 'GET',
       success: (data) => {
-        this.setState({ results: data.hits.hits });
+        this.setState({ results: data.hits.hits, loading: false });
       },
     });
   }
@@ -79,6 +81,7 @@ class App extends React.Component {
           query={this.state.query}
           handleChange={this.handleChange}
           isLoggedIn={this.state.isLoggedIn}
+          loading={this.state.loading}
         />
         {this.state.isLoggedIn === false &&
           <LandingPage />
@@ -87,6 +90,7 @@ class App extends React.Component {
           <ContentList
             results={this.state.results}
             expanded={this.state.expanded}
+            loading={this.state.loading}
           />
         }
       </div>
