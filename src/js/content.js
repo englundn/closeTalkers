@@ -15,8 +15,8 @@ const cleanUrl = (url) => {
 const Content = ({ result, index, style }) => (
   <div
     className={`content ${index}${style ? ' expanded' : ''}`}
-    onMouseEnter={() => $(`.delete.${index}`).attr('width', '50px')}
-    onMouseLeave={() => $(`.delete.${index}`).attr('width', '20px')}
+    onMouseEnter={() => $(`.delete.${index}`).css('opacity', 1)}
+    onMouseLeave={() => $(`.delete.${index}`).css('opacity', 0)}
   >
     <div className="contentHeader">
       <span className="contentTitle">
