@@ -194,6 +194,15 @@ html {
             }
           }
         }
+
+        .delete {
+          position: relative;
+          // right: 0;
+          float: right;
+          bottom: 0;
+          height: 30px;
+          width: 30px;
+        }
       }
     }
   }

@@ -33,6 +33,7 @@ const Content = ({ result, index, style }) => (
         <p key={i}>{para}</p>
       ))}
     </div>
+    <img className="delete" alt="" src="../img/delete.png" />
   </div>
 );
 
