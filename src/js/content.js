@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 import timeSince from './timeSince';
 
 const cleanUrl = (url) => {
@@ -12,7 +13,11 @@ const cleanUrl = (url) => {
 };
 
 const Content = ({ result, index, style }) => (
-  <div className={`content ${index}${style ? ' expanded' : ''}`}>
+  <div
+    className={`content ${index}${style ? ' expanded' : ''}`}
+    onMouseEnter={() => $(`.delete.${index}`).attr('width', '50px')}
+    onMouseLeave={() => $(`.delete.${index}`).attr('width', '20px')}
+  >
     <div className="contentHeader">
       <span className="contentTitle">
         {result._source.title}
@@ -33,7 +38,7 @@ const Content = ({ result, index, style }) => (
         <p key={i}>{para}</p>
       ))}
     </div>
-    <img className="delete" alt="" src="../img/delete.png" />
+    <img className={`delete ${index}`} alt="" src="../img/delete.png" />
   </div>
 );
 
