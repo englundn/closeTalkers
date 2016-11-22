@@ -1,4 +1,5 @@
-module.exports = () => {
+module.exports = (callback) => {
+  callback();
   // TODO: check if template exists, else create template
 
   // PUT /archive
