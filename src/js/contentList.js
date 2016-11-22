@@ -10,12 +10,17 @@ import Content from './content';
 // );
 
 const ContentList = ({ results, expanded, loading }) => {
-  return (loading === false && Array.isArray(results) && results.length === 0) ?
-  (<div className="noContent">No Results</div>) :
-  (<div className="contentList">
-    {results && results.filter(result => result._source.title !== result._source.text).map((result, index) => (
-      <Content result={result} index={index} style={index === expanded} key={index} />
-    ))}
+  if (results === null || results.length) {
+    return (<div className="contentList">
+      {results && results.filter(result => result._source.title !== result._source.text)
+      .map((result, index) => (
+        <Content result={result} index={index} style={index === expanded} key={index} />
+    ))}</div>);
+  }
+  return (<div className="noContent">
+    {loading ?
+      (<img alt="" src="../img/loading.gif" />) :
+      'No Results'}
   </div>);
 };
 

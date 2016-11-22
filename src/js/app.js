@@ -6,8 +6,8 @@ import LandingPage from './landingPage';
 import ContentList from './contentList';
 import '../css/style.scss';
 
-const URL = 'https://dejavu.ninja';
-// const URL = 'http://localhost:3000';
+// const URL = 'https://dejavu.ninja';
+const URL = 'http://localhost:3000';
 
 class App extends React.Component {
   constructor(props) {
@@ -81,6 +81,7 @@ class App extends React.Component {
           query={this.state.query}
           handleChange={this.handleChange}
           isLoggedIn={this.state.isLoggedIn}
+          loading={this.state.loading}
         />
         {this.state.isLoggedIn === false &&
           <LandingPage />
