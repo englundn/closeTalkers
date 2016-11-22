@@ -60,7 +60,6 @@ const update = (userId, timeInfo, entryId) => {
   };
 };
 
-
 module.exports = {
   // =========== SEARCH FROM WEBSITE =============
   search: (queryString, id, callback) => {
@@ -69,7 +68,6 @@ module.exports = {
       .catch(err => console.error(err));
   },
 
-  // Page.update(url, userId, text, title, timeInfo);
   update: (url, id, text, title, timeInfo) => {
     request(search(id, null, getSum(text)))
       .then((data) => {
@@ -87,29 +85,3 @@ module.exports = {
       });
   },
 };
-
-// PUT /archive
-// const edgeNgram = {
-//   settings: {
-//     number_of_shards: 1,
-//     analysis: {
-//       filter: {
-//         autocomplete_filter: {
-//           type: 'edge_ngram',
-//           min_gram: 1,
-//           max_gram: 20,
-//         },
-//       },
-//       analyzer: {
-//         autocomplete: {
-//           type: 'custom',
-//           tokenizer: 'standard',
-//           filter: [
-//             'lowercase',
-//             'autocomplete_filter',
-//           ],
-//         },
-//       },
-//     },
-//   },
-// };

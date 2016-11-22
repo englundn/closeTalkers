@@ -1,43 +1,46 @@
-let time = null;
 let url = '';
+let time = null;
+let title = '';
+let body = '';
 
 const reset = () => {
-  time = null;
   url = '';
+  time = null;
+  title = '';
+  body = '';
 };
 
-const start = (link) => {
-  url = link;
-  time = new Date().getTime();
+const start = (tab) => {
+  chrome.tabs.sendMessage(tab.id, 'info', (res) => {
+    if (!res) { return start(tab); }
+    title = res.title1;
+    body = res.body1;
+    time = new Date().getTime();
+    url = tab.url;
+  });
 };
 
 const sendLast = (tab) => {
-  if (url && time) {
+  if (url && time && title && body) {
     const newTime = new Date().getTime();
     const timeInfo = [time, newTime, newTime - time];
     const request = new XMLHttpRequest();
     const userId = localStorage.userId;
-    const data = { userId, url, timeInfo };
+    const data = { userId, url, timeInfo, title, body };
+    // console.log('sending: ', title, body.length, url, timeInfo);
     request.open('POST', 'https://dejavu.ninja/api/chrome', true);
     // request.open('POST', 'http://localhost:3000/api/chrome', true);
     request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     request.send(JSON.stringify(data));
   }
-  return tab ? start(tab.url) : reset();
+  return tab ? start(tab) : reset();
 };
 
-const checkActive = (id, info, tab) => {
+const checkActive = (id, info) => {
   if (info && info.status === 'loading') { return; }
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     if (!tabs[0] || !tabs[0].url || tabs[0].url === url) { return; }
-    const tab = tabs[0];
-    sendLast(tab);
-    // // ================================================================
-    // chrome.tabs.sendMessage(tab.id, 'info', ({ body, title }) => {
-    //   console.log(title);
-    //   console.log(body.length);
-    // });
-    // // ================================================================
+    sendLast(tabs[0]);
   });
 };
 
@@ -67,7 +70,7 @@ chrome.identity.getProfileUserInfo((userInfo) => {
   }
 });
 
-// ===================INLINE INSTALLATION FOR EXTENSION===================
+// ========================================
 chrome.browserAction.onClicked.addListener(() => {
   chrome.tabs.create({ url: 'https://dejavu.ninja' });
 });
