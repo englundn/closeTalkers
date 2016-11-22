@@ -27,7 +27,7 @@ const sendLast = (tab) => {
     const request = new XMLHttpRequest();
     const userId = localStorage.userId;
     const data = { userId, url, timeInfo, title, body };
-    // console.log('sending: ', title, body.length, url, timeInfo);
+    
     request.open('POST', 'https://dejavu.ninja/api/chrome', true);
     // request.open('POST', 'http://localhost:3000/api/chrome', true);
     request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
@@ -70,7 +70,7 @@ chrome.identity.getProfileUserInfo((userInfo) => {
   }
 });
 
-// ========================================
+// =====================REDIRECT TO WEBSITE ON CLICK=====================
 chrome.browserAction.onClicked.addListener(() => {
   chrome.tabs.create({ url: 'https://dejavu.ninja' });
 });

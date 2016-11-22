@@ -6,7 +6,7 @@ const pass = process.env.ELASTIC_PASSWORD || require('../config').password;
 
 const URL = 'http://1b4f84fecd657bad91626e9aa8f74e59.us-west-1.aws.found.io:9200';
 
-const search = (id, queryString, checksum) => {
+const searchOptions = (id, queryString, checksum) => {
   let query = {
     match: {
       text: queryString,
@@ -32,7 +32,9 @@ const search = (id, queryString, checksum) => {
 const createOptions = (url, title, id, text, time) => {
   const checksum = getSum(text);
   const timeInfo = [];
+
   timeInfo.push(time);
+
   return {
     method: 'POST',
     uri: `${URL}/${id}/pages`,
@@ -42,7 +44,7 @@ const createOptions = (url, title, id, text, time) => {
   };
 };
 
-const update = (userId, timeInfo, entryId) => {
+const updateOptions = (userId, timeInfo, entryId) => {
   return {
     method: 'POST',
     uri: `${URL}/${userId}/pages/${entryId}/_update`,
@@ -60,28 +62,57 @@ const update = (userId, timeInfo, entryId) => {
   };
 };
 
+const checkIndex = (userId, callback) => {
+  const options = {
+    method: 'HEAD',
+    uri: `${URL}/${userId}`,
+    auth: { user, pass },
+    json: true,
+  };
+
+  request(options)
+    .then(() => {
+      callback(true);
+    })
+    .catch(() => {
+      callback(false);
+    });
+};
+
 module.exports = {
   // =========== SEARCH FROM WEBSITE =============
   search: (queryString, id, callback) => {
-    request(search(id, queryString, null))
+    request(searchOptions(id, queryString, null))
       .then(data => callback(data))
       .catch(err => console.error(err));
   },
 
+  // ========== UPDATE OR CREATE PAGE ============
   update: (url, id, text, title, timeInfo) => {
-    request(search(id, null, getSum(text)))
-      .then((data) => {
-        if (data && data.hits.total === 1) {
-          request(update(id, timeInfo, data.hits.hits[0]._id))
-            .catch(err => console.error(err));
-        } else if (!data || data.hits.total === 0) {
+    // check if user index exists
+    checkIndex(id, (indexExists) => {
+      // if index doesn't exist create new index from template
+      if (!indexExists) {
+        // TODO: create index based on template here
+      }
+      // checks if article already exists
+      request(searchOptions(id, null, getSum(text)))
+        .then((data) => {
+          // if article exists just update time
+          if (data && data.hits.total === 1) {
+            request(updateOptions(id, timeInfo, data.hits.hits[0]._id))
+              .catch(err => console.error(err));
+          // if article doesn't exist create article
+          } else if (!data || data.hits.total === 0) {
+            request(createOptions(url, title, id, text, timeInfo))
+              .catch(err => console.error(err));
+          }
+        })
+        .catch(() => {
+          // if request is unsuccessful create article
           request(createOptions(url, title, id, text, timeInfo))
             .catch(err => console.error(err));
-        }
-      })
-      .catch(() => {
-        request(createOptions(url, title, id, text, timeInfo))
-          .catch(err => console.error(err));
-      });
+        });
+    });
   },
 };
