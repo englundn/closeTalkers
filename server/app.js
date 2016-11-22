@@ -4,11 +4,12 @@ const app = express();
 
 require('./config/middleware.js')(app, express);
 require('./config/routes.js')(app);
+require('./config/elastic.js')(() => {
+  const port = process.env.PORT || 3000;
 
-const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+  app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+  });
 });
 
 module.exports = app;

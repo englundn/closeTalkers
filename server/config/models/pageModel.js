@@ -93,7 +93,7 @@ module.exports = {
     checkIndex(id, (indexExists) => {
       // if index doesn't exist create new index from template
       if (!indexExists) {
-
+        // TODO: create index based on template here
       }
       // checks if article already exists
       request(searchOptions(id, null, getSum(text)))
@@ -116,29 +116,3 @@ module.exports = {
     });
   },
 };
-
-// PUT /archive
-// const edgeNgram = {
-//   settings: {
-//     number_of_shards: 1,
-//     analysis: {
-//       filter: {
-//         autocomplete_filter: {
-//           type: 'edge_ngram',
-//           min_gram: 1,
-//           max_gram: 20,
-//         },
-//       },
-//       analyzer: {
-//         autocomplete: {
-//           type: 'custom',
-//           tokenizer: 'standard',
-//           filter: [
-//             'lowercase',
-//             'autocomplete_filter',
-//           ],
-//         },
-//       },
-//     },
-//   },
-// };
