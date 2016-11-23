@@ -11,14 +11,16 @@ const reset = () => {
 };
 
 const start = (tab, i) => {
+  if (i === 10 ||
+      tab.url.slice(0, 20) === 'https://dejavu.ninja' ||
+      tab.url.slice(0, 22) === 'https://www.google.com') { return reset(); }
   url = tab.url;
-  if (i === 10) { return; }
   chrome.tabs.sendMessage(tab.id, 'info', (res) => {
     if (!res) { return setTimeout(() => start(tab, i + 1), 1000); }
     title = res.title1;
     body = res.body1;
+    url = res.url1;
     time = new Date().getTime();
-    url = tab.url;
   });
 };
 
@@ -34,6 +36,7 @@ const sendLast = (tab) => {
     // request.open('POST', 'http://localhost:3000/api/chrome', true);
     request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     request.send(JSON.stringify(data));
+    reset();
   }
   return tab ? start(tab, 0) : reset();
 };
