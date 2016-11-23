@@ -10,9 +10,12 @@ const reset = () => {
   body = '';
 };
 
-const start = (tab) => {
+const start = (tab, i) => {
+  console.log(i);
+  url = tab.url;
+  if (i === 10) { return; }
   chrome.tabs.sendMessage(tab.id, 'info', (res) => {
-    if (!res) { return start(tab); }
+    if (!res) { return setTimeout(() => start(tab, i + 1), 1000); }
     title = res.title1;
     body = res.body1;
     time = new Date().getTime();
@@ -22,18 +25,18 @@ const start = (tab) => {
 
 const sendLast = (tab) => {
   if (url && time && title && body) {
+    const request = new XMLHttpRequest();
     const newTime = new Date().getTime();
     const timeInfo = [time, newTime, newTime - time];
-    const request = new XMLHttpRequest();
     const userId = localStorage.userId;
     const data = { userId, url, timeInfo, title, body };
-    
+
     request.open('POST', 'https://dejavu.ninja/api/chrome', true);
     // request.open('POST', 'http://localhost:3000/api/chrome', true);
     request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     request.send(JSON.stringify(data));
   }
-  return tab ? start(tab) : reset();
+  return tab ? start(tab, 0) : reset();
 };
 
 const checkActive = (id, info) => {
