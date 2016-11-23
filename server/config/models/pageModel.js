@@ -67,7 +67,7 @@ module.exports = {
   search: (queryString, id, callback) => {
     request(searchOptions(id, queryString, null))
       .then(data => callback(data))
-      .catch(err => console.error(err));
+      .catch(err => console.error(err.message));
   },
 
   // ========== UPDATE OR CREATE PAGE ============
@@ -78,17 +78,17 @@ module.exports = {
         // if article exists just update time
         if (data && data.hits.total === 1) {
           request(updateOptions(id, timeInfo, data.hits.hits[0]._id))
-            .catch(err => console.error(err));
+            .catch(err => console.error(err.message));
         // if article doesn't exist create article
         } else if (!data || data.hits.total === 0) {
           request(createOptions(url, title, id, text, timeInfo))
-            .catch(err => console.error(err));
+            .catch(err => console.error(err.message));
         }
       })
       .catch(() => {
         // if request is unsuccessful create article
         request(createOptions(url, title, id, text, timeInfo))
-          .catch(err => console.error(err));
+          .catch(err => console.error(err.message));
       });
   },
 };
