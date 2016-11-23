@@ -56,7 +56,7 @@ class App extends React.Component {
     const query = event.target.value;
     this.setState({ query });
 
-    if (query.length >= 2) {
+    if (query.length) {
       this.setState({ loading: true });
       this.query(query);
     } else {
