@@ -11,7 +11,6 @@ const reset = () => {
 };
 
 const start = (tab, i) => {
-  console.log(i);
   url = tab.url;
   if (i === 10) { return; }
   chrome.tabs.sendMessage(tab.id, 'info', (res) => {
