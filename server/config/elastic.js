@@ -27,38 +27,62 @@ module.exports = (callback) => {
   checkTemplate((templateExists) => {
     // if template doesn't exist create new template
     if (!templateExists) {
-      // PUT _template/user_template
-      // {
-      //     "template" : "user_*",
-      //     "settings" : {
-      //         "number_of_shards" : 1
-      //     },
-      // }
+      const template = 'user_*';
 
-      // const edgeNgram = {
-      //   settings: {
-      //     number_of_shards: 1,
-      //     analysis: {
-      //       filter: {
-      //         autocomplete_filter: {
-      //           type: 'edge_ngram',
-      //           min_gram: 1,
-      //           max_gram: 20,
-      //         },
-      //       },
-      //       analyzer: {
-      //         autocomplete: {
-      //           type: 'custom',
-      //           tokenizer: 'standard',
-      //           filter: [
-      //             'lowercase',
-      //             'autocomplete_filter',
-      //           ],
-      //         },
-      //       },
-      //     },
-      //   },
-      // };
+      const settings = {
+        index: {
+          analysis: {
+            filter: {
+              autocomplete_filter: {
+                type: 'edge_ngram',
+                min_gram: 1,
+                max_gram: 20,
+              },
+            },
+            analyzer: {
+              autocomplete: {
+                filter: [
+                  'lowercase',
+                  'autocomplete_filter',
+                ],
+                type: 'custom',
+                tokenizer: 'standard',
+              },
+            },
+          },
+          number_of_shards: 1,
+        },
+      };
+
+      const analyzers = {
+        type: 'string',
+        analyzer: 'autocomplete',
+        search_analyzer: 'standard',
+      };
+
+      const mappings = {
+        pages: {
+          properties: {
+            url: analyzers,
+            title: analyzers,
+            text: analyzers,
+          },
+        },
+      };
+
+      const options = {
+        method: 'PUT',
+        uri: `${URL}/_template/user_template`,
+        auth: { user, pass },
+        json: true,
+        body: { template, settings, mappings },
+      };
+
+      request(options)
+        .then(() => {
+          callback();
+        })
+        .catch(err => console.error(err.message));
     }
     callback();
   });
