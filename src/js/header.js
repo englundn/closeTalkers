@@ -13,6 +13,7 @@ const Header = ({ query, handleChange, isLoggedIn }) => (
             placeholder="Search"
             value={query}
             onChange={handleChange}
+            onKeyUp={handleChange}
           />
         </form>
       }
