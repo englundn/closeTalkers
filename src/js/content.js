@@ -6,10 +6,7 @@ const cleanUrl = (url) => {
   const cleanedUrl = url
     .replace(/http:\/\/|https:\/\/|\.html|\.pdf|\.php|www\.|\.aspx|\.asp|\/$/gi, '')
     .split('?')[0].split('#')[0].split(':')[0];
-  if (cleanedUrl.length > 93) {
-    return `${cleanedUrl.slice(0, 90)}...`;
-  }
-  return cleanedUrl;
+  return cleanedUrl.length > 93 ? `${cleanedUrl.slice(0, 90)}...` : cleanedUrl;
 };
 
 const Content = ({ result, index, style }) => (
@@ -38,7 +35,7 @@ const Content = ({ result, index, style }) => (
         <p key={i}>{para}</p>
       ))}
     </div>
-    <img className={`delete ${index}`} alt="" src="../img/delete.png" />
+    <img className={`delete ${index}`} alt="" src="../img/delete.png" onClick={() => console.log('clicked')} />
   </div>
 );
 
