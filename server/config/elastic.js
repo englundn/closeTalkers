@@ -8,7 +8,7 @@ const URL = 'http://1b4f84fecd657bad91626e9aa8f74e59.us-west-1.aws.found.io:9200
 const checkTemplate = (callback) => {
   const options = {
     method: 'HEAD',
-    uri: `${URL}/_template/pages`,
+    uri: `${URL}/_template/user_template`,
     auth: { user, pass },
     json: true,
   };
@@ -27,9 +27,14 @@ module.exports = (callback) => {
   checkTemplate((templateExists) => {
     // if template doesn't exist create new template
     if (!templateExists) {
-      // TODO: create template
+      // PUT _template/user_template
+      // {
+      //     "template" : "user_*",
+      //     "settings" : {
+      //         "number_of_shards" : 1
+      //     },
+      // }
 
-      // PUT /archive
       // const edgeNgram = {
       //   settings: {
       //     number_of_shards: 1,

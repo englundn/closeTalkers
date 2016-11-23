@@ -22,7 +22,7 @@ const searchOptions = (id, queryString, checksum) => {
 
   return {
     method: 'GET',
-    uri: `${URL}/${id}/pages/_search`,
+    uri: `${URL}/user_${id}/pages/_search`,
     auth: { user, pass },
     body: { query },
     json: true,
@@ -37,7 +37,7 @@ const createOptions = (url, title, id, text, time) => {
 
   return {
     method: 'POST',
-    uri: `${URL}/${id}/pages`,
+    uri: `${URL}/user_${id}/pages`,
     auth: { user, pass },
     body: { url, title, text, checksum, timeInfo },
     json: true,
@@ -47,7 +47,7 @@ const createOptions = (url, title, id, text, time) => {
 const updateOptions = (userId, timeInfo, entryId) => {
   return {
     method: 'POST',
-    uri: `${URL}/${userId}/pages/${entryId}/_update`,
+    uri: `${URL}/user_${userId}/pages/${entryId}/_update`,
     auth: { user, pass },
     json: true,
     body: {
@@ -62,23 +62,6 @@ const updateOptions = (userId, timeInfo, entryId) => {
   };
 };
 
-const checkIndex = (userId, callback) => {
-  const options = {
-    method: 'HEAD',
-    uri: `${URL}/${userId}`,
-    auth: { user, pass },
-    json: true,
-  };
-
-  request(options)
-    .then(() => {
-      callback(true);
-    })
-    .catch(() => {
-      callback(false);
-    });
-};
-
 module.exports = {
   // =========== SEARCH FROM WEBSITE =============
   search: (queryString, id, callback) => {
@@ -89,30 +72,23 @@ module.exports = {
 
   // ========== UPDATE OR CREATE PAGE ============
   update: (url, id, text, title, timeInfo) => {
-    // check if user index exists
-    checkIndex(id, (indexExists) => {
-      // if index doesn't exist create new index from template
-      if (!indexExists) {
-        // TODO: create index based on template here
-      }
-      // checks if article already exists
-      request(searchOptions(id, null, getSum(text)))
-        .then((data) => {
-          // if article exists just update time
-          if (data && data.hits.total === 1) {
-            request(updateOptions(id, timeInfo, data.hits.hits[0]._id))
-              .catch(err => console.error(err));
-          // if article doesn't exist create article
-          } else if (!data || data.hits.total === 0) {
-            request(createOptions(url, title, id, text, timeInfo))
-              .catch(err => console.error(err));
-          }
-        })
-        .catch(() => {
-          // if request is unsuccessful create article
+    // checks if article already exists
+    request(searchOptions(id, null, getSum(text)))
+      .then((data) => {
+        // if article exists just update time
+        if (data && data.hits.total === 1) {
+          request(updateOptions(id, timeInfo, data.hits.hits[0]._id))
+            .catch(err => console.error(err));
+        // if article doesn't exist create article
+        } else if (!data || data.hits.total === 0) {
           request(createOptions(url, title, id, text, timeInfo))
             .catch(err => console.error(err));
-        });
-    });
+        }
+      })
+      .catch(() => {
+        // if request is unsuccessful create article
+        request(createOptions(url, title, id, text, timeInfo))
+          .catch(err => console.error(err));
+      });
   },
 };
