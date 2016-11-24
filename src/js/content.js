@@ -9,7 +9,7 @@ const cleanUrl = (url) => {
   return cleanedUrl.length > 93 ? `${cleanedUrl.slice(0, 90)}...` : cleanedUrl;
 };
 
-const Content = ({ result, index, style }) => (
+const Content = ({ result, index, style, deleteItem }) => (
   <div
     className={`content ${index}${style ? ' expanded' : ''}`}
     onMouseEnter={() => $(`.delete.${index}`).css('opacity', 1)}
@@ -35,7 +35,7 @@ const Content = ({ result, index, style }) => (
         <p key={i}>{para}</p>
       ))}
     </div>
-    <img className={`delete ${index}`} alt="" src="../img/delete.png" onClick={() => console.log('clicked')} />
+    <img className={`delete ${index}`} alt="" src="../img/delete.png" onClick={() => deleteItem(result._id)} />
   </div>
 );
 
