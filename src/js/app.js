@@ -14,7 +14,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       query: '',
-      results: null,
+      results: [],
       isLoggedIn: 'loading',
       expanded: -1,
       loading: false,
@@ -56,11 +56,11 @@ class App extends React.Component {
     const query = event.target.value;
     this.setState({ query });
 
-    if (query.length) {
+    if (query.length > 1) {
       this.setState({ loading: true });
       this.query(query);
     } else {
-      this.setState({ results: null });
+      this.setState({ results: [] });
     }
   }
 
@@ -81,17 +81,17 @@ class App extends React.Component {
           query={this.state.query}
           handleChange={this.handleChange}
           isLoggedIn={this.state.isLoggedIn}
-          loading={this.state.loading}
         />
         {this.state.isLoggedIn === false &&
           <LandingPage />
         }
         {this.state.isLoggedIn === true &&
-          <ContentList
-            results={this.state.results}
-            expanded={this.state.expanded}
-            loading={this.state.loading}
-          />
+          ((this.state.query.length < 2 || this.state.results.length || this.state.loading) ?
+            <ContentList
+              results={this.state.results}
+              expanded={this.state.expanded}
+            />
+          : <div className="noContent">No Results</div>)
         }
       </div>
     );
