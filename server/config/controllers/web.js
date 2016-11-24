@@ -10,7 +10,7 @@ module.exports = {
   },
 
   delete: (req, res) => {
-    Page.delete(req.user.id, req.entry.id, (data) => {
+    Page.delete(req.user.id, req.query.id, (data) => {
       res.json(data);
     });
   },

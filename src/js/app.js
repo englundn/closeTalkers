@@ -20,6 +20,7 @@ class App extends React.Component {
       loading: false,
     };
     this.query = this.query.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -75,18 +76,21 @@ class App extends React.Component {
   }
 
   deleteItem(id) {
+    const context = this;
     $.ajax({
-      url: `${URL}/api/web/delete?id="${id}`,
+      url: `${URL}/api/web/delete?id=${id}`,
       method: 'DELETE',
-      success: (data) => {
-        this.query(this.state.query);
-        console.log('deleted', data);
-      },
+    })
+    .done(() => {
+      context.setState({ loading: true });
+      context.query(context.state.query);
+    })
+    .fail(() => {
+      console.log('failed to delete in app.js');
     });
   }
 
   render() {
-    console.log(this.deleteItem);
     return (
       <div>
         <Header
