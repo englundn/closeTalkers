@@ -74,10 +74,13 @@ class App extends React.Component {
     });
   }
 
-  delete(id) {
+  deleteItem(id) {
     $.ajax({
       url: `${URL}/api/web/delete?id="${id}`,
       method: 'DELETE',
+      success: (data) => {
+        console.log('deleted', data);
+      },
     });
   }
 
@@ -97,7 +100,7 @@ class App extends React.Component {
             <ContentList
               results={this.state.results}
               expanded={this.state.expanded}
-              delete={this.state.delete}
+              delete={this.state.deleteItem}
             />
           : <div className="noContent">No Results</div>)
         }
