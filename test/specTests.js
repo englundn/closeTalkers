@@ -1,6 +1,6 @@
 describe('Server', () => {
-  it('Sanity check', (done) => {
-    expect(true).to.be.true;
+  it('Swole check', (done) => {
+    expect(!!'swole').to.be.true;
     done();
   });
 });
