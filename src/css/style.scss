@@ -103,15 +103,14 @@ html {
     }
 
     .noContent {
-      // width: 800px;
-      // margin: auto;
-      // margin-top: 85px;
-      position: absolute;
-      margin: auto;
-      left: 50%;
-      top: 50%;
       font-size: 24px;
+      color: grey;
       text-align: center;
+      display: inline-block;
+      margin: auto;
+      width: 100%;
+      top: 50%;
+      position: absolute;
     }
 
     .contentList {
