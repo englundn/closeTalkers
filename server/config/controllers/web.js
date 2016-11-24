@@ -8,5 +8,12 @@ module.exports = {
       res.json(data);
     });
   },
+
+  delete: (req, res) => {
+    Page.delete(req.user.id, req.entry.id, (data) => {
+      res.json(data);
+    });
+  },
+
   checkLogIn: (req, res) => res.send(!!req.user),
 };

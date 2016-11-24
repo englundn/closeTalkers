@@ -35,7 +35,7 @@ const Content = ({ result, index, style }) => (
         <p key={i}>{para}</p>
       ))}
     </div>
-    <img className={`delete ${index}`} alt="" src="../img/delete.png" onClick={() => console.log('clicked')} />
+    <img className={`delete ${index}`} alt="" src="../img/delete.png" onClick={() => console.log(result._id)} />
   </div>
 );
 

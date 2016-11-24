@@ -31,9 +31,7 @@ const searchOptions = (id, queryString, checksum) => {
 
 const createOptions = (url, title, id, text, time) => {
   const checksum = getSum(text);
-  const timeInfo = [];
-
-  timeInfo.push(time);
+  const timeInfo = [time];
 
   return {
     method: 'POST',
@@ -62,10 +60,27 @@ const updateOptions = (userId, timeInfo, entryId) => {
   };
 };
 
+const deleteOptions = (userId, entryId) => {
+  return {
+    method: 'DELETE',
+    uri: `${URL}/user_${userId}/pages/${entryId}`,
+    auth: { user, pass },
+    json: true,
+  };
+};
+
+
 module.exports = {
   // =========== SEARCH FROM WEBSITE =============
   search: (queryString, id, callback) => {
     request(searchOptions(id, queryString, null))
+      .then(data => callback(data))
+      .catch(err => console.error(err.message));
+  },
+
+  // ===========DELETE FROM DATABASE =============
+  delete: (userId, entryId, callback) => {
+    request(deleteOptions(userId, entryId))
       .then(data => callback(data))
       .catch(err => console.error(err.message));
   },
