@@ -8,6 +8,7 @@ const ContentList = ({ results, expanded, deleteItem }) => (
         result={result}
         index={index}
         style={index === expanded}
+        key={index}
         deleteItem={deleteItem}
       />
     ))}

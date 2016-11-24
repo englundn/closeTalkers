@@ -79,12 +79,14 @@ class App extends React.Component {
       url: `${URL}/api/web/delete?id="${id}`,
       method: 'DELETE',
       success: (data) => {
+        this.query(this.state.query);
         console.log('deleted', data);
       },
     });
   }
 
   render() {
+    console.log(this.deleteItem);
     return (
       <div>
         <Header
@@ -100,7 +102,7 @@ class App extends React.Component {
             <ContentList
               results={this.state.results}
               expanded={this.state.expanded}
-              delete={this.state.deleteItem}
+              deleteItem={this.deleteItem}
             />
           : <div className="noContent">No Results</div>)
         }
