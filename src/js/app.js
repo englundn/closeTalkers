@@ -82,7 +82,7 @@ class App extends React.Component {
       method: 'DELETE',
     })
     .done(() => {
-      context.setState({ loading: true });
+      context.setState({ expanded: -1, loading: true });
       context.query(context.state.query);
     })
     .fail(() => {
