@@ -1,6 +1,6 @@
 // send website to elastic db
 
-const chromeController = require('../server/config/controllers/chrome');
+const Page = require('../server/config/models/pageModel');
 
 // Test data
 
@@ -13,13 +13,25 @@ const data = { userId, url, timeInfo, title, body };
 
 describe('Sending websites to elastic', () => {
   it('Should send websites to elastic', (done) => {
-
+    const request = new XMLHttpRequest();
+    request.open('POST', 'https://dejavu.ninja/api/chrome', true);
+    // request.open('POST', 'http://localhost:3000/api/chrome', true);
+    request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    request.onreadystatechange = () => {
+      if (request.readyState === XMLHttpRequest.DONE) {
+        expect(request.status).to.eql(200);
+        done();
+      }
+    };
+    request.send(JSON.stringify(data));
+  });
+  it('Should retrieve website data', (done) => {
+    Page.search('Example', '1111', (results) => {
+      console.log(results);
+      done();
+    });
   });
 });
-
-
-// retrieve website from elastic db
-
 
 // delete website from db
 
