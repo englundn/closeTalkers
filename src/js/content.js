@@ -7,7 +7,7 @@ const cleanUrl = url => (
     .split('?')[0].split('#')[0].split(':')[0]
 );
 
-const Content = ({ result, index, style, deleteItem }) => (
+const Content = ({ result, index, style, handleExpand, deleteItem }) => (
   <div className="contentWrapper">
     <div className="content">
       <div className="contentHeaderWrapper">
@@ -39,10 +39,16 @@ const Content = ({ result, index, style, deleteItem }) => (
           ))}
         </div>
       </div>
-      {style && <div className="contentFooterWrapper">
-        <div className="contentFooter">
-          <span onClick={() => deleteItem(result._id)}>delete</span>
-        </div>
+    </div>
+    <div className="contentFooter">
+      {!style ? <div className="contentFooterLeft" onClick={() => handleExpand(index)}>
+        <i className="material-icons">expand_more</i><span>Show more</span>
+      </div>
+      : <div className="contentFooterLeft" onClick={() => handleExpand(-1)}>
+        <i className="material-icons">expand_less</i><span>Show less</span>
+      </div>}
+      {style && <div className="contentFooterRight">
+        <i className="material-icons" onClick={() => deleteItem(result._id)}>delete</i>
       </div>}
     </div>
   </div>
