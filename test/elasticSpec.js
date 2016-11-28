@@ -1,5 +1,6 @@
 // send website to elastic db
 
+const expect = require('chai').expect;
 const Page = require('../server/config/models/pageModel');
 
 // Test data

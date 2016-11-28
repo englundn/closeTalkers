@@ -4,6 +4,7 @@
   "description": "deja-vu",
   "main": "index.js",
   "scripts": {
+    "mochatest": "mocha test",
     "start": "nodemon server/app.js",
     "test": "webpack -p --config webpacktest.config.js && open ./test/specRunner.html",
     "build": "gulp build && webpack -p --config webpack.config.js --progress --profile --colors",
