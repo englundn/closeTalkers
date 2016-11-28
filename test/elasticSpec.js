@@ -1,10 +1,7 @@
-// send website to elastic db
-
 const expect = require('chai').expect;
 const Page = require('../server/config/models/pageModel');
 
-// Test data
-
+// test data
 const body = '↵<div>↵    <h1>Example Domain</h1>↵    <p>This domain is established to be used for illustrative examples in documents. You may use this↵    domain in examples without prior coordination or asking for permission.</p>↵    <p><a href="http://www.iana.org/domains/example">More information...</a></p>↵</div>↵↵↵';
 const title = 'Example Domain';
 const url = 'http://www.example.com/';
@@ -12,7 +9,8 @@ const userId = '1111';
 const timeInfo = [1480266663856, 1480266664224, 368];
 const data = { userId, url, timeInfo, title, body };
 
-describe('Sending websites to elastic', () => {
+// send website to elastic db
+describe('Elastic', () => {
   it('Should send websites to elastic', (done) => {
     const request = new XMLHttpRequest();
     request.open('POST', 'https://dejavu.ninja/api/chrome', true);
@@ -26,7 +24,7 @@ describe('Sending websites to elastic', () => {
     };
     request.send(JSON.stringify(data));
   });
-  it('Should retrieve website data', (done) => {
+  it('Should retrieve website data from elastic', (done) => {
     Page.search('Example', '1111', (results) => {
       console.log(results);
       done();
@@ -35,8 +33,6 @@ describe('Sending websites to elastic', () => {
 });
 
 // delete website from db
-
-
 // describe('Spotify Request', () => {
 //   it('Should create a new playlist', (done) => {
 //     spotifyRequest.makeNewPlaylist(userId, accessToken, playlistName, isPlaylistPublic, (error, results) => {

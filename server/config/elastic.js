@@ -1,9 +1,8 @@
 const request = require('request-promise');
 
-const user = process.env.ELASTIC_USER || require('./config').user;
-const pass = process.env.ELASTIC_PASSWORD || require('./config').password;
-
-const URL = 'http://1b4f84fecd657bad91626e9aa8f74e59.us-west-1.aws.found.io:9200';
+const URL = process.env.ELASTIC_URL || require('../config').URL;
+const user = process.env.ELASTIC_USER || require('../config').user;
+const pass = process.env.ELASTIC_PASSWORD || require('../config').password;
 
 const checkTemplate = (callback) => {
   const options = {
