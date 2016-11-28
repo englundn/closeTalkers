@@ -14,12 +14,13 @@ class App extends React.Component {
     super(props);
     this.state = {
       query: '',
-      results: null,
+      results: [],
       isLoggedIn: 'loading',
       expanded: -1,
       loading: false,
     };
     this.query = this.query.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -56,11 +57,11 @@ class App extends React.Component {
     const query = event.target.value;
     this.setState({ query });
 
-    if (query.length) {
+    if (query.length > 1) {
       this.setState({ loading: true });
       this.query(query);
     } else {
-      this.setState({ results: null });
+      this.setState({ results: [] });
     }
   }
 
@@ -74,6 +75,21 @@ class App extends React.Component {
     });
   }
 
+  deleteItem(id) {
+    const context = this;
+    $.ajax({
+      url: `${URL}/api/web/delete?id=${id}`,
+      method: 'DELETE',
+    })
+    .done(() => {
+      context.setState({ loading: true });
+      context.query(context.state.query);
+    })
+    .fail(() => {
+      console.log('failed to delete in app.js');
+    });
+  }
+
   render() {
     return (
       <div>
@@ -81,17 +97,18 @@ class App extends React.Component {
           query={this.state.query}
           handleChange={this.handleChange}
           isLoggedIn={this.state.isLoggedIn}
-          loading={this.state.loading}
         />
         {this.state.isLoggedIn === false &&
           <LandingPage />
         }
         {this.state.isLoggedIn === true &&
-          <ContentList
-            results={this.state.results}
-            expanded={this.state.expanded}
-            loading={this.state.loading}
-          />
+          ((this.state.query.length < 2 || this.state.results.length || this.state.loading) ?
+            <ContentList
+              results={this.state.results}
+              expanded={this.state.expanded}
+              deleteItem={this.deleteItem}
+            />
+          : <div className="noContent">No Results</div>)
         }
       </div>
     );

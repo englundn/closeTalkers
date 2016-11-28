@@ -3,21 +3,19 @@ module.exports = {
   "plugins": [
     "react",
     "jsx-a11y",
-    "import"
+    "import",
   ],
-  "rules": {
-    "no-console": 0
-  },
   "ecmaFeatures": {
-    "modules": false
+    "modules": false,
   },
   "rules": {                                                       
     "strict": [0, "global"],
     "no-console": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "no-underscore-dangle": 0,
   },
   "env": {
-    browser: true
+    browser: true,
   },
 };

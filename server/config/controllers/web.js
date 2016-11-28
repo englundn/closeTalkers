@@ -41,6 +41,12 @@ module.exports = {
     });
   },
 
+  delete: (req, res) => {
+    Page.delete(req.user.id, req.query.id, (data) => {
+      res.json(data);
+    });
+  },
+
   checkLogIn: (req, res) => res.send(!!req.user),
 
   timeStats: (req, res) => {

@@ -1,27 +1,31 @@
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <title>Mocha Tests</title>
     <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
-
+    
+    <title>Mocha Tests</title>
   </head>
   <body>
     <div id="mocha"></div>
+
+    <!-- NODE MODULES -->
     <script src="../node_modules/mocha/mocha.js"></script>
     <script src="../node_modules/chai/chai.js"></script>
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    
+    <!-- SETUP -->
     <script>
       mocha.setup({
         'ui': 'bdd',
         'bail': true,
       });
+
+      window.expect = chai.expect;
     </script>
-    <script>window.expect = chai.expect;</script>
 
-    <!-- <script type="text/javascript" src="dist/weatherSpec.js"></script> -->
+    <!-- TESTS -->
+    <script type="text/javascript" src="./specTests.js"></script>
 
+    <!-- RUN -->
     <script>
       $(function() {
         window.mochaPhantomJS ? mochaPhantomJS.run() : mocha.run();
