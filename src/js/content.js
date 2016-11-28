@@ -41,7 +41,7 @@ const Content = ({ result, index, style, deleteItem }) => (
       </div>
       {style && <div className="contentFooterWrapper">
         <div className="contentFooter">
-          <span onClick={() => deleteItem(result._id)}>delete</span>
+          <i className="material-icons" onClick={() => deleteItem(result._id)}>delete</i>
         </div>
       </div>}
     </div>
