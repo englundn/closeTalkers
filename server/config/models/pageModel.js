@@ -62,6 +62,16 @@ const updateOptions = (userId, timeInfo, entryId) => {
   };
 };
 
+const timeOptions = (id) => {
+  return {
+    method: 'GET',
+    uri: `${URL}/user_${id}/pages/_search`,
+    auth: { user, pass },
+    json: true,
+    body: { query: { match_all: {} } },
+  };
+};
+
 module.exports = {
   // =========== SEARCH FROM WEBSITE =============
   search: (queryString, id, callback) => {
@@ -90,5 +100,12 @@ module.exports = {
         request(createOptions(url, title, id, text, timeInfo))
           .catch(err => console.error(err.message));
       });
+  },
+
+  // ============== GET TIME STATS =================
+  timeStats: (id, callback) => {
+    request(timeOptions(id))
+      .then(data => callback(data))
+      .catch(err => console.error(err.message));
   },
 };
