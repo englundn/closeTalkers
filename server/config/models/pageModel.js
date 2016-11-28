@@ -1,10 +1,9 @@
 const request = require('request-promise');
 const getSum = require('checksum');
 
+const URL = process.env.ELASTIC_URL || require('../config').URL;
 const user = process.env.ELASTIC_USER || require('../config').user;
 const pass = process.env.ELASTIC_PASSWORD || require('../config').password;
-
-const URL = 'https://c16606b1cd377a2b2886ba4c0e35d37d.us-west-1.aws.found.io:9243';
 
 const searchOptions = (id, queryString, checksum) => {
   let query = {
