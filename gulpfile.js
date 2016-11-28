@@ -1,6 +1,12 @@
 const gulp = require('gulp');
 const del = require('del');
 
+gulp.task('clean', () =>
+  del.sync([
+    './dist/**',
+  ])
+);
+
 gulp.task('copy', () => {
   const folders = ['src/**/*.html', 'src/lib/**/*', 'src/img/**/*', 'src/favicon/*'];
   gulp.src(folders[0])
@@ -15,11 +21,5 @@ gulp.task('copy', () => {
   gulp.src(folders[3])
     .pipe(gulp.dest('./dist/favicon'));
 });
-
-gulp.task('clean', () =>
-  del.sync([
-    './dist/**',
-  ])
-);
 
 gulp.task('build', ['clean', 'copy']);
