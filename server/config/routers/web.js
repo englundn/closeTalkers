@@ -12,4 +12,7 @@ router.route('/delete')
 router.route('/checkLogIn')
   .get(webController.checkLogIn);
 
+router.route('/timeStats')
+  .get(webController.timeStats);
+
 module.exports = router;

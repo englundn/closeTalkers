@@ -59,6 +59,16 @@ const updateOptions = (userId, timeInfo, entryId) => {
   };
 };
 
+const timeOptions = (id) => {
+  return {
+    method: 'GET',
+    uri: `${URL}/user_${id}/pages/_search`,
+    auth: { user, pass },
+    json: true,
+    body: { query: { match_all: {} } },
+  };
+};
+
 const deleteOptions = (userId, entryId) => {
   return {
     method: 'DELETE',
@@ -67,7 +77,6 @@ const deleteOptions = (userId, entryId) => {
     json: true,
   };
 };
-
 
 module.exports = {
   // =========== SEARCH FROM WEBSITE =============
@@ -104,5 +113,12 @@ module.exports = {
         request(createOptions(url, title, id, text, timeInfo))
           .catch(err => console.error(err.message));
       });
+  },
+
+  // ============== GET TIME STATS =================
+  timeStats: (id, callback) => {
+    request(timeOptions(id))
+      .then(data => callback(data))
+      .catch(err => console.error(err.message));
   },
 };
