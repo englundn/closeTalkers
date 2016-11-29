@@ -7,17 +7,15 @@ const Header = ({ query, handleChange, isLoggedIn }) => (
       <a href="/?#">Déjà Vu</a>
     </div>
     <div className="searchBar" >
-      {isLoggedIn === true &&
-        <form>
-          <input
-            className="inputField" type="text"
-            placeholder="Search"
-            value={query}
-            onChange={handleChange}
-            onKeyUp={handleChange}
-          />
-        </form>
-      }
+      {isLoggedIn === true && <form>
+        <input
+          className="inputField" type="text"
+          placeholder="search"
+          value={query}
+          onChange={handleChange}
+          onKeyUp={handleChange}
+        />
+      </form>}
     </div>
     <div className="headerRight">
       {!isLoggedIn &&
