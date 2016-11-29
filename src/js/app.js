@@ -4,6 +4,7 @@ import $ from 'jquery';
 import Header from './header';
 import LandingPage from './landingPage';
 import ContentList from './contentList';
+import TimeGraph from './timeGraph';
 import '../css/style.scss';
 
 const URL = 'https://dejavu.ninja';
@@ -18,6 +19,7 @@ class App extends React.Component {
       isLoggedIn: 'loading',
       expanded: -1,
       loading: false,
+      usage: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.query = this.query.bind(this);
@@ -32,6 +34,9 @@ class App extends React.Component {
       method: 'GET',
       success: (isLoggedIn) => {
         this.setState({ isLoggedIn });
+        if (isLoggedIn) {
+          this.getUsageData();
+        }
       },
     });
   }
@@ -90,6 +95,16 @@ class App extends React.Component {
     });
   }
 
+  getUsageData() {
+    $.ajax({
+      url: `${URL}/api/web/timeStats`,
+      method: 'GET',
+      success: (usage) => {
+        this.setState({ usage });
+      },
+    });
+  }
+
   render() {
     return (
       <div className="appWrapper">
@@ -100,6 +115,9 @@ class App extends React.Component {
         />
         {this.state.isLoggedIn === false &&
           <LandingPage />
+        }
+        {this.state.isLoggedIn === true &&
+          <TimeGraph usage={this.state.usage} />
         }
         {this.state.isLoggedIn === true &&
           ((this.state.query.length < 2 || this.state.results.length || this.state.loading) ?

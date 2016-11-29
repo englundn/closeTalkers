@@ -7,7 +7,6 @@ const title = 'Example Domain';
 const url = 'http://www.example.com/';
 const userId = '136590';
 const timeInfo = [1480266663856, 1480266664224, 368];
-const data = { userId, url, timeInfo, title, body };
 let entryId = '';
 
 // send website to elastic db
