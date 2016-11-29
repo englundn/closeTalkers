@@ -33,7 +33,7 @@ const sorts = {
   byRelevance: (r1, r2) => r2._score - r1._score,
 };
 
-const ContentList = ({ results, expanded, deleteItem }) => (
+const ContentList = ({ results, expanded, handleExpand, deleteItem }) => (
   <div className="contentList">
     {results.filter(removeEmpty)
       .filter(filters[filterSetting])
@@ -44,6 +44,7 @@ const ContentList = ({ results, expanded, deleteItem }) => (
           index={index}
           style={index === expanded}
           key={index}
+          handleExpand={handleExpand}
           deleteItem={deleteItem}
         />
     ))}
