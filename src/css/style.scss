@@ -9,7 +9,7 @@ html {
   body::-webkit-scrollbar { 
     display: none; 
   }
-  
+
   body {
     height: 100%;
     margin: 0;
@@ -198,6 +198,7 @@ html {
                     flex-shrink: 0;
 
                     float: right;
+                    margin-left: 35px;
                   }
                 }
 
@@ -217,6 +218,7 @@ html {
                     flex-shrink: 0;
 
                     float: right;
+                    margin-left: 35px;
                   }
                 }
               }
