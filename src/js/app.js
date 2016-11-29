@@ -19,9 +19,10 @@ class App extends React.Component {
       expanded: -1,
       loading: false,
     };
-    this.query = this.query.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.query = this.query.bind(this);
+    this.handleExpand = this.handleExpand.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
   // Checks to see if the user is logged in
@@ -36,12 +37,6 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    $('.contentBody').each((index, element) => {
-      $(element).unbind().click(() => {
-        this.setState({ expanded: this.state.expanded === index ? -1 : index });
-      });
-    });
-
     const regExpQuery = RegExp((this.state.query.match(/\S+/gi) || []).join('|'), 'gi');
     const html = $('p').html();
     if (html && `${regExpQuery}` !== '/(?:)/gi') {
@@ -58,7 +53,6 @@ class App extends React.Component {
     this.setState({ query });
 
     if (query.length > 1) {
-      this.setState({ loading: true });
       this.query(query);
     } else {
       this.setState({ results: [] });
@@ -66,6 +60,8 @@ class App extends React.Component {
   }
 
   query(qs) {
+    this.setState({ loading: true });
+
     $.ajax({
       url: `${URL}/api/web/search?q="${qs}"`,
       method: 'GET',
@@ -75,6 +71,10 @@ class App extends React.Component {
     });
   }
 
+  handleExpand(index) {
+    this.setState({ expanded: index });
+  }
+
   deleteItem(id) {
     const context = this;
     $.ajax({
@@ -82,7 +82,7 @@ class App extends React.Component {
       method: 'DELETE',
     })
     .done(() => {
-      context.setState({ expanded: -1, loading: true });
+      context.setState({ expanded: -1 });
       context.query(context.state.query);
     })
     .fail(() => {
@@ -106,6 +106,7 @@ class App extends React.Component {
             <ContentList
               results={this.state.results}
               expanded={this.state.expanded}
+              handleExpand={this.handleExpand}
               deleteItem={this.deleteItem}
             />
           : <div className="noContent">No Results</div>)

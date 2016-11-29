@@ -1,6 +1,7 @@
 import React from 'react';
 import Content from './content';
 
+<<<<<<< HEAD
 const filterSetting = 'allTime';
 const sortSetting = 'byTimeSpent';
 

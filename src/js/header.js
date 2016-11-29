@@ -2,8 +2,9 @@ import React from 'react';
 
 const Header = ({ query, handleChange, isLoggedIn }) => (
   <div className="header">
-    <div className="homeLink">
-      <a href="/?#">{/* Déjà Vu */}</a>
+    <div className="headerLeft">
+      <img src="./favicon/android-chrome-192x192.png" alt="" />
+      <a href="/?#">Déjà Vu</a>
     </div>
     <div className="searchBar" >
       {isLoggedIn === true &&
@@ -18,7 +19,7 @@ const Header = ({ query, handleChange, isLoggedIn }) => (
         </form>
       }
     </div>
-    <div className="loginLogoutLink">
+    <div className="headerRight">
       {!isLoggedIn &&
         <a href="/login">Log In</a>
       }

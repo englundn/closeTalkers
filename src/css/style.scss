@@ -14,7 +14,7 @@ html {
     height: 100%;
     overflow: auto;
     font-family: arial;
-    background-color: #f9f9f9;
+    background-color: white;
 
     a {
       text-decoration: none;
@@ -22,20 +22,35 @@ html {
     }
 
     .header {
-      padding-top: 20px;
-      padding-bottom: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
       display: flex;
       position: fixed;
       width: 100%;
       top: 0px;
       left: 0px;
       z-index: 100;
-      background-color: #f9f9f9;
+      background-color: #75B2D6;
+      box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.8);
 
-      .homeLink {
+      a {
+        font-size: 18px;
+        line-height: 36px;
+        color: white;
+      }
+
+      .headerLeft {
+        display: flex;
+        flex-direction: row;
+
         float: left;
         margin-left: 35px;
-        width: 100px;
+        width: 120px;
+
+        img {
+          height: 36px;
+          margin-right: 7px;
+        }
 
         a {
           float: left;
@@ -46,21 +61,26 @@ html {
         margin: auto;
         width: 800px;
         max-width: 60%;
+        
+        ::-webkit-input-placeholder {
+          color: white;
+        }
 
         .inputField {
           width: 100%;
-          height: 40px;
+          height: 32px;
           background: none;
-          font-size: 36px;
+          font-size: 32px;
           border: none;
-          border-bottom: 2px solid lightgrey;
+          color: white;
+          border-bottom: 2px solid white;
         }
       }
 
-      .loginLogoutLink {
+      .headerRight {
         float: right;
         margin-right: 35px;
-        width: 100px;
+        width: 120px;
 
         a {
           float: right;
@@ -88,8 +108,7 @@ html {
         height: 100px;
         margin-top: 50px;
         background-color: white;
-        border-radius: 5px;
-        box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.1);
+        box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.3);
 
         &:hover {
           cursor: pointer;
@@ -114,7 +133,7 @@ html {
     }
 
     .contentList {
-      margin-top: 60px;
+      margin-top: 50px;
       margin-bottom: 80px;
       overflow-y: scroll;
 
@@ -124,11 +143,8 @@ html {
         margin: auto;
         margin-top: 25px;
         margin-bottom: 10px;
-        padding: 20px;
         background-color: white;
-        border-radius: 5px;
-        box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.1);
-        transition: 0.5s;
+        box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.3);
 
         ::-webkit-scrollbar {
           display: inline;
@@ -145,9 +161,12 @@ html {
         .content {
           display: flex;
           flex-direction: column;
+          
+          padding: 20px;
+          border-bottom: 1px solid #EBEBEB;
 
           .contentHeaderWrapper {
-            border-bottom: 1px solid lightgrey;
+            border-bottom: 1px solid #EBEBEB;
             margin-bottom: 15px;
             padding-bottom: 15px;
 
@@ -198,6 +217,7 @@ html {
           .contentBody {
             max-height: 200px;
             overflow: hidden;
+            transition: 0.3s;
 
             &.expanded {
               max-height: 400px;
@@ -208,29 +228,41 @@ html {
               margin-top: 0px;
 
               .highlight {
-                box-shadow: inset 0 0px 0 white, inset 0 -2.4px 0 #0074D9;
+                box-shadow: inset 0 0px 0 white, inset 0 -2.4px 0 #72C2AE;
               }
+            }
+          }  
+        }
+
+        .contentFooter {
+          display: flex;
+          flex-direction: row;
+
+          padding: 15px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+
+          i:hover, span:hover {
+            cursor: pointer;
+          }
+
+          .contentFooterLeft {
+            display: flex;
+            flex-direction: row;
+            flex-shrink: 0;  
+            
+            color: grey;
+            
+            span {
+              line-height: 24px;
+              padding-left: 5px;
             }
           }
 
-          .contentFooterWrapper {
-            border-top: 1px solid lightgrey;
-            margin-top: 15px;
-            padding-top: 15px;
-
-            .contentFooter {
-              display: flex;
-              flex-direction: row-reverse;
-
-              span {
-                font-size: 12px;
-                color: grey;
-              }
-
-              span:hover {
-                cursor: pointer;
-              }
-            }
+          .contentFooterRight {
+            display: flex;
+            flex-direction: row-reverse;
+            flex-grow: 1;
           }
         }
       }
