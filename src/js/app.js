@@ -18,6 +18,7 @@ class App extends React.Component {
       isLoggedIn: 'loading',
       expanded: -1,
       loading: false,
+      usage: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.query = this.query.bind(this);
@@ -87,6 +88,16 @@ class App extends React.Component {
     })
     .fail(() => {
       console.log('failed to delete in app.js');
+    });
+  }
+
+  getUsageData() {
+    $.ajax({
+      url: `${URL}/api/web/timeStats`,
+      method: 'GET',
+      success: (usage) => {
+        this.setState({ usage });
+      },
     });
   }
 
