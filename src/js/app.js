@@ -92,7 +92,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="appWrapper">
         <Header
           query={this.state.query}
           handleChange={this.handleChange}
