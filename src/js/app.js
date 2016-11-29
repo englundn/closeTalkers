@@ -4,10 +4,11 @@ import $ from 'jquery';
 import Header from './header';
 import LandingPage from './landingPage';
 import ContentList from './contentList';
+import Graphs from './graphs';
 import '../css/style.scss';
 
-const URL = 'https://dejavu.ninja';
-// const URL = 'http://localhost:3000';
+// const URL = 'https://dejavu.ninja';
+const URL = 'http://localhost:3000';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class App extends React.Component {
       isLoggedIn: 'loading',
       expanded: -1,
       loading: false,
-      usage: '',
+      usage: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.query = this.query.bind(this);
@@ -33,6 +34,7 @@ class App extends React.Component {
       method: 'GET',
       success: (isLoggedIn) => {
         this.setState({ isLoggedIn });
+        this.getUsageData();
       },
     });
   }
@@ -111,6 +113,9 @@ class App extends React.Component {
         />
         {this.state.isLoggedIn === false &&
           <LandingPage />
+        }
+        {this.state.isLoggedIn === true &&
+          <Graphs usage={this.state.usage} />
         }
         {this.state.isLoggedIn === true &&
           ((this.state.query.length < 2 || this.state.results.length || this.state.loading) ?
