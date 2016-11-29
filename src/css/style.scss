@@ -2,18 +2,18 @@
   outline: none !important;
 }
 
-::-webkit-scrollbar { 
-  display: none; 
-}
-
 html {
   overflow: hidden;
   height: 100%;
 
+  body::-webkit-scrollbar { 
+    display: none; 
+  }
+  
   body {
     height: 100%;
     margin: 0;
-    overflow: auto;
+    overflow-y: scroll;
     font-family: arial;
     background-color: white;
 
@@ -157,7 +157,6 @@ html {
 
         padding-top: 76px;
         padding-bottom: 76px;
-        overflow-y: scroll;
 
         .contentWrapper {
           width: 800px;
@@ -166,18 +165,6 @@ html {
           margin-bottom: 20px;
           background-color: white;
           box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.3);
-
-          ::-webkit-scrollbar {
-            display: inline;
-            -webkit-appearance: none;
-            width: 7px;
-          }
-
-          ::-webkit-scrollbar-thumb {
-            border-radius: 4px;
-            background-color: rgba(0, 0, 0, 0.5);
-            -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
-          }
 
           .content {
             display: flex;
