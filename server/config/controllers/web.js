@@ -46,7 +46,9 @@ module.exports = {
     });
   },
 
-  checkLogIn: (req, res) => res.send(!!req.user),
+  checkLogIn: (req, res) => {
+    res.send(!!req.user && req.user._json.image.url);
+  },
 
   timeStats: (req, res) => {
     Page.timeStats(req.user.id, (data) => {
