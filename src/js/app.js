@@ -4,7 +4,7 @@ import $ from 'jquery';
 import Header from './header';
 import LandingPage from './landingPage';
 import ContentList from './contentList';
-import TimeGraph from './timeGraph';
+import TimePieGraph from './timePieGraph';
 import '../css/style.scss';
 
 const URL = 'https://dejavu.ninja';
@@ -113,13 +113,13 @@ class App extends React.Component {
           handleChange={this.handleChange}
           isLoggedIn={this.state.isLoggedIn}
         />
-        {this.state.isLoggedIn === false &&
+        {!!this.state.isLoggedIn === false &&
           <LandingPage />
         }
-        {this.state.isLoggedIn === true &&
-          <TimeGraph usage={this.state.usage} />
+        {// !!this.state.isLoggedIn &&
+          // <TimePieGraph usage={this.state.usage} />
         }
-        {this.state.isLoggedIn === true &&
+        {!!this.state.isLoggedIn &&
           ((this.state.query.length < 2 || this.state.results.length || this.state.loading) ?
             <ContentList
               results={this.state.results}
