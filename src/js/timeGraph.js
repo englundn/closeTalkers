@@ -1,7 +1,7 @@
 import React from 'react';
-import { PieChart, Pie, Cell } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 
-const Graphs = ({ usage }) => {
+const TimeGraph = ({ usage }) => {
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
@@ -47,6 +47,7 @@ const Graphs = ({ usage }) => {
           byTime.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]} />)
         }
       </Pie>
+      <Tooltip />
     </PieChart>
   );
 
@@ -65,4 +66,4 @@ const Graphs = ({ usage }) => {
   // );
 };
 
-export default Graphs;
+export default TimeGraph;

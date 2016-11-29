@@ -4,7 +4,7 @@ import $ from 'jquery';
 import Header from './header';
 import LandingPage from './landingPage';
 import ContentList from './contentList';
-import Graphs from './graphs';
+import TimeGraph from './timeGraph';
 import '../css/style.scss';
 
 // const URL = 'https://dejavu.ninja';
@@ -115,7 +115,7 @@ class App extends React.Component {
           <LandingPage />
         }
         {this.state.isLoggedIn === true &&
-          <Graphs usage={this.state.usage} />
+          <TimeGraph usage={this.state.usage} />
         }
         {this.state.isLoggedIn === true &&
           ((this.state.query.length < 2 || this.state.results.length || this.state.loading) ?
