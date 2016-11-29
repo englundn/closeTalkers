@@ -12,7 +12,6 @@ const parseTimeStats = (data) => {
     });
     info.totalTime = totalTime;
 
-
     return info;
   });
 
