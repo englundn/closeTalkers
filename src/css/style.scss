@@ -22,20 +22,35 @@ html {
     }
 
     .header {
-      padding-top: 20px;
-      padding-bottom: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
       display: flex;
       position: fixed;
       width: 100%;
       top: 0px;
       left: 0px;
       z-index: 100;
-      background-color: white;
+      background-color: #75B2D6;
+      box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.8);
 
-      .homeLink {
+      a {
+        font-size: 18px;
+        line-height: 36px;
+        color: white;
+      }
+
+      .headerLeft {
+        display: flex;
+        flex-direction: row;
+
         float: left;
         margin-left: 35px;
-        width: 100px;
+        width: 120px;
+
+        img {
+          height: 36px;
+          margin-right: 7px;
+        }
 
         a {
           float: left;
@@ -46,21 +61,26 @@ html {
         margin: auto;
         width: 800px;
         max-width: 60%;
+        
+        ::-webkit-input-placeholder {
+          color: white;
+        }
 
         .inputField {
           width: 100%;
-          height: 40px;
+          height: 32px;
           background: none;
-          font-size: 36px;
+          font-size: 32px;
           border: none;
-          border-bottom: 2px solid #EBEBEB;
+          color: white;
+          border-bottom: 2px solid white;
         }
       }
 
-      .loginLogoutLink {
+      .headerRight {
         float: right;
         margin-right: 35px;
-        width: 100px;
+        width: 120px;
 
         a {
           float: right;
@@ -113,7 +133,7 @@ html {
     }
 
     .contentList {
-      margin-top: 60px;
+      margin-top: 50px;
       margin-bottom: 80px;
       overflow-y: scroll;
 
@@ -208,7 +228,7 @@ html {
               margin-top: 0px;
 
               .highlight {
-                box-shadow: inset 0 0px 0 white, inset 0 -2.4px 0 #0074D9;
+                box-shadow: inset 0 0px 0 white, inset 0 -2.4px 0 #72C2AE;
               }
             }
           }  
