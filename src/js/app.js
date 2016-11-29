@@ -34,7 +34,9 @@ class App extends React.Component {
       method: 'GET',
       success: (isLoggedIn) => {
         this.setState({ isLoggedIn });
-        this.getUsageData();
+        if (isLoggedIn) {
+          this.getUsageData();
+        }
       },
     });
   }
