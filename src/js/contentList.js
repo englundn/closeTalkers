@@ -1,8 +1,6 @@
 import React from 'react';
+import Filters from './filters';
 import Content from './content';
-
-const filterSetting = 'allTime';
-const sortSetting = 'byTimeSpent';
 
 const removeEmpty = result => result._source.title !== result._source.text;
 
@@ -14,35 +12,67 @@ const timeDiff = days => (result) => {
 };
 
 const filters = {
-  today: timeDiff(1),
-  thisWeek: timeDiff(7),
-  thisMonth: timeDiff(30),
-  thisYear: timeDiff(365),
-  allTime: data => data,
+  Today: timeDiff(1),
+  'This Week': timeDiff(7),
+  'This Month': timeDiff(30),
+  'This Year': timeDiff(365),
+  'All Time': data => data,
 };
 
 const sorts = {
-  byVisits: (r1, r2) => r2._source.timeInfo.length - r1._source.timeInfo.length,
-  byTimeSpent: (r1, r2) => r2._source.totalTime - r1._source.totalTime,
-  byRelevance: (r1, r2) => r2._score - r1._score,
+  Visits: (r1, r2) => r2._source.timeInfo.length - r1._source.timeInfo.length,
+  'Time Spent': (r1, r2) => r2._source.totalTime - r1._source.totalTime,
+  Relevance: (r1, r2) => r2._score - r1._score,
 };
 
-const ContentList = ({ results, expanded, handleExpand, deleteItem }) => (
-  <div className="contentList">
-    {results.filter(removeEmpty)
-      .filter(filters[filterSetting])
-      .sort(sorts[sortSetting])
-      .map((result, index) => (
-        <Content
-          result={result}
-          index={index}
-          style={index === expanded}
-          key={index}
-          handleExpand={handleExpand}
-          deleteItem={deleteItem}
+class ContentList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      filterSetting: 'All Time',
+      sortSetting: 'Time Spent',
+    };
+
+    this.setFilter = this.setFilter.bind(this);
+    this.setSort = this.setSort.bind(this);
+  }
+
+  setFilter(option) {
+    this.setState({ filterSetting: option });
+  }
+
+  setSort(option) {
+    this.setState({ sortSetting: option });
+  }
+
+  render() {
+    return (
+      <div className="contentList">
+        <Filters
+          filters={Object.keys(filters)}
+          filterSetting={this.state.filterSetting}
+          setFilter={this.setFilter}
+          sorts={Object.keys(sorts)}
+          sortSetting={this.state.sortSetting}
+          setSort={this.setSort}
         />
-    ))}
-  </div>
-);
+        {this.props.results.filter(removeEmpty)
+          .filter(filters[this.state.filterSetting])
+          .sort(sorts[this.state.sortSetting])
+          .map((result, index) => (
+            <Content
+              result={result}
+              index={index}
+              style={index === this.props.expanded}
+              key={index}
+              handleExpand={this.props.handleExpand}
+              deleteItem={this.props.deleteItem}
+            />
+        ))}
+      </div>
+    );
+  }
+}
 
 export default ContentList;
