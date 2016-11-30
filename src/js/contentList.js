@@ -49,14 +49,14 @@ class ContentList extends React.Component {
   render() {
     return (
       <div className="contentList">
-        <Filters
+        {this.props.results.length > 0 && <Filters
           filters={Object.keys(filters)}
           filterSetting={this.state.filterSetting}
           setFilter={this.setFilter}
           sorts={Object.keys(sorts)}
           sortSetting={this.state.sortSetting}
           setSort={this.setSort}
-        />
+        />}
         {this.props.results.filter(removeEmpty)
           .filter(filters[this.state.filterSetting])
           .sort(sorts[this.state.sortSetting])
