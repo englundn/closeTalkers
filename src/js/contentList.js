@@ -13,12 +13,6 @@ const timeDiff = days => (result) => {
   return (timeNow - timeVisited) < ms;
 };
 
-const timeSpent = (result) => {
-  let total = 0;
-  result._source.timeInfo.forEach((triplet) => { total += triplet[2]; });
-  return total;
-};
-
 const filters = {
   today: timeDiff(1),
   thisWeek: timeDiff(7),
@@ -29,7 +23,7 @@ const filters = {
 
 const sorts = {
   byVisits: (r1, r2) => r2._source.timeInfo.length - r1._source.timeInfo.length,
-  byTimeSpent: (r1, r2) => timeSpent(r2) - timeSpent(r1),
+  byTimeSpent: (r1, r2) => r2._source.totalTime - r1._source.totalTime,
   byRelevance: (r1, r2) => r2._score - r1._score,
 };
 

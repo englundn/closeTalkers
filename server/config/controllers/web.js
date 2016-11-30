@@ -6,12 +6,6 @@ const parseTimeStats = (data) => {
     const matches = info.url.match(/^https?\:\/\/([^\/:?#]+)(?:[\/:?#]|$)/i);
     info.domain = matches && matches[1];
 
-    let totalTime = 0;
-    info.timeInfo.forEach((time) => {
-      totalTime += time[2];
-    });
-    info.totalTime = totalTime;
-
     return info;
   });
 
