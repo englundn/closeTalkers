@@ -135,15 +135,20 @@ html {
         }
       }
 
-      .noContent {
+      .dashboard {
         display: flex;
-
+        flex-direction: row;
+        
         height: 100vh;
-        font-size: 24px;
-        color: grey;
         text-align: center;
         justify-content: center;
         align-items: center;
+
+        .graph {
+          flex-grow: 1;
+
+          width: 40%;
+        }
       }
 
       .contentList {
@@ -262,6 +267,7 @@ html {
               max-height: 200px;
               overflow: hidden;
               transition: 0.3s;
+              box-shadow: inset 0 -20px 5px -20px lightgrey;
 
               &.expanded {
                 max-height: 400px;
@@ -310,6 +316,17 @@ html {
             }
           }
         }
+      }
+
+      .noContent {
+        display: flex;
+
+        height: 100vh;
+        font-size: 24px;
+        color: grey;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
       }
     }
   }
