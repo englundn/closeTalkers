@@ -113,13 +113,13 @@ class App extends React.Component {
           handleChange={this.handleChange}
           isLoggedIn={this.state.isLoggedIn}
         />
-        {!!this.state.isLoggedIn === false &&
+        {!this.state.isLoggedIn &&
           <LandingPage />
         }
         {// !!this.state.isLoggedIn &&
           // <TimePieGraph usage={this.state.usage} />
         }
-        {!!this.state.isLoggedIn &&
+        {this.state.isLoggedIn && this.state.isLoggedIn !== 'loading' &&
           ((this.state.query.length < 2 || this.state.results.length || this.state.loading) ?
             <ContentList
               results={this.state.results}
