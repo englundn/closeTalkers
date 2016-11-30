@@ -62,7 +62,7 @@ class ContentList extends React.Component {
   render() {
     return (
       <div className="contentList">
-        {this.props.results.length > 0 && <Filters
+        <Filters
           filters={Object.keys(filters)}
           filterSetting={this.state.filterSetting}
           setFilter={this.setFilter}
@@ -72,7 +72,7 @@ class ContentList extends React.Component {
           order={Object.keys(resultOrder)}
           orderSetting={this.state.orderSetting}
           setOrder={this.setOrder}
-        />}
+        />
         {resultOrder[this.state.orderSetting](
           this.props.results.filter(removeEmpty)
           .filter(filters[this.state.filterSetting])
