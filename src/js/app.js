@@ -5,8 +5,6 @@ import Header from './header';
 import LandingPage from './landingPage';
 import Dashboard from './dashboard';
 import ContentList from './contentList';
-import TimePieGraph from './timePieGraph';
-import TimeBarGraph from './timeBarGraph';
 import Modal from './modal';
 import '../css/style.scss';
 
