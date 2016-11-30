@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = ({ query, handleChange, isLoggedIn }) => (
+const Header = ({ query, handleChange, isLoggedIn, toggleModal }) => (
   <div className="header">
     <div className="headerLeft">
       <a><img src="./img/header-logo.png" alt="" /></a>
@@ -21,7 +21,10 @@ const Header = ({ query, handleChange, isLoggedIn }) => (
       <a href="/login">Sign in</a>
     </div>}
     {isLoggedIn && isLoggedIn !== 'loading' && <div className="headerRight">
-      <a href="/logout"><img src={isLoggedIn} alt="" /></a>
+      <a className="profilePic"><img src={isLoggedIn} alt="" onClick={toggleModal} />
+        <span id="t1" className="triangle1" />
+        <span id="t2" className="triangle2" />
+      </a>
     </div>}
   </div>
 );
