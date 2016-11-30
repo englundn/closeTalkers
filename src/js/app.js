@@ -53,16 +53,14 @@ class App extends React.Component {
     }
   }
 
-  // Queries the server for search results
-  handleChange(event) {
-    const query = event.target.value;
-    this.setState({ query });
-
-    if (query.length > 1) {
-      this.query(query);
-    } else {
-      this.setState({ results: [] });
-    }
+  getUsageData() {
+    $.ajax({
+      url: `${URL}/api/web/timeStats`,
+      method: 'GET',
+      success: (usage) => {
+        this.setState({ usage });
+      },
+    });
   }
 
   query(qs) {
@@ -96,14 +94,16 @@ class App extends React.Component {
     });
   }
 
-  getUsageData() {
-    $.ajax({
-      url: `${URL}/api/web/timeStats`,
-      method: 'GET',
-      success: (usage) => {
-        this.setState({ usage });
-      },
-    });
+  // Queries the server for search results
+  handleChange(event) {
+    const query = event.target.value;
+    this.setState({ query });
+
+    if (query.length > 1) {
+      this.query(query);
+    } else {
+      this.setState({ results: [] });
+    }
   }
 
   render() {
@@ -123,8 +123,8 @@ class App extends React.Component {
         //     <TimeBarGraph usage={this.state.usage} />
         //   </div>
         }
-        {this.state.isLoggedIn && this.state.isLoggedIn !== 'loading' &&
-          ((this.state.query.length < 2 || this.state.results.length || this.state.loading) ?
+        {this.state.isLoggedIn && this.state.isLoggedIn !== 'loading' && !this.state.loading &&
+          ((this.state.query.length < 2 || this.state.results.length) ?
             <ContentList
               results={this.state.results}
               expanded={this.state.expanded}
