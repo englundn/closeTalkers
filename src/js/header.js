@@ -7,7 +7,7 @@ const Header = ({ query, handleChange, isLoggedIn }) => (
       <a>Déjà Vu</a>
     </div>
     <div className="searchBar" >
-      {isLoggedIn && isLoggedIn !== 'loading' && <form>
+      {isLoggedIn && isLoggedIn !== 'loading' && <form className="searchForm">
         <input
           className="inputField" type="text"
           placeholder="search"
