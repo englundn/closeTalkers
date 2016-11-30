@@ -8,8 +8,8 @@ import ContentList from './contentList';
 import Modal from './modal';
 import '../css/style.scss';
 
-const URL = 'https://dejavu.ninja';
-// const URL = 'http://localhost:3000';
+// const URL = 'https://dejavu.ninja';
+const URL = 'http://localhost:3000';
 
 class App extends React.Component {
   constructor(props) {
