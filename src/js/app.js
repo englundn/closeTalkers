@@ -123,7 +123,7 @@ class App extends React.Component {
         //     <TimeBarGraph usage={this.state.usage} />
         //   </div>
         }
-        {!!this.state.isLoggedIn &&
+        {this.state.isLoggedIn && this.state.isLoggedIn !== 'loading' &&
           ((this.state.query.length < 2 || this.state.results.length || this.state.loading) ?
             <ContentList
               results={this.state.results}

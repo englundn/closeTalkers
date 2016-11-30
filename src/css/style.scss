@@ -30,8 +30,6 @@ html {
         display: flex;
         flex-direction: row;
 
-        padding-top: 10px;
-        padding-bottom: 10px;
         position: fixed;
         width: 100%;
         top: 0px;
@@ -47,9 +45,16 @@ html {
           width: 20%;
 
           a {
+            height: 36px;
+            padding: 10px;
             font-size: 18px;
             line-height: 36px;
             color: white;
+            
+            img {
+              height: 100%;
+              border-radius: 100%;
+            }
           }
         }
 
@@ -57,19 +62,7 @@ html {
           display: flex;
           flex-direction: row;
 
-          float: left;
           margin-left: 35px;
-
-          img {
-            height: 36px;
-            margin-right: 15px;
-            -webkit-filter: drop-shadow(0px 0px 5px rgba(102, 102, 102, 0.3));
-            filter: drop-shadow(0px 0px 5px rgba(102, 102, 102, 0.3));
-          }
-
-          a {
-            float: left;
-          }
         }
 
         .searchBar {
@@ -97,12 +90,10 @@ html {
         }
 
         .headerRight {
-          float: right;
-          margin-right: 35px;
+          display: flex;
+          flex-direction: row-reverse;
 
-          a {
-            float: right;
-          }
+          margin-right: 35px;
         }
       }
       

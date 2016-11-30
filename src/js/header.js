@@ -3,11 +3,11 @@ import React from 'react';
 const Header = ({ query, handleChange, isLoggedIn }) => (
   <div className="header">
     <div className="headerLeft">
-      <img src="./favicon/android-chrome-192x192.png" alt="" />
-      <a href="/?#">Déjà Vu</a>
+      <a><img src="./img/header-logo.png" alt="" /></a>
+      <a>Déjà Vu</a>
     </div>
     <div className="searchBar" >
-      {isLoggedIn && <form>
+      {isLoggedIn && isLoggedIn !== 'loading' && <form>
         <input
           className="inputField" type="text"
           placeholder="search"
@@ -17,14 +17,12 @@ const Header = ({ query, handleChange, isLoggedIn }) => (
         />
       </form>}
     </div>
-    <div className="headerRight">
-      {!isLoggedIn &&
-        <a href="/login">Log In</a>
-      }
-      {isLoggedIn &&
-        <a href="/logout">Log Out</a>
-      }
-    </div>
+    {!isLoggedIn && <div className="headerRight">
+      <a href="/login">Sign in</a>
+    </div>}
+    {isLoggedIn && isLoggedIn !== 'loading' && <div className="headerRight">
+      <a href="/logout"><img src={isLoggedIn} alt="" /></a>
+    </div>}
   </div>
 );
 
