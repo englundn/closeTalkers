@@ -26,6 +26,23 @@ html {
       display: flex;
       flex-direction: column;
 
+      .modal {
+          display: none;
+          position: fixed;
+          z-index: 1;
+          right: 1px;
+          padding-left: 10px;
+          padding-right: 10px;
+          top: 56px;
+          height: 80px;
+          opacity: 1;
+          margin-right: 2.5%;
+          box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.8);
+      }
+
+      .modal-content {
+      }
+
       .header {
         display: flex;
         flex-direction: row;
@@ -57,6 +74,28 @@ html {
               border-radius: 100%;
             }
           }
+        }
+
+        .profilePic {
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          width:64px;
+        }
+
+        .triangle1 {
+          display: none;
+          border-left: 16px solid transparent;
+          border-right: 16px solid transparent;
+          border-bottom: 10px solid lightgrey;
+        }
+
+        .triangle2 {
+          display: none;
+          border-bottom: 14px solid white;
+          margin-top: -8px;
+          border-left: 22px solid transparent;
+          border-right: 22px solid transparent;
         }
 
         .headerLeft {

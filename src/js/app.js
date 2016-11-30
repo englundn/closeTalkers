@@ -5,6 +5,9 @@ import Header from './header';
 import LandingPage from './landingPage';
 import Dashboard from './dashboard';
 import ContentList from './contentList';
+import TimePieGraph from './timePieGraph';
+import TimeBarGraph from './timeBarGraph';
+import Modal from './modal';
 import '../css/style.scss';
 
 const URL = 'https://dejavu.ninja';
@@ -21,11 +24,13 @@ class App extends React.Component {
       loading: false,
       usage: [],
       dashboard: false,
+      modal: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.query = this.query.bind(this);
     this.handleExpand = this.handleExpand.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   // Checks to see if the user is logged in
@@ -106,6 +111,17 @@ class App extends React.Component {
     }
   }
 
+  toggleModal() {
+    const modal = document.getElementById('myModal');
+    const t1 = document.getElementById('t1');
+    const t2 = document.getElementById('t2');
+    this.setState({ modal: !this.state.modal }, () => {
+      t1.style.display = this.state.modal ? 'block' : 'none';
+      t2.style.display = this.state.modal ? 'block' : 'none';
+      modal.style.display = this.state.modal ? 'block' : 'none';
+    });
+  }
+
   render() {
     return (
       <div className="appWrapper">
@@ -113,6 +129,7 @@ class App extends React.Component {
           query={this.state.query}
           handleChange={this.handleChange}
           isLoggedIn={this.state.isLoggedIn}
+          toggleModal={this.toggleModal}
         />
         {!this.state.isLoggedIn &&
           <LandingPage />
@@ -131,6 +148,7 @@ class App extends React.Component {
             usage={this.state.usage}
           />)
         }
+        <Modal />
       </div>
     );
   }

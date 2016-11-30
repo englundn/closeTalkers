@@ -12,17 +12,17 @@ const timeDiff = days => (result) => {
 };
 
 const filters = {
+  'All Time': data => data,
   Today: timeDiff(1),
   'This Week': timeDiff(7),
   'This Month': timeDiff(30),
   'This Year': timeDiff(365),
-  'All Time': data => data,
 };
 
 const sorts = {
+  Relevance: (r1, r2) => r2._score - r1._score,
   Visits: (r1, r2) => r2._source.timeInfo.length - r1._source.timeInfo.length,
   'Time Spent': (r1, r2) => r2._source.totalTime - r1._source.totalTime,
-  Relevance: (r1, r2) => r2._score - r1._score,
   'Last Visited': (r1, r2) => r2._source.timeInfo[r2._source.timeInfo.length - 1][1] -
                               r1._source.timeInfo[r1._source.timeInfo.length - 1][1],
 };
@@ -62,17 +62,19 @@ class ContentList extends React.Component {
   render() {
     return (
       <div className="contentList">
-        {this.props.results.length > 0 && <Filters
-          filters={Object.keys(filters)}
-          filterSetting={this.state.filterSetting}
-          setFilter={this.setFilter}
-          sorts={Object.keys(sorts)}
-          sortSetting={this.state.sortSetting}
-          setSort={this.setSort}
-          order={Object.keys(resultOrder)}
-          orderSetting={this.state.orderSetting}
-          setOrder={this.setOrder}
-        />}
+        {this.props.results.length > 0 &&
+          <Filters
+            filters={Object.keys(filters)}
+            filterSetting={this.state.filterSetting}
+            setFilter={this.setFilter}
+            sorts={Object.keys(sorts)}
+            sortSetting={this.state.sortSetting}
+            setSort={this.setSort}
+            order={Object.keys(resultOrder)}
+            orderSetting={this.state.orderSetting}
+            setOrder={this.setOrder}
+          />
+        }
         {resultOrder[this.state.orderSetting](
           this.props.results.filter(removeEmpty)
           .filter(filters[this.state.filterSetting])
