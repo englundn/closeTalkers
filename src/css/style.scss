@@ -30,8 +30,6 @@ html {
         display: flex;
         flex-direction: row;
 
-        padding-top: 10px;
-        padding-bottom: 10px;
         position: fixed;
         width: 100%;
         top: 0px;
@@ -41,35 +39,30 @@ html {
         box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.8);
 
         div {
+          display: flex;
           flex-shrink: 0;
           
-          min-width: 130px;
           width: 20%;
+          min-width: 140px;
 
           a {
+            height: 36px;
+            padding: 10px;
             font-size: 18px;
             line-height: 36px;
             color: white;
+            
+            img {
+              height: 100%;
+              border-radius: 100%;
+            }
           }
         }
 
         .headerLeft {
-          display: flex;
           flex-direction: row;
 
-          float: left;
-          margin-left: 35px;
-
-          img {
-            height: 36px;
-            margin-right: 15px;
-            -webkit-filter: drop-shadow(0px 0px 5px rgba(102, 102, 102, 0.3));
-            filter: drop-shadow(0px 0px 5px rgba(102, 102, 102, 0.3));
-          }
-
-          a {
-            float: left;
-          }
+          margin-left: 2.5%;
         }
 
         .searchBar {
@@ -85,24 +78,26 @@ html {
             opacity: 0.5;
           }
 
-          .inputField {
-            width: 100%;
-            height: 32px;
-            background: none;
-            font-size: 32px;
-            border: none;
-            color: white;
-            border-bottom: 2px solid white;
+          .searchForm {
+            flex-grow: 1;
+
+            .inputField {
+              width: 100%;
+              height: 32px;
+              background: none;
+              font-size: 32px;
+              border: none;
+              color: white;
+              border-bottom: 2px solid white;
+            }
           }
         }
 
         .headerRight {
-          float: right;
-          margin-right: 35px;
+          display: flex;
+          flex-direction: row-reverse;
 
-          a {
-            float: right;
-          }
+          margin-right: 2.5%;
         }
       }
       
@@ -143,6 +138,7 @@ html {
       .noContent {
         display: flex;
 
+        height: 100vh;
         font-size: 24px;
         color: grey;
         text-align: center;
@@ -157,6 +153,46 @@ html {
 
         padding-top: 76px;
         padding-bottom: 76px;
+
+        .filtersWrapper {
+          width: 800px;
+          max-width: 90%;
+          margin-top: 20px;
+          margin-bottom: 20px;
+          background-color: white;
+          box-shadow: 0px 0px 5px 0px rgba(102, 102, 102, 0.3);
+
+          .filters {
+            display: flex;
+            flex-direction: column;
+            
+            padding: 20px;
+            border-bottom: 1px solid #EBEBEB;
+
+            div {
+              display: flex;
+              flex-direction: row;
+
+              span {
+                margin-left: 15px;
+                margin-right: 15px;
+                width: 90px;
+
+                &:hover {
+                  cursor: pointer;
+                }
+              }
+
+              .filtersTitle {
+                font-weight: bold;
+              }
+
+              .chosenSetting {
+                font-weight: bold;
+              }
+            }
+          }
+        }
 
         .contentWrapper {
           width: 800px;
@@ -197,8 +233,7 @@ html {
                   .contentTimestamp {
                     flex-shrink: 0;
 
-                    float: right;
-                    margin-left: 35px;
+                    margin-left: 25px;
                   }
                 }
 
@@ -217,8 +252,7 @@ html {
                   .viewedTimestamp {
                     flex-shrink: 0;
 
-                    float: right;
-                    margin-left: 35px;
+                    margin-left: 25px;
                   }
                 }
               }
