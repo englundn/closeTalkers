@@ -23,6 +23,13 @@ const sorts = {
   Visits: (r1, r2) => r2._source.timeInfo.length - r1._source.timeInfo.length,
   'Time Spent': (r1, r2) => r2._source.totalTime - r1._source.totalTime,
   Relevance: (r1, r2) => r2._score - r1._score,
+  'Last Visited': (r1, r2) => r2._source.timeInfo[r2._source.timeInfo.length - 1][1] -
+                              r1._source.timeInfo[r1._source.timeInfo.length - 1][1],
+};
+
+const resultOrder = {
+  Descending: array => array,
+  Ascending: array => array.reverse(),
 };
 
 class ContentList extends React.Component {
@@ -31,11 +38,13 @@ class ContentList extends React.Component {
 
     this.state = {
       filterSetting: 'All Time',
-      sortSetting: 'Time Spent',
+      sortSetting: 'Relevance',
+      orderSetting: 'Descending',
     };
 
     this.setFilter = this.setFilter.bind(this);
     this.setSort = this.setSort.bind(this);
+    this.setOrder = this.setOrder.bind(this);
   }
 
   setFilter(option) {
@@ -44,6 +53,10 @@ class ContentList extends React.Component {
 
   setSort(option) {
     this.setState({ sortSetting: option });
+  }
+
+  setOrder(option) {
+    this.setState({ orderSetting: option });
   }
 
   render() {
@@ -56,11 +69,15 @@ class ContentList extends React.Component {
           sorts={Object.keys(sorts)}
           sortSetting={this.state.sortSetting}
           setSort={this.setSort}
+          order={Object.keys(resultOrder)}
+          orderSetting={this.state.orderSetting}
+          setOrder={this.setOrder}
         />}
-        {this.props.results.filter(removeEmpty)
+        {resultOrder[this.state.orderSetting](
+          this.props.results.filter(removeEmpty)
           .filter(filters[this.state.filterSetting])
           .sort(sorts[this.state.sortSetting])
-          .map((result, index) => (
+          ).map((result, index) => (
             <Content
               result={result}
               index={index}
