@@ -174,10 +174,9 @@ html {
               flex-direction: row;
 
               span {
-                flex-grow: 1;
-
                 margin-left: 15px;
                 margin-right: 15px;
+                width: 90px;
 
                 &:hover {
                   cursor: pointer;
