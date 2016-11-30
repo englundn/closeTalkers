@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Header from './header';
 import LandingPage from './landingPage';
+import Dashboard from './dashboard';
 import ContentList from './contentList';
-import TimePieGraph from './timePieGraph';
-import TimeBarGraph from './timeBarGraph';
 import '../css/style.scss';
 
 const URL = 'https://dejavu.ninja';
@@ -21,6 +20,7 @@ class App extends React.Component {
       expanded: -1,
       loading: false,
       usage: [],
+      dashboard: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.query = this.query.bind(this);
@@ -117,21 +117,19 @@ class App extends React.Component {
         {!this.state.isLoggedIn &&
           <LandingPage />
         }
-        {// !!this.state.isLoggedIn &&
-        //   <div>
-        //     <TimePieGraph usage={this.state.usage} />
-        //     <TimeBarGraph usage={this.state.usage} />
-        //   </div>
-        }
         {this.state.isLoggedIn && this.state.isLoggedIn !== 'loading' && !this.state.loading &&
-          ((this.state.query.length < 2 || this.state.results.length) ?
-            <ContentList
-              results={this.state.results}
-              expanded={this.state.expanded}
-              handleExpand={this.handleExpand}
-              deleteItem={this.deleteItem}
-            />
-          : <div className="noContent">No Results</div>)
+          (!this.state.dashboard ?
+            ((this.state.query.length < 2 || this.state.results.length) ?
+              <ContentList
+                results={this.state.results}
+                expanded={this.state.expanded}
+                handleExpand={this.handleExpand}
+                deleteItem={this.deleteItem}
+              />
+            : <div className="noContent">No Results</div>)
+          : <Dashboard
+            usage={this.state.usage}
+          />)
         }
       </div>
     );
