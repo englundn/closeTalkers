@@ -31,12 +31,13 @@ const searchOptions = (id, queryString, checksum) => {
 const createOptions = (url, title, id, text, time) => {
   const checksum = getSum(text);
   const timeInfo = [time];
+  const totalTime = time[2];
 
   return {
     method: 'POST',
     uri: `${URL}/user_${id}/pages`,
     auth: { user, pass },
-    body: { url, title, text, checksum, timeInfo },
+    body: { url, title, text, checksum, timeInfo, totalTime },
     json: true,
   };
 };
@@ -49,10 +50,11 @@ const updateOptions = (userId, timeInfo, entryId) => {
     json: true,
     body: {
       script: {
-        inline: 'ctx._source.timeInfo.add(params.time)',
+        inline: 'ctx._source.timeInfo.add(params.time); ctx._source.totalTime+=params.seconds',
         lang: 'painless',
         params: {
           time: timeInfo,
+          seconds: timeInfo[2],
         },
       },
     },
@@ -65,7 +67,11 @@ const timeOptions = (id) => {
     uri: `${URL}/user_${id}/pages/_search`,
     auth: { user, pass },
     json: true,
-    body: { query: { match_all: {} } },
+    body: {
+      sort: { totalTime: 'desc' },
+      query: { match_all: {} },
+      size: '500',
+    },
   };
 };
 

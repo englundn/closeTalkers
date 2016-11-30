@@ -24,7 +24,6 @@ const TimePieGraph = ({ usage }) => {
   if (otherTime) {
     byTime.push({ name: 'Other', value: otherTime });
   }
-
   // Generate custom labels
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
@@ -37,7 +36,6 @@ const TimePieGraph = ({ usage }) => {
       </text>
     );
   };
-
   // Generate custom tooltips
   // Based off http://recharts.org/examples/#CustomContentOfTooltip
   class CustomTooltip extends React.Component {
@@ -54,7 +52,6 @@ const TimePieGraph = ({ usage }) => {
       return null;
     }
   }
-
   return (
     <PieChart width={800} height={400}>
       <Pie
@@ -73,20 +70,6 @@ const TimePieGraph = ({ usage }) => {
       <Tooltip content={<CustomTooltip />} />
     </PieChart>
   );
-
-  // return (
-  //   <div className="graphs">
-  //     <ul>
-  //       {usage.map((result, index) => (
-  //         <li key={index}>
-  //           {index} Domain: {result.domain}
-  //           Entries: {result.entries.length}
-  //           Time: {result.totalTime}
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   </div>
-  // );
 };
 
 export default TimePieGraph;
