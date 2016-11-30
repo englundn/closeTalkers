@@ -25,6 +25,7 @@ class App extends React.Component {
       modal: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.showDashboard = this.showDashboard.bind(this);
     this.query = this.query.bind(this);
     this.handleExpand = this.handleExpand.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
@@ -40,6 +41,8 @@ class App extends React.Component {
         this.setState({ isLoggedIn });
         if (isLoggedIn) {
           this.getUsageData();
+        } else {
+          this.setState({ dashboard: false });
         }
       },
     });
@@ -82,6 +85,10 @@ class App extends React.Component {
     this.setState({ expanded: index });
   }
 
+  showDashboard() {
+    this.setState({ dashboard: true });
+  }
+
   deleteItem(id) {
     const context = this;
     $.ajax({
@@ -100,7 +107,7 @@ class App extends React.Component {
   // Queries the server for search results
   handleChange(event) {
     const query = event.target.value;
-    this.setState({ query });
+    this.setState({ query, dashboard: false });
 
     if (query.length > 1) {
       this.query(query);
@@ -126,25 +133,25 @@ class App extends React.Component {
         <Header
           query={this.state.query}
           handleChange={this.handleChange}
+          showDashboard={this.showDashboard}
           isLoggedIn={this.state.isLoggedIn}
           toggleModal={this.toggleModal}
         />
         {!this.state.isLoggedIn &&
           <LandingPage />
         }
+        {this.state.dashboard &&
+          <Dashboard usage={this.state.usage} />
+        }
         {this.state.isLoggedIn && this.state.isLoggedIn !== 'loading' && !this.state.loading &&
-          (!this.state.dashboard ?
-            ((this.state.query.length < 2 || this.state.results.length) ?
-              <ContentList
-                results={this.state.results}
-                expanded={this.state.expanded}
-                handleExpand={this.handleExpand}
-                deleteItem={this.deleteItem}
-              />
-            : <div className="noContent">No Results</div>)
-          : <Dashboard
-            usage={this.state.usage}
-          />)
+          ((this.state.query.length < 2 || this.state.results.length) ?
+            <ContentList
+              results={this.state.results}
+              expanded={this.state.expanded}
+              handleExpand={this.handleExpand}
+              deleteItem={this.deleteItem}
+            />
+          : <div className="noContent">No Results</div>)
         }
         <Modal />
       </div>
@@ -153,3 +160,4 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+

@@ -20,11 +20,15 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div className="dashboard">
-        <div className="graph">
-          <TimePieGraph usage={this.props.usage} />
+        <div className="graphIcons">
+          <i className="material-icons" onClick={() => this.chooseGraph('pie')}>pie_chart</i>
+          <i className="material-icons" onClick={() => this.chooseGraph('bar')}>insert_chart</i>
         </div>
         <div className="graph">
-          <TimeBarGraph usage={this.props.usage} />
+          {(this.state.graph === 'pie') ?
+            <TimePieGraph usage={this.props.usage} />
+            : <TimeBarGraph usage={this.props.usage} />
+          }
         </div>
       </div>
     );

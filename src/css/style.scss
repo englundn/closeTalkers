@@ -176,16 +176,19 @@ html {
 
       .dashboard {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         
         height: 100vh;
         text-align: center;
         justify-content: center;
         align-items: center;
 
-        .graph {
-          flex-grow: 1;
+        .graphIcons {
+          display: flex;
+          flex-direction: row;
 
+        }
+        .graph {
           width: 40%;
         }
       }
