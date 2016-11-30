@@ -5,6 +5,7 @@ import Header from './header';
 import LandingPage from './landingPage';
 import ContentList from './contentList';
 import TimePieGraph from './timePieGraph';
+import TimeBarGraph from './timeBarGraph';
 import '../css/style.scss';
 
 const URL = 'https://dejavu.ninja';
@@ -116,7 +117,13 @@ class App extends React.Component {
         {!this.state.isLoggedIn &&
           <LandingPage />
         }
-        {this.state.isLoggedIn &&
+        {// !!this.state.isLoggedIn &&
+        //   <div>
+        //     <TimePieGraph usage={this.state.usage} />
+        //     <TimeBarGraph usage={this.state.usage} />
+        //   </div>
+        }
+        {!!this.state.isLoggedIn &&
           ((this.state.query.length < 2 || this.state.results.length || this.state.loading) ?
             <ContentList
               results={this.state.results}
