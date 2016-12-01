@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Modal = () => (
+const Modal = ({ showDashboard }) => (
   <div id="myModal" className="modal">
     <div className="modal-content">
-      <p>Dashboard</p>
+      <span onClick={showDashboard}><p>Dashboard</p></span>
       <a href="/logout"><p>Log out</p></a>
     </div>
   </div>
