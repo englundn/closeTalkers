@@ -64,6 +64,10 @@ html {
           align-items: center;
           flex-direction: column;
           width: 64px;
+
+          &:hover {
+            cursor: pointer;
+          }
         }
 
         .triangle1 {
