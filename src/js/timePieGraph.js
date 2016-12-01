@@ -45,7 +45,7 @@ const TimePieGraph = ({ usage }) => {
         const { payload } = this.props;
         return (
           <div className="custom-tooltip">
-            <p className="label">{`${timeSince(payload[0].value)}`}</p>
+            <p className="label">{` ${timeSince(payload[0].value)} `}</p>
           </div>
         );
       }
