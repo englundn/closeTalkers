@@ -40,6 +40,7 @@ class App extends React.Component {
     this.setFilter = this.setFilter.bind(this);
     this.setSort = this.setSort.bind(this);
     this.setOrder = this.setOrder.bind(this);
+    document.onclick = this.closeModal.bind(this);
   }
 
   // Checks to see if the user is logged in
@@ -89,6 +90,12 @@ class App extends React.Component {
 
   setOrder(option) {
     this.setState({ orderSetting: option });
+  }
+
+  closeModal() {
+    if (this.state.modal) {
+      this.toggleModal();
+    }
   }
 
   query(qs) {
@@ -179,7 +186,7 @@ class App extends React.Component {
           />
         }
         {this.state.dashboard &&
-          <Dashboard usage={this.state.usage} />
+          <Dashboard usage={this.state.usage} filterSetting={this.state.filterSetting} />
         }
         {this.state.isLoggedIn && this.state.isLoggedIn !== 'loading' && !this.state.loading && !this.state.dashboard &&
           ((this.state.query.length < 2 || this.state.results.length) ?

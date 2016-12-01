@@ -21,7 +21,7 @@ const filters = {
   'This Week': timeDiffChart(7),
   'This Month': timeDiffChart(30),
   'This Year': timeDiffChart(365),
-  'All Time': data => data,
+  'All Time': timeDiffChart(365000),
 };
 
 const parseTimeStats = (data) => {
@@ -75,8 +75,8 @@ class Dashboard extends React.Component {
         </div>
         <div className="graph">
           {(this.state.graph === 'pie') ?
-            <TimePieGraph usage={parseTimeStats(this.props.usage.map(filters['Today']))} />
-            : <TimeBarGraph usage={parseTimeStats(this.props.usage.map(filters['Today']))} />
+            <TimePieGraph usage={parseTimeStats(this.props.usage.map(filters[this.props.filterSetting]))} />
+            : <TimeBarGraph usage={parseTimeStats(this.props.usage.map(filters[this.props.filterSetting]))} />
           }
         </div>
       </div>
