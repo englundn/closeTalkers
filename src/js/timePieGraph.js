@@ -4,7 +4,7 @@ import timeSince from './timeSince';
 
 const TimePieGraph = ({ usage }) => {
   // Set the selection of colors for the pie chart
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#00C49F', '#FFBB28', '#FF8042'];
+  const COLORS = ['#72C2AE', '#E56399', '#C5FFFD', '#FF8042', '#00C49F', '#FFBB28', '#FF8042'];
 
   // Create "Other" segment for uncommon websites
   let allTime = 0;
