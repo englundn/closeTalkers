@@ -153,7 +153,9 @@ class App extends React.Component {
             />
           : <div className="noContent">No Results</div>)
         }
-        <Modal />
+        <Modal
+          showDashboard={this.showDashboard}
+        />
       </div>
     );
   }
