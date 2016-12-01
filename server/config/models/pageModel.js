@@ -9,7 +9,7 @@ const searchOptions = (id, queryString, checksum) => {
   let query = {
     multi_match: {
       query: queryString,
-      fields: ['text', 'body', 'url^3'],
+      fields: ['text', 'title', 'url'],
     },
   };
   if (checksum) {
