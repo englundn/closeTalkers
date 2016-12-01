@@ -30,6 +30,7 @@ class App extends React.Component {
     this.handleExpand = this.handleExpand.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    document.onclick = this.closeModal.bind(this);
   }
 
   // Checks to see if the user is logged in
@@ -67,6 +68,12 @@ class App extends React.Component {
         this.setState({ usage });
       },
     });
+  }
+
+  closeModal() {
+    if (this.state.modal) {
+      this.toggleModal();
+    }
   }
 
   query(qs) {
