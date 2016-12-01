@@ -31,8 +31,8 @@ const sendLast = (tab) => {
     const timeInfo = [time, newTime, newTime - time];
     const userId = localStorage.userId;
     const data = { userId, url, timeInfo, title, body };
-    // request.open('POST', 'https://dejavu.ninja/api/chrome', true);
-    request.open('POST', 'http://localhost:3000/api/chrome', true);
+    request.open('POST', 'https://dejavu.ninja/api/chrome', true);
+    // request.open('POST', 'http://localhost:3000/api/chrome', true);
     request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     request.send(JSON.stringify(data));
     reset();
