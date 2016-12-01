@@ -206,7 +206,33 @@ html {
         .graphIcons {
           display: flex;
           flex-direction: row;
-          margin-bottom: 4vh;
+          margin-bottom: 5vh;
+
+          .material-icons {
+            color: gray;
+            font-size: 2em;
+            height: 32px;
+            margin-left: 5px;
+            margin-right: 5px;
+            cursor: pointer;
+          }
+          .highlighted {
+            box-shadow: 0 0 5px 0 #666; 
+          }
+        }
+        .graph {
+          // width: 40%;
+          // max-height: 75vh;
+          .custom-tooltip {
+            border: 1px solid #f5f5f5;
+            background-color: rgba(255, 255, 255, 0.9);
+            line-height: 18px;
+            border: 1px solid #f5f5f5;
+            .label {
+              margin: 0;
+              color: #666;
+            }
+          }
         }
       }
 

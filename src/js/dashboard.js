@@ -22,8 +22,8 @@ class Dashboard extends React.Component {
     return (
       <div className="dashboard">
         <div className="graphIcons">
-          <i className="material-icons" onClick={() => this.chooseGraph('pie')}>pie_chart</i>
-          <i className="material-icons" onClick={() => this.chooseGraph('bar')}>insert_chart</i>
+          <i className={`material-icons${this.state.graph === 'pie' ? ' highlighted' : ''}`} onClick={() => this.chooseGraph('pie')}>pie_chart</i>
+          <i className={`material-icons${this.state.graph === 'bar' ? ' highlighted' : ''}`} onClick={() => this.chooseGraph('bar')}>insert_chart</i>
         </div>
         <div className="graph">
           {(this.state.graph === 'pie') ?
