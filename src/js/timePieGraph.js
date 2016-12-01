@@ -53,7 +53,7 @@ const TimePieGraph = ({ usage }) => {
     }
   }
   return (
-    <PieChart width={800} height={400}>
+    <PieChart width={600} height={400}>
       <Pie
         data={byTime}
         cx={300}

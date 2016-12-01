@@ -23,13 +23,13 @@ const TimeBarGraph = ({ usage }) => {
 
   return (
     <BarChart
-      width={600}
-      height={byTime.length * 50}
+      width={960}
+      height={byTime.length * 35}
       data={byTime}
-      margin={{ top: 100, right: 30, left: 120, bottom: 5 }}
+      margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
       layout="vertical"
     >
-      <YAxis type="category" dataKey="name" />
+      <YAxis type="category" dataKey="name" width={240} />
       <XAxis type="number" hide={true} />
       <Bar dataKey="value" fill="#8884d8" />
     </BarChart>

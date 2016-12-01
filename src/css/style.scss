@@ -177,19 +177,20 @@ html {
       .dashboard {
         display: flex;
         flex-direction: column;
-        
-        height: 100vh;
+        margin-top: 10vh;
+        height: 90vh;
         text-align: center;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
 
         .graphIcons {
           display: flex;
           flex-direction: row;
-
+          margin-bottom: 4vh;
         }
         .graph {
-          width: 40%;
+          // width: 40%;
+          // max-height: 75vh;
         }
       }
 
