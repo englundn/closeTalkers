@@ -211,8 +211,13 @@ html {
           .material-icons {
             color: gray;
             font-size: 2em;
+            height: 32px;
             margin-left: 5px;
             margin-right: 5px;
+            cursor: pointer;
+          }
+          .highlighted {
+            box-shadow: 0 0 5px 0 #666; 
           }
         }
         .graph {
