@@ -13,7 +13,7 @@ const Header = ({ query, handleChange, isLoggedIn, toggleModal }) => (
           placeholder="search"
           value={query}
           onChange={handleChange}
-          onKeyUp={handleChange}
+          // onKeyUp={handleChange}
         />
       </form>}
     </div>

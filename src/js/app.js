@@ -105,7 +105,9 @@ class App extends React.Component {
       url: `${URL}/api/web/search?q="${qs}"`,
       method: 'GET',
       success: (data) => {
-        this.setState({ results: data.hits.hits, loading: false });
+        if (this.state.query.length > 1) {
+          this.setState({ results: data.hits.hits, loading: false });
+        }
       },
     });
   }
