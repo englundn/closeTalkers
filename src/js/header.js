@@ -21,7 +21,8 @@ const Header = ({ query, handleChange, isLoggedIn, toggleModal }) => (
       <a href="/login">Sign in</a>
     </div>}
     {isLoggedIn && isLoggedIn !== 'loading' && <div className="headerRight">
-      <a className="profilePic"><img src={isLoggedIn} alt="" onClick={toggleModal} />
+      <a className="profilePic">
+        <img src={isLoggedIn} alt="" onClick={toggleModal} />
         <span id="t1" className="triangle1" />
         <span id="t2" className="triangle2" />
       </a>

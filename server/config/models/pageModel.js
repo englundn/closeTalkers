@@ -7,8 +7,9 @@ const pass = process.env.ELASTIC_PASSWORD || require('../config').password;
 
 const searchOptions = (id, queryString, checksum) => {
   let query = {
-    match: {
-      text: queryString,
+    multi_match: {
+      query: queryString,
+      fields: ['text', 'body', 'url^3'],
     },
   };
   if (checksum) {
