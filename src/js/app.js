@@ -186,7 +186,7 @@ class App extends React.Component {
           />
         }
         {this.state.dashboard &&
-          <Dashboard usage={this.state.usage} />
+          <Dashboard usage={this.state.usage} filterSetting={this.state.filterSetting} />
         }
         {this.state.isLoggedIn && this.state.isLoggedIn !== 'loading' && !this.state.loading && !this.state.dashboard &&
           ((this.state.query.length < 2 || this.state.results.length) ?
