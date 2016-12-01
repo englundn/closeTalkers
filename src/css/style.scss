@@ -33,7 +33,7 @@ html {
           right: 1px;
           padding-left: 10px;
           padding-right: 10px;
-          top: 56px;
+          top: 61px;
           height: 80px;
           opacity: 1;
           margin-right: 2.5%;
@@ -80,11 +80,12 @@ html {
           display: flex;
           align-items: center;
           flex-direction: column;
-          width:64px;
+          width: 64px;
         }
 
         .triangle1 {
           display: none;
+          margin-top: 5px;
           border-left: 16px solid transparent;
           border-right: 16px solid transparent;
           border-bottom: 10px solid lightgrey;
@@ -197,6 +198,8 @@ html {
 
         padding-top: 76px;
         padding-bottom: 76px;
+        padding-left: 150px;
+        padding-right: 150px;
 
         .filtersWrapper {
           position: fixed;
