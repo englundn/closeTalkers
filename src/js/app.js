@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Header from './header';
-import LandingPage from './landingPage';
+import Modal from './modal';
+import Filters from './filters';
 import Dashboard from './dashboard';
 import ContentList from './contentList';
-import Modal from './modal';
+import LandingPage from './landingPage';
+import { removeEmpty, filters, sorts, resultOrder } from './filterHelpers';
 import '../css/style.scss';
 
 const URL = 'https://dejavu.ninja';
@@ -14,6 +16,7 @@ const URL = 'https://dejavu.ninja';
 class App extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       query: '',
       results: [],
@@ -23,13 +26,20 @@ class App extends React.Component {
       usage: [],
       dashboard: false,
       modal: false,
+      filterSetting: 'All Time',
+      sortSetting: 'Relevance',
+      orderSetting: 'Descending',
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.showDashboard = this.showDashboard.bind(this);
     this.query = this.query.bind(this);
     this.handleExpand = this.handleExpand.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.setFilter = this.setFilter.bind(this);
+    this.setSort = this.setSort.bind(this);
+    this.setOrder = this.setOrder.bind(this);
     document.onclick = this.closeModal.bind(this);
   }
 
@@ -68,6 +78,18 @@ class App extends React.Component {
         this.setState({ usage });
       },
     });
+  }
+
+  setFilter(option) {
+    this.setState({ filterSetting: option });
+  }
+
+  setSort(option) {
+    this.setState({ sortSetting: option });
+  }
+
+  setOrder(option) {
+    this.setState({ orderSetting: option });
   }
 
   closeModal() {
@@ -144,29 +166,51 @@ class App extends React.Component {
           isLoggedIn={this.state.isLoggedIn}
           toggleModal={this.toggleModal}
         />
-        {!this.state.isLoggedIn &&
-          <LandingPage />
+        {this.state.isLoggedIn && this.state.isLoggedIn !== 'loading' &&
+          <Modal
+            showDashboard={this.showDashboard}
+          />
+        }
+        {this.state.isLoggedIn && this.state.isLoggedIn !== 'loading' &&
+          <Filters
+            filters={Object.keys(filters)}
+            filterSetting={this.state.filterSetting}
+            setFilter={this.setFilter}
+            sorts={Object.keys(sorts)}
+            sortSetting={this.state.sortSetting}
+            setSort={this.setSort}
+            order={Object.keys(resultOrder)}
+            orderSetting={this.state.orderSetting}
+            setOrder={this.setOrder}
+            dashboard={this.state.dashboard}
+          />
         }
         {this.state.dashboard &&
           <Dashboard usage={this.state.usage} />
         }
-        {this.state.isLoggedIn && this.state.isLoggedIn !== 'loading' && !this.state.loading &&
+        {this.state.isLoggedIn && this.state.isLoggedIn !== 'loading' && !this.state.loading && !this.state.dashboard &&
           ((this.state.query.length < 2 || this.state.results.length) ?
             <ContentList
               results={this.state.results}
               expanded={this.state.expanded}
               handleExpand={this.handleExpand}
               deleteItem={this.deleteItem}
+              resultOrder={resultOrder}
+              orderSetting={this.state.orderSetting}
+              removeEmpty={removeEmpty}
+              filters={filters}
+              filterSetting={this.state.filterSetting}
+              sorts={sorts}
+              sortSetting={this.state.sortSetting}
             />
           : <div className="noContent">No Results</div>)
         }
-        <Modal
-          showDashboard={this.showDashboard}
-        />
+        {!this.state.isLoggedIn &&
+          <LandingPage />
+        }
       </div>
     );
   }
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
-

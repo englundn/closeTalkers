@@ -26,7 +26,7 @@ const TimePieGraph = ({ usage }) => {
   }
   // Generate custom labels
   const RADIAN = Math.PI / 180;
-  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, index }) => {
     const radius = innerRadius + ((outerRadius - innerRadius) * 0.5);
     const x = cx + (2.5 * radius * Math.cos(-midAngle * RADIAN));
     const y = cy + (2.5 * radius * Math.sin(-midAngle * RADIAN));
@@ -58,7 +58,6 @@ const TimePieGraph = ({ usage }) => {
         data={byTime}
         cx={300}
         cy={200}
-        // labelLine={false}
         label={renderCustomizedLabel}
         outerRadius={120}
         fill="#8884d8"
