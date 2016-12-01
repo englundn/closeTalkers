@@ -203,10 +203,10 @@ html {
 
         .filtersWrapper {
           position: fixed;
+          height: 100vh;
           top: 56px;
           left: 0px;
-          margin-top: 20px;
-          margin-bottom: 20px;
+          padding-top: 20px;
           background-color: white;
 
           .filters {
