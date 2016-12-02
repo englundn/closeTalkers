@@ -1,7 +1,7 @@
 {
   "name": "Déjà Vu",
   "short_name": "Déjà Vu",
-  "description": "Find anything you have ever browsed",
+  "description": "What your browser history could have been",
   "version": "0.2.3",
   "manifest_version": 2,
   "content_scripts": [{
