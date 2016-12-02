@@ -15,7 +15,7 @@ class LandingPage extends React.Component {
     return (
       <div className="landingMain">
         <h1>Déjà Vu</h1>
-        <h2>Find anything you have ever browsed</h2>
+        <h2>What your browser history could have been</h2>
         <img
           className="webStore"
           onClick={this.installExtension}
