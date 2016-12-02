@@ -21,12 +21,12 @@
 
 ## Usage
 
-> Navigate to dejavu.ninja
-> Download and install Chrome extension
-> Browse normally
-> Visit dejavu.ninja and log in with Google account info
-> Search for any previously visited webpages
-> View charts of browsing statistics on dashboard
+- Navigate to dejavu.ninja
+- Download and install Chrome extension
+- Browse normally
+- Visit dejavu.ninja and log in with Google account info
+- Search for any previously visited webpages
+- View charts of browsing statistics on dashboard
 
 ## Software Stack
 
