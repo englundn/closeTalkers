@@ -1,13 +1,13 @@
 [![Stories in Ready](https://badge.waffle.io/closeTalkers/closeTalkers.png?label=ready&title=Ready)](https://waffle.io/closeTalkers/closeTalkers)
-# closeTalkers
+# Déjà Vu
 
-> Pithy project description
+> What your browser history could have been
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Frederic Renken__
+  - __Jace Zhu__
+  - __Nick Englund__
 
 ## Table of Contents
 
@@ -21,15 +21,19 @@
 
 ## Usage
 
-> Some usage instructions
+> Navigate to dejavu.ninja
+> Download and install Chrome extension
+> Browse normally
+> Visit dejavu.ninja and log in with Google account info
+> Search for any previously visited webpages
+> View charts of browsing statistics on dashboard
 
-## Requirements
+## Software Stack
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- ElasticSearch
+- Node.js
+- Express.js
+- React.js
 
 ## Development
 
@@ -38,14 +42,12 @@
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
 npm install
-bower install
 ```
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/closeTalkers/closeTalkers/issues)
 
 
 ## Contributing
