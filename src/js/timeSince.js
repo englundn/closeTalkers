@@ -1,7 +1,7 @@
 const timeSince = (date, showViewingTime) => {
   const seconds = Math.floor((date) / 1000);
 
-  const dateObj = new Date(date);
+  const dateObj = new Date(new Date().getTime() - date);
   const minutes = dateObj.getMinutes();
   const hours = dateObj.getHours();
   const ampm = hours < 11 ? 'am' : 'pm';
