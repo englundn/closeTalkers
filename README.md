@@ -5,12 +5,13 @@
 
 ## Team
 
-  - __Frederic Renken__
+  - __Frédéric Renken__
   - __Jace Zhu__
   - __Nick Englund__
 
 ## Table of Contents
 
+1. [Screenshots](#Screenshots)
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
@@ -18,6 +19,14 @@
     1. [Tasks](#tasks)
 1. [Team](#team)
 1. [Contributing](#contributing)
+
+## Screenshots
+
+![Alt text](/chrome/promo/screenshot1.png?raw=true)
+![Alt text](/chrome/promo/screenshot2.png?raw=true)
+![Alt text](/chrome/promo/screenshot3.png?raw=true)
+![Alt text](/chrome/promo/screenshot4.png?raw=true)
+![Alt text](/chrome/promo/screenshot5.png?raw=true)
 
 ## Usage
 
