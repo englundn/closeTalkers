@@ -18,7 +18,7 @@ const Content = ({ result, index, style, handleExpand, deleteItem }) => (
             </span>
             <span className="contentTimestamp">
               {timeSince(new Date().getTime()
-                - result._source.timeInfo[result._source.timeInfo.length - 1][1])} ago
+                - result._source.timeInfo[result._source.timeInfo.length - 1][1], true)}
             </span>
           </div>
           <div className="contentHeaderBottom">
@@ -27,7 +27,7 @@ const Content = ({ result, index, style, handleExpand, deleteItem }) => (
             </span>
             <span className="viewedTimestamp">
               viewed for {timeSince(result._source.timeInfo.reduce((prev, next) =>
-                prev + next[2], 0), true)}
+                prev + next[2], 0), false)}
             </span>
           </div>
         </div>
