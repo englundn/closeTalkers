@@ -3,6 +3,12 @@
 
 > What your browser history could have been
 
+![Alt text](/chrome/promo/screenshot1.png?raw=true)
+![Alt text](/chrome/promo/screenshot2.png?raw=true)
+![Alt text](/chrome/promo/screenshot3.png?raw=true)
+![Alt text](/chrome/promo/screenshot4.png?raw=true)
+![Alt text](/chrome/promo/screenshot5.png?raw=true)
+
 ## Team
 
   - __Frederic Renken__
