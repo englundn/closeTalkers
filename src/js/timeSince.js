@@ -22,19 +22,22 @@ const timeSince = (date, showViewingTime) => {
   }
   interval = Math.floor(seconds / 3600);
   if (interval > 1) {
-    return `${interval} hours`;
+    return `${interval} hours${showViewingTime ? ' ago' : ''}`;
   }
   if (interval === 1) {
-    return `${interval} hour`;
+    return `${interval} hour${showViewingTime ? ' ago' : ''}`;
   }
   interval = Math.floor(seconds / 60);
   if (interval > 1) {
-    return `${interval} minutes`;
+    return `${interval} minutes${showViewingTime ? ' ago' : ''}`;
   }
   if (interval === 1) {
-    return `${interval} minute`;
+    return `${interval} minute${showViewingTime ? ' ago' : ''}`;
   }
-  return `${Math.floor(seconds)} seconds`;
+  if (seconds > 1) {
+    return `${Math.floor(seconds)} seconds${showViewingTime ? ' ago' : ''}`;
+  }
+  return `${Math.floor(seconds)} second${showViewingTime ? ' ago' : ''}`;
 };
 
 export default timeSince;
